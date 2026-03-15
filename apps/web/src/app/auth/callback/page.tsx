@@ -1,50 +1,54 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { Suspense } from 'react';
 
-export default function AuthCallbackPage() {
+function CallbackContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    const code = searchParams.get('code');
+    if (!code) {
+      setError(true);
+      return;
+    }
+
     const supabase = createClient();
 
-    // Exchange the auth code for session (PKCE verifier is in browser storage)
-    supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN' && session) {
-        const userId = session.user.id;
-
-        // Check if user exists in users table
-        const { data: existingUser } = await supabase
-          .from('users')
-          .select('id, is_active')
-          .eq('id', userId)
-          .single();
-
-        if (!existingUser) {
-          router.replace('/register/terms');
-          return;
-        }
-
-        if (!existingUser.is_active) {
-          await supabase.auth.signOut();
-          router.replace('/login?error=auth_failed');
-          return;
-        }
-
-        router.replace('/learn');
+    supabase.auth.exchangeCodeForSession(code).then(async ({ data, error: authError }) => {
+      if (authError || !data.session) {
+        console.error('[Auth Callback] exchangeCodeForSession error:', authError?.message);
+        setError(true);
+        return;
       }
+
+      const userId = data.session.user.id;
+
+      // Check if user exists in users table
+      const { data: existingUser } = await supabase
+        .from('users')
+        .select('id, is_active')
+        .eq('id', userId)
+        .single();
+
+      if (!existingUser) {
+        router.replace('/register/terms');
+        return;
+      }
+
+      if (!existingUser.is_active) {
+        await supabase.auth.signOut();
+        router.replace('/login?error=auth_failed');
+        return;
+      }
+
+      router.replace('/learn');
     });
-
-    // Timeout fallback
-    const timeout = setTimeout(() => {
-      setError(true);
-    }, 10000);
-
-    return () => clearTimeout(timeout);
-  }, [router]);
+  }, [router, searchParams]);
 
   if (error) {
     return (
@@ -64,5 +68,17 @@ export default function AuthCallbackPage() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="animate-spin h-8 w-8 border-2 border-primary-600 border-t-transparent rounded-full" />
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin h-8 w-8 border-2 border-primary-600 border-t-transparent rounded-full" />
+      </div>
+    }>
+      <CallbackContent />
+    </Suspense>
   );
 }
