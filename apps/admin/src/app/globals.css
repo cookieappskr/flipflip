@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary */
+    --color-primary-50: #EEF2FF;
+    --color-primary-100: #E0E7FF;
+    --color-primary-500: #6366F1;
+    --color-primary-600: #4F46E5;
+    --color-primary-700: #4338CA;
+    --color-primary-900: #312E81;
+
+    /* Neutral */
+    --color-neutral-50: #F9FAFB;
+    --color-neutral-100: #F3F4F6;
+    --color-neutral-200: #E5E7EB;
+    --color-neutral-500: #6B7280;
+    --color-neutral-700: #374151;
+    --color-neutral-900: #111827;
+
+    /* Status */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+
+    /* Semantic */
+    --color-surface: #FFFFFF;
+    --color-surface-secondary: #F9FAFB;
+    --color-border: #E5E7EB;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6B7280;
+    --color-sidebar-bg: #1F2937;
+    --color-sidebar-text: #D1D5DB;
+    --color-sidebar-active: #6366F1;
+  }
+
+  .dark {
+    --color-primary-50: #1E1B4B;
+    --color-primary-100: #312E81;
+    --color-primary-500: #818CF8;
+    --color-primary-600: #6366F1;
+    --color-primary-700: #4F46E5;
+    --color-primary-900: #EEF2FF;
+
+    --color-neutral-50: #111827;
+    --color-neutral-100: #1F2937;
+    --color-neutral-200: #374151;
+    --color-neutral-500: #9CA3AF;
+    --color-neutral-700: #D1D5DB;
+    --color-neutral-900: #F9FAFB;
+
+    --color-success: #34D399;
+    --color-warning: #FBBF24;
+    --color-error: #F87171;
+    --color-info: #60A5FA;
+
+    --color-surface: #111827;
+    --color-surface-secondary: #1F2937;
+    --color-border: #374151;
+    --color-text-primary: #F9FAFB;
+    --color-text-secondary: #9CA3AF;
+    --color-sidebar-bg: #0F172A;
+    --color-sidebar-text: #94A3B8;
+    --color-sidebar-active: #818CF8;
+  }
+
+  body {
+    @apply bg-surface text-text-primary;
+  }
+}
