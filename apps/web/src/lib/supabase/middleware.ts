@@ -34,6 +34,7 @@ export async function updateSession(request: NextRequest) {
   const publicPaths = [
     '/login',
     '/api/auth/callback',
+    '/auth/callback',
     '/onboarding',
     '/pricing',
   ];
