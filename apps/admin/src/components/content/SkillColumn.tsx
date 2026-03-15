@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Pencil } from 'lucide-react';
 import { useSkills } from '@/lib/hooks/useSkills';
 import type { Skill } from '@/types/database';
 import ColumnPanel from './ColumnPanel';
@@ -22,7 +23,7 @@ export default function SkillColumn({
 
   if (!levelId) {
     return (
-      <ColumnPanel title="Skills">
+      <ColumnPanel title="스킬">
         <div className="px-4 py-8 text-center text-sm text-text-secondary">
           레벨을 선택해주세요
         </div>
@@ -32,7 +33,7 @@ export default function SkillColumn({
 
   return (
     <ColumnPanel
-      title="Skills"
+      title="스킬"
       count={skills.length}
       onAdd={() => onOpenForm()}
       loading={loading}
@@ -45,28 +46,40 @@ export default function SkillColumn({
         <ul>
           {skills.map((skill) => (
             <li key={skill.id}>
-              <button
-                type="button"
-                onClick={() => {
-                  onSelectSkill(skill.id);
-                  onOpenForm(skill);
-                }}
+              <div
                 className={[
-                  'w-full text-left px-4 py-3 border-b border-border transition-colors',
+                  'w-full flex items-center px-4 py-3 border-b border-border transition-colors',
                   selectedSkillId === skill.id
                     ? 'bg-primary-50 border-l-2 border-l-primary-600'
                     : 'hover:bg-neutral-50',
                 ].join(' ')}
               >
-                <div className="text-sm font-medium text-text-primary truncate">
-                  {skill.name}
-                </div>
-                {skill.summary && (
-                  <div className="text-xs text-text-secondary mt-0.5 truncate">
-                    {skill.summary}
+                <button
+                  type="button"
+                  onClick={() => onSelectSkill(skill.id)}
+                  className="flex-1 min-w-0 text-left"
+                >
+                  <div className="text-sm font-medium text-text-primary truncate">
+                    {skill.skill_name}
                   </div>
-                )}
-              </button>
+                  {skill.skill_summary && (
+                    <div className="text-xs text-text-secondary mt-0.5 truncate">
+                      {skill.skill_summary}
+                    </div>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenForm(skill);
+                  }}
+                  className="ml-2 p-1 rounded hover:bg-neutral-200 text-text-secondary hover:text-text-primary transition-colors shrink-0"
+                  title="스킬 수정"
+                >
+                  <Pencil className="h-4 w-4" />
+                </button>
+              </div>
             </li>
           ))}
         </ul>

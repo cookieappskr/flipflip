@@ -1,0 +1,141 @@
+{
+  "app": {
+    "name": "FlipFlip",
+    "tagline": "The Easiest Language Learning App"
+  },
+  "auth": {
+    "loginWithGoogle": "Continue with Google",
+    "loginTermsNotice": "By signing in, you agree to our Terms of Service and Privacy Policy.",
+    "errorNotRegistered": "Registration required. Please agree to the terms.",
+    "errorAuthFailed": "Authentication failed. Please try again."
+  },
+  "register": {
+    "terms": {
+      "title": "Terms Agreement",
+      "subtitle": "Please agree to the terms to use the service.",
+      "selectAll": "Agree to All",
+      "required": "(Required)",
+      "optional": "(Optional)",
+      "noTerms": "No terms available. Proceed to the next step."
+    },
+    "phone": {
+      "title": "Phone Verification",
+      "subtitle": "Enter your phone number for identity verification.",
+      "placeholder": "+1-234-567-8900",
+      "requestCode": "Send Code",
+      "enterCode": "Enter code",
+      "verify": "Verify",
+      "verified": "Verification complete."
+    },
+    "nickname": {
+      "title": "Set Nickname",
+      "subtitle": "This name will be displayed to other users.",
+      "placeholder": "Nickname (2-16 chars)",
+      "available": "Nickname is available.",
+      "checking": "Checking..."
+    },
+    "email": {
+      "title": "Email",
+      "subtitle": "This email will be used for sharing and notifications."
+    },
+    "birth": {
+      "title": "Date of Birth",
+      "subtitle": "Required for age verification.",
+      "notAdult": "This service is only available to adults.",
+      "required": "Please enter your date of birth."
+    },
+    "profile": {
+      "title": "Profile Image",
+      "subtitle": "Choose an image to represent yourself. (Optional)",
+      "upload": "Upload Image",
+      "skip": "Skip"
+    },
+    "referrer": {
+      "title": "Referral",
+      "subtitle": "Enter the nickname of who referred you. (Optional)",
+      "placeholder": "Referrer nickname",
+      "skip": "Skip"
+    },
+    "complete": {
+      "title": "Registration Complete",
+      "subtitle": "All information has been entered!",
+      "description": "After registration, select your language and take a level test.",
+      "submit": "Complete Registration",
+      "errorGeneric": "Registration failed.",
+      "errorNetwork": "Network error occurred."
+    }
+  },
+  "diagnosis": {
+    "motherTongue": "Select your native language",
+    "learningLanguage": "Select the language to learn",
+    "dailyGoal": "Set your daily study goal",
+    "complete": "Complete"
+  },
+  "levelTest": {
+    "title": "Level Test",
+    "loading": "Loading questions...",
+    "saving": "Saving results...",
+    "showAnswer": "Show Answer",
+    "perfect": "Perfect",
+    "mostly": "Mostly Correct",
+    "missed": "Missed"
+  },
+  "learn": {
+    "sessionComplete": "Session Complete!",
+    "todayCount": "You studied {count} sentences today.",
+    "learnMore": "Study More",
+    "noCards": "No sentences to study.",
+    "noCardsDesc": "Please wait until content is added.",
+    "showAnswer": "Show Answer (↓)",
+    "perfect": "Perfect",
+    "mostly": "Mostly Correct",
+    "missed": "Missed",
+    "review": "Review",
+    "skillComplete": "Skill Complete!",
+    "skillMastered": "You mastered the {skill} skill!",
+    "levelUp": "Level Up!",
+    "levelUpTo": "You reached Level {level}!",
+    "continue": "Continue",
+    "newLearning": "Start New Learning"
+  },
+  "records": {
+    "title": "Study Records",
+    "streak": "Day Streak",
+    "totalChecks": "Total Sentences",
+    "completed": "Done",
+    "today": "Today"
+  },
+  "mypage": {
+    "title": "My Page",
+    "editProfile": "Edit Profile",
+    "save": "Save",
+    "cancel": "Cancel",
+    "currentLevel": "Current Level",
+    "subscription": "Subscription",
+    "viewPlans": "View Plans",
+    "darkMode": "Dark Mode",
+    "signOut": "Sign Out",
+    "trialUntil": "Free Trial (until {date})",
+    "active": "Active",
+    "expired": "Expired",
+    "none": "None"
+  },
+  "pricing": {
+    "title": "Subscription Plans",
+    "subtitle": "Start learning with the easiest language app at a great price.",
+    "recommended": "Recommended",
+    "currentPlan": "Current Plan",
+    "subscribe": "Subscribe",
+    "comingSoon": "Payment integration coming soon."
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "start": "Get Started"
+  },
+  "common": {
+    "next": "Next",
+    "back": "Go Back",
+    "loading": "Loading..."
+  }
+}

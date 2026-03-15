@@ -37,7 +37,7 @@ export function downloadCsv(data: Record<string, unknown>[], filename: string) {
 export function validateSkillsCsv(data: Record<string, string>[]): CsvValidationError[] {
   const errors: CsvValidationError[] = [];
   data.forEach((row, i) => {
-    if (!row.name?.trim()) errors.push({ row: i, field: 'name', message: '스킬명은 필수입니다' });
+    if (!row.skill_name?.trim()) errors.push({ row: i, field: 'skill_name', message: '스킬명은 필수입니다' });
   });
   return errors;
 }
@@ -45,7 +45,7 @@ export function validateSkillsCsv(data: Record<string, string>[]): CsvValidation
 export function validateSentencesCsv(data: Record<string, string>[]): CsvValidationError[] {
   const errors: CsvValidationError[] = [];
   data.forEach((row, i) => {
-    if (!row.summary?.trim()) errors.push({ row: i, field: 'summary', message: '문장개요(국문)는 필수입니다' });
+    if (!row.meaning?.trim()) errors.push({ row: i, field: 'meaning', message: '문장 의미는 필수입니다' });
   });
   return errors;
 }

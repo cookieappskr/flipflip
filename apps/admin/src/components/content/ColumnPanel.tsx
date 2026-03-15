@@ -19,8 +19,8 @@ export default function ColumnPanel({
 }: ColumnPanelProps) {
   return (
     <div className="flex flex-col h-full border-r border-border last:border-r-0">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-surface-secondary">
+      {/* Header - fixed height, sticky */}
+      <div className="flex items-center justify-between px-4 h-12 min-h-[3rem] border-b border-border bg-surface-secondary sticky top-0 z-10 shrink-0">
         <div className="flex items-center gap-2">
           <h3 className="text-sm font-semibold text-text-primary">{title}</h3>
           {count !== undefined && (

@@ -22,8 +22,7 @@ export function useTypes(parentId?: string | null) {
       const supabase = createClient();
       let query = supabase
         .from('types')
-        .select('*')
-        .order('sort_order', { ascending: true });
+        .select('*');
 
       if (parentId === null) {
         query = query.is('parent_id', null);
@@ -31,9 +30,25 @@ export function useTypes(parentId?: string | null) {
         query = query.eq('parent_id', parentId);
       }
 
-      const { data, error: fetchError } = await query;
+      // Try display_order first, fallback to no ordering if column doesn't exist
+      const { data, error: fetchError } = await query.order('display_order', { ascending: true });
 
-      if (fetchError) throw fetchError;
+      if (fetchError) {
+        // If display_order column doesn't exist, retry without ordering
+        if (fetchError.message?.includes('display_order')) {
+          let retryQuery = supabase.from('types').select('*');
+          if (parentId === null) {
+            retryQuery = retryQuery.is('parent_id', null);
+          } else {
+            retryQuery = retryQuery.eq('parent_id', parentId);
+          }
+          const { data: retryData, error: retryError } = await retryQuery;
+          if (retryError) throw retryError;
+          setTypes(retryData ?? []);
+          return;
+        }
+        throw fetchError;
+      }
       setTypes(data ?? []);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Failed to fetch types';

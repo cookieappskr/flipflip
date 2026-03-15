@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Pencil } from 'lucide-react';
 import { useSentences } from '@/lib/hooks/useSentences';
 import type { Sentence } from '@/types/database';
 import ColumnPanel from './ColumnPanel';
@@ -22,7 +23,7 @@ export default function SentenceColumn({
 
   if (!skillId) {
     return (
-      <ColumnPanel title="Sentences">
+      <ColumnPanel title="문장">
         <div className="px-4 py-8 text-center text-sm text-text-secondary">
           스킬을 선택해주세요
         </div>
@@ -32,7 +33,7 @@ export default function SentenceColumn({
 
   return (
     <ColumnPanel
-      title="Sentences"
+      title="문장"
       count={sentences.length}
       onAdd={() => onOpenForm()}
       loading={loading}
@@ -45,28 +46,35 @@ export default function SentenceColumn({
         <ul>
           {sentences.map((sentence) => (
             <li key={sentence.id}>
-              <button
-                type="button"
-                onClick={() => {
-                  onSelectSentence(sentence.id);
-                  onOpenForm(sentence);
-                }}
+              <div
                 className={[
-                  'w-full text-left px-4 py-3 border-b border-border transition-colors',
+                  'w-full flex items-center px-4 py-3 border-b border-border transition-colors',
                   selectedSentenceId === sentence.id
                     ? 'bg-primary-50 border-l-2 border-l-primary-600'
                     : 'hover:bg-neutral-50',
                 ].join(' ')}
               >
-                <div className="text-sm text-text-primary truncate">
-                  {sentence.summary || '-'}
-                </div>
-                {sentence.summary_en && (
-                  <div className="text-xs text-text-secondary mt-0.5 truncate">
-                    {sentence.summary_en}
+                <button
+                  type="button"
+                  onClick={() => onSelectSentence(sentence.id)}
+                  className="flex-1 min-w-0 text-left"
+                >
+                  <div className="text-sm text-text-primary truncate">
+                    {sentence.meaning || '-'}
                   </div>
-                )}
-              </button>
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenForm(sentence);
+                  }}
+                  className="ml-2 p-1 rounded hover:bg-neutral-200 text-text-secondary hover:text-text-primary transition-colors shrink-0"
+                  title="문장 수정"
+                >
+                  <Pencil className="h-4 w-4" />
+                </button>
+              </div>
             </li>
           ))}
         </ul>

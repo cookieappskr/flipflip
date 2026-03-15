@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import type { Skill, Sentence, Expression } from '@/types/database';
+import type { Level, Skill, Sentence, Expression } from '@/types/database';
 import { useSkills } from '@/lib/hooks/useSkills';
 import { useSentences } from '@/lib/hooks/useSentences';
 import { useExpressions } from '@/lib/hooks/useExpressions';
@@ -12,6 +12,7 @@ import SkillColumn from '@/components/content/SkillColumn';
 import SentenceColumn from '@/components/content/SentenceColumn';
 import ExpressionColumn from '@/components/content/ExpressionColumn';
 import ContentFormModal from '@/components/content/ContentFormModal';
+import LevelEditModal from '@/components/content/LevelEditModal';
 import CsvUploadModal from '@/components/content/CsvUploadModal';
 
 type FormMode = 'skill' | 'sentence' | 'expression';
@@ -28,6 +29,11 @@ interface CsvModalState {
   isOpen: boolean;
   mode: CsvMode;
   parentId: string;
+}
+
+interface LevelEditModalState {
+  isOpen: boolean;
+  level: Level | null;
 }
 
 export default function ContentPage() {
@@ -50,6 +56,11 @@ export default function ContentPage() {
     parentId: '',
   });
 
+  const [levelEditModal, setLevelEditModal] = useState<LevelEditModalState>({
+    isOpen: false,
+    level: null,
+  });
+
   // Hooks for refetch and CSV download
   const { skills, refetch: refetchSkills } = useSkills(selectedLevelId);
   const { sentences, refetch: refetchSentences } = useSentences(selectedSkillId);
@@ -69,6 +80,15 @@ export default function ContentPage() {
 
   const handleSelectSentence = useCallback((id: string) => {
     setSelectedSentenceId(id);
+  }, []);
+
+  // Level edit modal handlers
+  const handleEditLevel = useCallback((level: Level) => {
+    setLevelEditModal({ isOpen: true, level });
+  }, []);
+
+  const closeLevelEditModal = useCallback(() => {
+    setLevelEditModal((prev) => ({ ...prev, isOpen: false }));
   }, []);
 
   // Form modal handlers
@@ -235,6 +255,7 @@ export default function ContentPage() {
         <LevelColumn
           selectedLevelId={selectedLevelId}
           onSelectLevel={handleSelectLevel}
+          onEditLevel={handleEditLevel}
         />
         <SkillColumn
           levelId={selectedLevelId}
@@ -253,6 +274,16 @@ export default function ContentPage() {
           onOpenForm={openExpressionForm}
         />
       </div>
+
+      {/* Level Edit Modal */}
+      <LevelEditModal
+        isOpen={levelEditModal.isOpen}
+        onClose={closeLevelEditModal}
+        level={levelEditModal.level}
+        onSaved={() => {
+          // Level list will auto-refetch via useLevels hook
+        }}
+      />
 
       {/* Form Modal */}
       <ContentFormModal

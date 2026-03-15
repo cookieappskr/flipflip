@@ -53,7 +53,7 @@ export default function TypeFormModal({
     if (editType) {
       setTypeName(editType.type_name);
       setTypeCode(editType.type_code);
-      setSortOrder(editType.sort_order);
+      setSortOrder(editType.display_order);
       setValue(editType.value ?? '');
       setDescription(editType.description ?? '');
       setColor(editType.color ?? '');
@@ -124,7 +124,7 @@ export default function TypeFormModal({
         parent_id: effectiveParentId,
         type_name: typeName.trim(),
         type_code: typeCode.trim(),
-        sort_order: sortOrder,
+        display_order: sortOrder,
         value: value.trim() || null,
         description: description.trim() || null,
         color: color.trim() || null,

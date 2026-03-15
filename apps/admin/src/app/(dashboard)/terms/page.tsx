@@ -198,7 +198,7 @@ export default function TermsPage() {
                   내용
                 </h3>
                 <div
-                  className="prose prose-sm max-w-none border border-border rounded-lg p-4 bg-neutral-50"
+                  className="prose prose-sm dark:prose-invert max-w-none border border-border rounded-lg p-4 bg-neutral-50"
                   dangerouslySetInnerHTML={{
                     __html: selectedTerms.content ?? '<p>내용이 없습니다.</p>',
                   }}

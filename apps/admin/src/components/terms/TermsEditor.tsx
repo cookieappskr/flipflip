@@ -166,7 +166,7 @@ export function TermsEditor({ content, onChange }: TermsEditorProps) {
       {/* Editor Area */}
       <EditorContent
         editor={editor}
-        className="prose prose-sm max-w-none px-4 py-3 min-h-[16rem] focus-within:outline-none [&_.ProseMirror]:outline-none [&_.ProseMirror]:min-h-[14rem]"
+        className="prose prose-sm dark:prose-invert max-w-none px-4 py-3 min-h-[16rem] focus-within:outline-none [&_.ProseMirror]:outline-none [&_.ProseMirror]:min-h-[14rem]"
       />
     </div>
   );

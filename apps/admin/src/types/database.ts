@@ -16,7 +16,7 @@ export interface Type {
   parent_id: string | null;
   type_name: string;
   type_code: string;
-  sort_order: number;
+  display_order: number;
   value: string | null;
   description: string | null;
   color: string | null;
@@ -35,7 +35,7 @@ export interface TypeInsert {
   parent_id?: string | null;
   type_name: string;
   type_code: string;
-  sort_order?: number;
+  display_order?: number;
   value?: string | null;
   description?: string | null;
   color?: string | null;
@@ -51,7 +51,7 @@ export interface TypeInsert {
 export interface Level {
   id: string;
   level_number: number;
-  summary: string | null;
+  level_summary: string | null;
   description: string | null;
   native_level_type_id: string | null;
   created_at: string;
@@ -59,7 +59,7 @@ export interface Level {
 }
 
 export interface LevelUpdate {
-  summary?: string | null;
+  level_summary?: string | null;
   description?: string | null;
   native_level_type_id?: string | null;
 }
@@ -67,41 +67,39 @@ export interface LevelUpdate {
 export interface Skill {
   id: string;
   level_id: string;
-  name: string;
-  summary: string | null;
-  sort_order: number;
-  tense_type_id: string | null;
-  purpose_type_id: string | null;
-  tone_type_id: string | null;
-  place_type_id: string | null;
+  skill_name: string;
+  skill_summary: string | null;
+  display_order: number;
+  tense_type_code: string | null;
+  pattern_type_code: string | null;
   created_at: string;
   updated_at: string;
 }
 
 export interface SkillInsert {
   level_id: string;
-  name: string;
-  summary?: string | null;
-  sort_order?: number;
-  tense_type_id?: string | null;
-  purpose_type_id?: string | null;
-  tone_type_id?: string | null;
-  place_type_id?: string | null;
+  skill_name: string;
+  skill_summary?: string | null;
+  display_order?: number;
+  tense_type_code?: string | null;
+  pattern_type_code?: string | null;
 }
 
 export interface Sentence {
   id: string;
   skill_id: string;
-  summary: string | null;
-  summary_en: string | null;
+  meaning: string | null;
+  sentence_type: string;
+  base_sentence_id: string | null;
   created_at: string;
   updated_at: string;
 }
 
 export interface SentenceInsert {
   skill_id: string;
-  summary?: string | null;
-  summary_en?: string | null;
+  meaning?: string | null;
+  sentence_type?: string;
+  base_sentence_id?: string | null;
 }
 
 export interface Expression {

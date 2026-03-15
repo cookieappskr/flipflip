@@ -3,23 +3,23 @@ import { validateSkillsCsv, validateSentencesCsv, validateExpressionsCsv } from 
 describe('csv validators', () => {
   describe('validateSkillsCsv', () => {
     it('passes valid data', () => {
-      const data = [{ name: 'Skill 1', summary: 'Test' }];
+      const data = [{ skill_name: 'Skill 1', skill_summary: 'Test' }];
       expect(validateSkillsCsv(data)).toHaveLength(0);
     });
-    it('catches missing name', () => {
-      const data = [{ name: '', summary: 'Test' }];
+    it('catches missing skill_name', () => {
+      const data = [{ skill_name: '', skill_summary: 'Test' }];
       expect(validateSkillsCsv(data)).toHaveLength(1);
-      expect(validateSkillsCsv(data)[0].field).toBe('name');
+      expect(validateSkillsCsv(data)[0].field).toBe('skill_name');
     });
   });
 
   describe('validateSentencesCsv', () => {
     it('passes valid data', () => {
-      const data = [{ summary: '안녕하세요', summary_en: 'Hello' }];
+      const data = [{ meaning: '안녕하세요' }];
       expect(validateSentencesCsv(data)).toHaveLength(0);
     });
-    it('catches missing summary', () => {
-      const data = [{ summary: '', summary_en: 'Hello' }];
+    it('catches missing meaning', () => {
+      const data = [{ meaning: '' }];
       expect(validateSentencesCsv(data)).toHaveLength(1);
     });
   });

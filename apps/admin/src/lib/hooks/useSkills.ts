@@ -21,7 +21,7 @@ export function useSkills(levelId?: string) {
         .from('skills')
         .select('*')
         .eq('level_id', levelId)
-        .order('sort_order', { ascending: true });
+        .order('display_order', { ascending: true });
 
       if (fetchError) throw fetchError;
       setSkills(data ?? []);

@@ -1,0 +1,141 @@
+{
+  "app": {
+    "name": "FlipFlip",
+    "tagline": "세상에서 가장 쉬운 언어학습앱"
+  },
+  "auth": {
+    "loginWithGoogle": "Google로 시작하기",
+    "loginTermsNotice": "로그인 시 서비스 이용약관 및 개인정보 처리방침에 동의합니다.",
+    "errorNotRegistered": "회원가입이 필요합니다. 약관에 동의해주세요.",
+    "errorAuthFailed": "인증에 실패했습니다. 다시 시도해주세요."
+  },
+  "register": {
+    "terms": {
+      "title": "약관 동의",
+      "subtitle": "서비스 이용을 위해 약관에 동의해주세요.",
+      "selectAll": "전체 동의",
+      "required": "(필수)",
+      "optional": "(선택)",
+      "noTerms": "등록된 약관이 없습니다. 다음 단계로 진행하세요."
+    },
+    "phone": {
+      "title": "전화번호 인증",
+      "subtitle": "본인 확인을 위해 전화번호를 입력해주세요.",
+      "placeholder": "010-1234-5678",
+      "requestCode": "인증요청",
+      "enterCode": "인증번호 입력",
+      "verify": "확인",
+      "verified": "인증이 완료되었습니다."
+    },
+    "nickname": {
+      "title": "닉네임 설정",
+      "subtitle": "다른 사용자에게 표시될 이름입니다.",
+      "placeholder": "닉네임 (2~16자)",
+      "available": "사용 가능한 닉네임입니다.",
+      "checking": "확인 중..."
+    },
+    "email": {
+      "title": "이메일 입력",
+      "subtitle": "공유 및 알림에 사용될 이메일입니다."
+    },
+    "birth": {
+      "title": "생년월일",
+      "subtitle": "성인 확인을 위해 필요합니다.",
+      "notAdult": "성인만 이용할 수 있는 서비스입니다.",
+      "required": "생년월일을 입력해주세요."
+    },
+    "profile": {
+      "title": "프로필 이미지",
+      "subtitle": "나를 표현할 이미지를 선택해주세요. (선택)",
+      "upload": "이미지 업로드",
+      "skip": "건너뛰기"
+    },
+    "referrer": {
+      "title": "추천인 입력",
+      "subtitle": "추천인의 닉네임을 입력해주세요. (선택)",
+      "placeholder": "추천인 닉네임",
+      "skip": "건너뛰기"
+    },
+    "complete": {
+      "title": "가입 완료",
+      "subtitle": "모든 정보가 입력되었습니다!",
+      "description": "가입 완료 후 모국어와 학습언어를 선택하고, 레벨테스트를 진행합니다.",
+      "submit": "가입 완료",
+      "errorGeneric": "가입에 실패했습니다.",
+      "errorNetwork": "네트워크 오류가 발생했습니다."
+    }
+  },
+  "diagnosis": {
+    "motherTongue": "모국어를 선택해주세요",
+    "learningLanguage": "학습할 언어를 선택해주세요",
+    "dailyGoal": "하루 학습 목표 시간을 선택해주세요",
+    "complete": "완료"
+  },
+  "levelTest": {
+    "title": "레벨 테스트",
+    "loading": "문제 불러오는 중...",
+    "saving": "결과 저장 중...",
+    "showAnswer": "정답 보기",
+    "perfect": "완벽히맞춤",
+    "mostly": "대부분맞춤",
+    "missed": "못맞춤"
+  },
+  "learn": {
+    "sessionComplete": "세션 완료!",
+    "todayCount": "오늘 {count}문장을 학습했습니다.",
+    "learnMore": "더 학습하기",
+    "noCards": "학습할 문장이 없습니다.",
+    "noCardsDesc": "콘텐츠가 추가될 때까지 기다려주세요.",
+    "showAnswer": "정답 보기 (↓)",
+    "perfect": "완벽히맞춤",
+    "mostly": "대부분맞춤",
+    "missed": "못맞춤",
+    "review": "복습",
+    "skillComplete": "스킬 완료!",
+    "skillMastered": "{skill} 스킬을 마스터했습니다!",
+    "levelUp": "레벨 업!",
+    "levelUpTo": "레벨 {level}로 올라갔습니다!",
+    "continue": "계속하기",
+    "newLearning": "새로운 학습 시작"
+  },
+  "records": {
+    "title": "학습 기록",
+    "streak": "연속 학습일",
+    "totalChecks": "총 학습 문장수",
+    "completed": "완료",
+    "today": "오늘"
+  },
+  "mypage": {
+    "title": "마이페이지",
+    "editProfile": "프로필 수정",
+    "save": "저장",
+    "cancel": "취소",
+    "currentLevel": "현재 레벨",
+    "subscription": "구독 상태",
+    "viewPlans": "플랜 보기",
+    "darkMode": "다크 모드",
+    "signOut": "로그아웃",
+    "trialUntil": "무료체험 ({date} 까지)",
+    "active": "구독 중",
+    "expired": "만료",
+    "none": "없음"
+  },
+  "pricing": {
+    "title": "구독 플랜",
+    "subtitle": "세상에서 가장 쉬운 언어학습, 합리적인 가격으로 시작하세요.",
+    "recommended": "추천",
+    "currentPlan": "현재 플랜",
+    "subscribe": "구독하기",
+    "comingSoon": "결제 기능은 추후 업데이트 예정입니다."
+  },
+  "onboarding": {
+    "skip": "건너뛰기",
+    "next": "다음",
+    "start": "시작하기"
+  },
+  "common": {
+    "next": "다음",
+    "back": "돌아가기",
+    "loading": "로딩 중..."
+  }
+}

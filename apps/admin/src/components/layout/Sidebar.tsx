@@ -5,19 +5,19 @@ import { usePathname } from 'next/navigation';
 import {
   FolderTree,
   BookOpen,
-  Layers,
   Settings,
   Users,
   FileText,
+  Palette,
 } from 'lucide-react';
 
 const menuItems = [
   { href: '/types', label: '유형관리', icon: FolderTree },
   { href: '/content', label: '콘텐츠관리', icon: BookOpen },
-  { href: '/levels', label: '레벨관리', icon: Layers },
   { href: '/policies', label: '정책관리', icon: Settings },
   { href: '/members', label: '회원관리', icon: Users },
   { href: '/terms', label: '약관관리', icon: FileText },
+  { href: '/design-system', label: '디자인시스템', icon: Palette },
 ];
 
 export function Sidebar() {

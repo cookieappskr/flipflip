@@ -939,3 +939,923 @@
 | 4398 | 880 | ZH | 走路的话哪条路更近？ | 走路(zǒulù, 걸어서), 近(jìn, 가까운) |
 | 4399 | 880 | JA | 歩いて行くとどちらの道が近いですか？ | 歩いて(あるいて, 걸어서), 道(みち, 길), 近い(ちかい, 가까운) |
 | 4400 | 880 | KO | 걸어서 가면 어느 길이 더 가깝습니까? | "가깝습니까?" = is it close? |
+
+---
+
+## Level 26: 최상급
+
+### Skill ID 101: 형용사 최상급
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4401 | 881 | EN | This is the most expensive one | "the most" + adjective = superlative |
+| 4402 | 881 | ES | Este es el más caro | "el más caro" = the most expensive |
+| 4403 | 881 | ZH | 这是最贵的 | 最(zuì, 가장), 贵(guì, 비싼) |
+| 4404 | 881 | JA | これが一番高いものです | 一番(いちばん, 가장), 高い(たかい, 비싼) |
+| 4405 | 881 | KO | 이것이 가장 비싼 것입니다 | "가장" = the most |
+| 4406 | 882 | EN | This building is the tallest in the city | Superlative with location |
+| 4407 | 882 | ES | Este edificio es el más alto de la ciudad | "el más alto" = the tallest |
+| 4408 | 882 | ZH | 这栋楼是城市里最高的 | 楼(lóu, 건물), 城市(chéngshì, 도시) |
+| 4409 | 882 | JA | このビルは街で一番高いです | 街(まち, 도시) |
+| 4410 | 882 | KO | 이 건물이 도시에서 가장 높습니다 | "도시에서" = in the city |
+| 4411 | 883 | EN | He is the tallest in the class | Superlative in a group |
+| 4412 | 883 | ES | Él es el más alto de la clase | "de la clase" = in the class |
+| 4413 | 883 | ZH | 他是班里个子最高的 | 班(bān, 반), 个子(gèzi, 키) |
+| 4414 | 883 | JA | 彼はクラスで一番背が高いです | クラス(클래스/반) |
+| 4415 | 883 | KO | 그가 반에서 가장 키가 큽니다 | "반에서" = in the class |
+| 4416 | 884 | EN | This is the biggest and brightest room | Double superlative |
+| 4417 | 884 | ES | Esta es la habitación más grande y luminosa | "luminosa" = bright |
+| 4418 | 884 | ZH | 这是最大最明亮的房间 | 大(dà, 큰), 明亮(mínglìang, 밝은) |
+| 4419 | 884 | JA | これが一番大きくて明るい部屋です | 大きくて(おおきくて, 크고), 明るい(あかるい, 밝은) |
+| 4420 | 884 | KO | 이것이 가장 크고 밝은 방입니다 | "크고 밝은" = big and bright |
+| 4421 | 885 | EN | January is the coldest month and August is the hottest | Comparing extremes |
+| 4422 | 885 | ES | Enero es el mes más frío y agosto es el más caluroso | "enero" = January, "agosto" = August |
+| 4423 | 885 | ZH | 一月是最冷的月份，八月是最热的月份 | 月份(yuèfèn, 달/월) |
+| 4424 | 885 | JA | 1月が一番寒い月で8月が一番暑い月です | 月(つき, 달) |
+| 4425 | 885 | KO | 1월이 가장 추운 달이고 8월이 가장 더운 달입니다 | "추운 달/더운 달" = cold/hot month |
+| 4426 | 886 | EN | This is the easiest problem but it requires attention | Superlative with caveat |
+| 4427 | 886 | ES | Este es el problema más fácil pero requiere atención | "requiere atención" = requires attention |
+| 4428 | 886 | ZH | 这是最简单的问题但需要注意 | 简单(jiǎndān, 쉬운), 注意(zhùyì, 주의) |
+| 4429 | 886 | JA | これが一番簡単な問題ですが注意が必要です | 簡単(かんたん, 쉬운), 注意(ちゅうい, 주의) |
+| 4430 | 886 | KO | 이것이 가장 쉬운 문제이지만 주의가 필요합니다 | "주의가 필요합니다" = attention is needed |
+| 4431 | 887 | EN | Her grades are good so she is the smartest student | Reason + superlative |
+| 4432 | 887 | ES | Sus notas son buenas así que es la estudiante más inteligente | "notas" = grades |
+| 4433 | 887 | ZH | 成绩好所以她是最聪明的学生 | 成绩(chéngjì, 성적), 聪明(cōngmíng, 똑똒한) |
+| 4434 | 887 | JA | 成績がいいので彼女が一番頭のいい学生です | 成績(せいせき, 성적) |
+| 4435 | 887 | KO | 성적이 좋아서 그녀가 가장 똑똑한 학생입니다 | "똑똑한" = smart |
+| 4436 | 888 | EN | This is the oldest and biggest tree in the park | Double superlative with location |
+| 4437 | 888 | ES | Este es el árbol más viejo y más grande del parque | "árbol" = tree |
+| 4438 | 888 | ZH | 这是公园里最古老最大的树 | 古老(gǔlǎo, 오래된), 树(shù, 나무) |
+| 4439 | 888 | JA | これが公園で一番古くて大きい木です | 古くて(ふるくて, 오래되고), 木(き, 나무) |
+| 4440 | 888 | KO | 이것이 공원에서 가장 오래되고 큰 나무입니다 | "오래되고 큰" = old and big |
+
+### Skill ID 102: 부사 최상급
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4441 | 889 | EN | He works the hardest on the team | "the hardest" = superlative adverb |
+| 4442 | 889 | ES | Él es el que trabaja más duro en el equipo | "más duro" = the hardest |
+| 4443 | 889 | ZH | 他在团队里工作最努力 | 团队(tuánduì, 팀), 努力(nǔlì, 열심히) |
+| 4444 | 889 | JA | 彼がチームで一番熱心に働きます | 熱心に(ねっしんに, 열심히) |
+| 4445 | 889 | KO | 그가 팀에서 가장 열심히 일합니다 | "가장 열심히" = the hardest |
+| 4446 | 890 | EN | She answers the most accurately | Precision superlative |
+| 4447 | 890 | ES | Ella responde con más precisión | "precisión" = accuracy |
+| 4448 | 890 | ZH | 她回答得最准确 | 回答(huídá, 대답하다), 准确(zhǔnquè, 정확한) |
+| 4449 | 890 | JA | 彼女が一番正確に答えます | 正確に(せいかくに, 정확하게) |
+| 4450 | 890 | KO | 그녀가 가장 정확하게 대답합니다 | "정확하게" = accurately |
+| 4451 | 891 | EN | He moves the most quietly | Manner superlative |
+| 4452 | 891 | ES | Él se mueve con más silencio | "silencio" = silence |
+| 4453 | 891 | ZH | 他动作最轻 | 动作(dòngzuò, 동작), 轻(qīng, 가벼운/조용한) |
+| 4454 | 891 | JA | 彼が一番静かに動きます | 静かに(しずかに, 조용히), 動きます(うごきます, 움직입니다) |
+| 4455 | 891 | KO | 그가 가장 조용히 움직입니다 | "조용히 움직이다" = to move quietly |
+| 4456 | 892 | EN | She studies until the latest | Latest time superlative |
+| 4457 | 892 | ES | Ella estudia hasta más tarde | "hasta más tarde" = until the latest |
+| 4458 | 892 | ZH | 她学习到最晚 | 学习(xuéxí, 공부하다), 最晚(zuì wǎn, 가장 늦게) |
+| 4459 | 892 | JA | 彼女が一番遅くまで勉強します | 遅くまで(おそくまで, 늦게까지) |
+| 4460 | 892 | KO | 그녀가 가장 늦게까지 공부합니다 | "늦게까지" = until late |
+| 4461 | 893 | EN | He runs the fastest in class and is always first | Superlative + result |
+| 4462 | 893 | ES | Él corre más rápido de la clase y siempre es primero | "siempre" = always |
+| 4463 | 893 | ZH | 他在班里跑得最快，总是第一名 | 最快(zuì kuài, 가장 빠른), 第一名(dì yī míng, 1등) |
+| 4464 | 893 | JA | 彼がクラスで一番速く走り、いつも1位です | 1位(いちい, 1등) |
+| 4465 | 893 | KO | 그가 반에서 가장 빨리 뛰고 항상 1등입니다 | "항상 1등" = always first place |
+| 4466 | 894 | EN | She practiced a lot so she speaks the most fluently | Effort + superlative result |
+| 4467 | 894 | ES | Practicó mucho así que habla con más fluidez | "fluidez" = fluency |
+| 4468 | 894 | ZH | 练习很多所以她说得最流利 | 练习(liànxí, 연습), 流利(liúlì, 유창한) |
+| 4469 | 894 | JA | たくさん練習したので彼女が一番流暢に話します | 練習(れんしゅう, 연습), 流暢に(りゅうちょうに, 유창하게) |
+| 4470 | 894 | KO | 연습을 많이 해서 그녀가 가장 유창하게 말합니다 | "유창하게" = fluently |
+| 4471 | 895 | EN | She comes early every day so she arrives the earliest | Habit + superlative |
+| 4472 | 895 | ES | Viene temprano todos los días así que llega la primera | "la primera" = the earliest (fem) |
+| 4473 | 895 | ZH | 每天早来所以她到得最早 | 每天(měitiān, 매일), 最早(zuì zǎo, 가장 일찍) |
+| 4474 | 895 | JA | 毎日早く来るので彼女が一番早く着きます | 早く着きます(はやくつきます, 일찍 도착합니다) |
+| 4475 | 895 | KO | 매일 일찍 와서 그녀가 가장 일찍 도착합니다 | "가장 일찍" = the earliest |
+| 4476 | 896 | EN | He jumps the highest and throws the farthest | Double superlative adverbs |
+| 4477 | 896 | ES | Él salta más alto y lanza más lejos | "salta" = jumps, "lanza" = throws |
+| 4478 | 896 | ZH | 他跳得最高扔得最远 | 跳(tiào, 점프하다), 扔(rēng, 던지다), 远(yuǎn, 멀리) |
+| 4479 | 896 | JA | 彼が一番高く跳んで一番遠くに投げます | 跳んで(とんで, 뛰어서), 投げます(なげます, 던집니다) |
+| 4480 | 896 | KO | 그가 가장 높이 점프하고 가장 멀리 던집니다 | "높이/멀리" = high/far |
+
+### Skill ID 103: 최상급 활용 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4481 | 897 | EN | This is the most delicious cake | "the most delicious" = superlative |
+| 4482 | 897 | ES | Este es el pastel más delicioso | "pastel" = cake |
+| 4483 | 897 | ZH | 这是最好吃的蛋糕 | 好吃(hǎochī, 맛있는), 蛋糕(dàngāo, 케이크) |
+| 4484 | 897 | JA | これは一番おいしいケーキです | おいしい(맛있는) |
+| 4485 | 897 | KO | 이것은 가장 맛있는 케이크입니다 | "맛있는" = delicious |
+| 4486 | 898 | EN | It is the longest river in the world | World-level superlative |
+| 4487 | 898 | ES | Es el río más largo del mundo | "río" = river, "mundo" = world |
+| 4488 | 898 | ZH | 这是世界上最长的河 | 世界(shìjiè, 세계), 河(hé, 강) |
+| 4489 | 898 | JA | 世界で一番長い川です | 世界(せかい, 세계), 川(かわ, 강) |
+| 4490 | 898 | KO | 세계에서 가장 긴 강입니다 | "세계에서" = in the world |
+| 4491 | 899 | EN | This is the most comfortable chair | Comfort superlative |
+| 4492 | 899 | ES | Esta es la silla más cómoda | "silla" = chair, "cómoda" = comfortable |
+| 4493 | 899 | ZH | 这是最舒服的椅子 | 舒服(shūfu, 편한), 椅子(yǐzi, 의자) |
+| 4494 | 899 | JA | これが一番楽な椅子です | 楽な(らくな, 편한), 椅子(いす, 의자) |
+| 4495 | 899 | KO | 이것이 가장 편한 의자입니다 | "편한" = comfortable |
+| 4496 | 900 | EN | The food is delicious so this restaurant is the best in town | Reason + superlative |
+| 4497 | 900 | ES | La comida es deliciosa así que este restaurante es el mejor del pueblo | "pueblo" = town |
+| 4498 | 900 | ZH | 好吃所以这家餐厅是镇上最好的 | 餐厅(cāntīng, 식당), 镇(zhèn, 마을) |
+| 4499 | 900 | JA | おいしいのでこのレストランが町で一番です | 町(まち, 마을) |
+| 4500 | 900 | KO | 맛있어서 이 식당이 마을에서 최고입니다 | "최고" = the best |
+| 4501 | 901 | EN | It is the most popular song and everyone knows it | Superlative + universal statement |
+| 4502 | 901 | ES | Es la canción más popular y todos la conocen | "popular" = popular |
+| 4503 | 901 | ZH | 这是最受欢迎的歌，大家都知道 | 受欢迎(shòu huānyíng, 인기 있는), 歌(gē, 노래) |
+| 4504 | 901 | JA | 一番人気のある曲でみんな知っています | 人気(にんき, 인기), 曲(きょく, 노래) |
+| 4505 | 901 | KO | 가장 인기 있는 노래이고 모두 알고 있습니다 | "인기 있는" = popular |
+| 4506 | 902 | EN | I compared several things but this is the best choice | Decision after comparison |
+| 4507 | 902 | ES | Comparé varias cosas pero esta es la mejor opción | "opción" = choice |
+| 4508 | 902 | ZH | 比较了很多但这是最好的选择 | 比较(bǐjiào, 비교하다), 选择(xuǎnzé, 선택) |
+| 4509 | 902 | JA | いろいろ比べましたがこれが最高の選択です | 比べました(くらべました, 비교했습니다), 選択(せんたく, 선택) |
+| 4510 | 902 | KO | 여러 가지를 비교했지만 이것이 최고의 선택입니다 | "최고의 선택" = the best choice |
+| 4511 | 903 | EN | Today is the hottest day of the year so I turned on the AC | Superlative + action |
+| 4512 | 903 | ES | Hoy es el día más caluroso del año así que encendí el aire | "aire" = air conditioning |
+| 4513 | 903 | ZH | 今天是今年最热的一天所以开了空调 | 空调(kōngtiáo, 에어컨) |
+| 4514 | 903 | JA | 今日は今年一番暑い日なのでエアコンをつけました | エアコン(에어컨), つけました(켰습니다) |
+| 4515 | 903 | KO | 오늘이 올해 가장 더운 날이라서 에어컨을 켰습니다 | "에어컨을 켰습니다" = turned on the AC |
+| 4516 | 904 | EN | For safety, this is the most important rule | Superlative with reason |
+| 4517 | 904 | ES | Por seguridad, esta es la regla más importante | "seguridad" = safety |
+| 4518 | 904 | ZH | 为了安全这是最重要的规则 | 安全(ānquán, 안전), 规则(guīzé, 규칙) |
+| 4519 | 904 | JA | 安全のためにこれが一番大切なルールです | 安全(あんぜん, 안전), 大切な(たいせつな, 중요한) |
+| 4520 | 904 | KO | 안전 때문에 이것은 가장 중요한 규칙입니다 | "가장 중요한" = the most important |
+
+### Skill ID 104: 선호와 최상급 결합
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4521 | 905 | EN | What is your favorite food? | "favorite" = most liked |
+| 4522 | 905 | ES | ¿Cuál es su comida favorita? | "favorita" = favorite |
+| 4523 | 905 | ZH | 你最喜欢的食物是什么？ | 最喜欢(zuì xǐhuan, 가장 좋아하는), 食物(shíwù, 음식) |
+| 4524 | 905 | JA | 一番好きな食べ物は何ですか？ | 好きな(すきな, 좋아하는), 食べ物(たべもの, 음식) |
+| 4525 | 905 | KO | 가장 좋아하는 음식은 무엇입니까? | "가장 좋아하는" = favorite |
+| 4526 | 906 | EN | What do you like the most? | General preference question |
+| 4527 | 906 | ES | ¿Qué es lo que más le gusta? | "lo que más" = the most |
+| 4528 | 906 | ZH | 你最喜欢什么？ | 最喜欢(zuì xǐhuan, 가장 좋아하다) |
+| 4529 | 906 | JA | 何が一番好きですか？ | 何が(なにが, 무엇이) |
+| 4530 | 906 | KO | 무엇을 제일 좋아하세요? | "제일" = the most (= 가장) |
+| 4531 | 907 | EN | Which country do you most want to visit? | Dream destination question |
+| 4532 | 907 | ES | ¿Qué país quiere visitar más? | "visitar" = to visit |
+| 4533 | 907 | ZH | 你最想去的国家是哪里？ | 最想去(zuì xiǎng qù, 가장 가고 싶은), 国家(guójiā, 나라) |
+| 4534 | 907 | JA | 一番行きたい国はどこですか？ | 行きたい(いきたい, 가고 싶은), 国(くに, 나라) |
+| 4535 | 907 | KO | 가장 가고 싶은 나라는 어디입니까? | "가고 싶은" = want to go |
+| 4536 | 908 | EN | I like summer the most because the weather is nice | Preference with reason |
+| 4537 | 908 | ES | Me gusta más el verano porque el clima es bueno | "porque" = because |
+| 4538 | 908 | ZH | 天气好所以最喜欢夏天 | 夏天(xiàtiān, 여름) |
+| 4539 | 908 | JA | 天気がいいので夏が一番好きです | 夏(なつ, 여름) |
+| 4540 | 908 | KO | 날씨가 좋아서 여름을 가장 좋아합니다 | "여름을 가장 좋아합니다" = like summer the most |
+| 4541 | 909 | EN | I like Sunday the most because I can rest | Day preference |
+| 4542 | 909 | ES | Me gusta más el domingo porque puedo descansar | "descansar" = to rest |
+| 4543 | 909 | ZH | 可以休息所以最喜欢星期天 | 星期天(xīngqītiān, 일요일), 休息(xiūxi, 쉬다) |
+| 4544 | 909 | JA | 休めるので日曜日が一番好きです | 休める(やすめる, 쉴 수 있다), 日曜日(にちようび, 일요일) |
+| 4545 | 909 | KO | 쉴 수 있어서 일요일을 가장 좋아합니다 | "쉴 수 있어서" = because I can rest |
+| 4546 | 910 | EN | My favorite color is blue and next is green | Ranking preferences |
+| 4547 | 910 | ES | Mi color favorito es azul y luego verde | "luego" = then/next |
+| 4548 | 910 | ZH | 最喜欢的颜色是蓝色，其次是绿色 | 蓝色(lánsè, 파란색), 绿色(lǜsè, 초록색), 其次(qícì, 그다음) |
+| 4549 | 910 | JA | 一番好きな色は青で、次は緑です | 青(あお, 파란색), 緑(みどり, 초록색), 次(つぎ, 다음) |
+| 4550 | 910 | KO | 가장 좋아하는 색깔은 파란색이고 그다음은 초록색입니다 | "그다음" = next |
+| 4551 | 911 | EN | I like autumn the most because the fall foliage is beautiful | Nature-based preference |
+| 4552 | 911 | ES | Me gusta más el otoño porque las hojas son bonitas | "hojas" = leaves |
+| 4553 | 911 | ZH | 红叶很美所以最喜欢秋天 | 红叶(hóngyè, 단풍), 秋天(qiūtiān, 가을) |
+| 4554 | 911 | JA | 紅葉がきれいなので秋が一番好きです | 紅葉(こうよう, 단풍), きれいな(예쁜) |
+| 4555 | 911 | KO | 단풍이 예뻐서 가을을 가장 좋아합니다 | "단풍" = fall foliage |
+| 4556 | 912 | EN | I like math the most because it is fun | Subject preference |
+| 4557 | 912 | ES | Me gustan más las matemáticas porque son divertidas | "matemáticas" = math |
+| 4558 | 912 | ZH | 因为有趣所以最喜欢数学 | 有趣(yǒuqù, 재미있는), 数学(shùxué, 수학) |
+| 4559 | 912 | JA | 面白いので数学が一番好きです | 数学(すうがく, 수학) |
+| 4560 | 912 | KO | 재미있기 때문에 수학을 가장 좋아합니다 | "~기 때문에" = because |
+
+---
+
+## Level 27: 접속사와 문장 연결
+
+### Skill ID 105: and/but/or 연결
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4561 | 913 | EN | I am tired but happy | "but" connects contrasting feelings |
+| 4562 | 913 | ES | Estoy cansado pero feliz | "pero" = but |
+| 4563 | 913 | ZH | 很累但很开心 | 累(lèi, 피곤한), 开心(kāixīn, 행복한) |
+| 4564 | 913 | JA | 疲れていますが幸せです | ~ますが(~하지만) |
+| 4565 | 913 | KO | 피곤하지만 행복합니다 | "~지만" = but |
+| 4566 | 914 | EN | It is expensive but the quality is good | Price vs quality |
+| 4567 | 914 | ES | Es caro pero la calidad es buena | "calidad" = quality |
+| 4568 | 914 | ZH | 很贵但质量好 | 贵(guì, 비싼), 质量(zhìliàng, 품질) |
+| 4569 | 914 | JA | 高いですが品質がいいです | 品質(ひんしつ, 품질) |
+| 4570 | 914 | KO | 비싸지만 품질이 좋습니다 | "품질" = quality |
+| 4571 | 915 | EN | It is a small but cozy room | Positive contrast |
+| 4572 | 915 | ES | Es una habitación pequeña pero acogedora | "acogedora" = cozy |
+| 4573 | 915 | ZH | 房间小但很温馨 | 小(xiǎo, 작은), 温馨(wēnxīn, 아늑한) |
+| 4574 | 915 | JA | 小さいけど居心地のいい部屋です | 居心地のいい(いごこちのいい, 아늑한) |
+| 4575 | 915 | KO | 작지만 아늑한 방입니다 | "아늑한" = cozy |
+| 4576 | 916 | EN | I bought bread and milk and came home | Sequential actions with "and" |
+| 4577 | 916 | ES | Compré pan y leche y volví a casa | "volví" = I returned |
+| 4578 | 916 | ZH | 买了面包和牛奶回家了 | 面包(miànbāo, 빵), 回家(huíjiā, 집에 돌아가다) |
+| 4579 | 916 | JA | パンと牛乳を買って家に帰りました | 帰りました(かえりました, 돌아왔습니다) |
+| 4580 | 916 | KO | 빵과 우유를 사고 집에 돌아왔습니다 | "~과" = and (nouns), "~고" = and (verbs) |
+| 4581 | 917 | EN | Would you like tea, or would you like coffee? | Offering choices |
+| 4582 | 917 | ES | ¿Quiere té o prefiere café? | "o" = or |
+| 4583 | 917 | ZH | 你喝茶还是喝咖啡？ | 还是(háishi, 아니면, choice question) |
+| 4584 | 917 | JA | お茶にしますか、それともコーヒーにしますか？ | それとも(아니면, or) |
+| 4585 | 917 | KO | 차를 마시겠어요, 아니면 커피를 드시겠어요? | "아니면" = or |
+| 4586 | 918 | EN | She is smart and kind | Two positive qualities |
+| 4587 | 918 | ES | Ella es inteligente y amable | "inteligente" = smart, "amable" = kind |
+| 4588 | 918 | ZH | 她很聪明也很亲切 | 聪明(cōngmíng, 똑똑한), 亲切(qīnqiè, 친절한) |
+| 4589 | 918 | JA | 彼女は頭が良くて親切です | 頭が良い(あたまがよい, 똑똑한), 親切(しんせつ, 친절한) |
+| 4590 | 918 | KO | 그녀는 똑똑하고 친절합니다 | "~하고" = and (listing qualities) |
+| 4591 | 919 | EN | If you have no time, walk or take the bus | Offering alternatives |
+| 4592 | 919 | ES | Si no tiene tiempo, camine o tome el autobús | "camine o tome" = walk or take |
+| 4593 | 919 | ZH | 没时间的话走路或者坐公交车 | 或者(huòzhě, 또는), 公交车(gōngjiāochē, 버스) |
+| 4594 | 919 | JA | 時間がなければ歩くかバスに乗ってください | ~か(또는, or) |
+| 4595 | 919 | KO | 시간이 없으면 걸어가거나 버스를 타세요 | "~거나" = or (verbs) |
+| 4596 | 920 | EN | I like tea and coffee but I drink green tea more often | Complex preference |
+| 4597 | 920 | ES | Me gustan el té y el café pero tomo té verde más a menudo | "a menudo" = often |
+| 4598 | 920 | ZH | 喜欢茶和咖啡但更常喝绿茶 | 绿茶(lǜchá, 녹차), 更常(gèng cháng, 더 자주) |
+| 4599 | 920 | JA | お茶もコーヒーも好きですが緑茶をもっとよく飲みます | 緑茶(りょくちゃ, 녹차) |
+| 4600 | 920 | KO | 차와 커피를 좋아하지만 녹차를 더 자주 마십니다 | "더 자주" = more often |
+
+### Skill ID 106: because/so 인과 연결
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4601 | 921 | EN | The weather was nice so I took a walk in the park | Cause and effect |
+| 4602 | 921 | ES | El clima estaba bueno así que caminé en el parque | "así que" = so |
+| 4603 | 921 | ZH | 天气好所以在公园散步了 | 天气(tiānqì, 날씨), 散步(sànbù, 산책) |
+| 4604 | 921 | JA | 天気が良かったので公園で散歩しました | ので(~이므로) |
+| 4605 | 921 | KO | 날씨가 좋아서 공원에서 산책했습니다 | "~아서" = because/so |
+| 4606 | 922 | EN | It suddenly started raining so I took a taxi | Unexpected event + reaction |
+| 4607 | 922 | ES | De repente empezó a llover así que tomé un taxi | "de repente" = suddenly |
+| 4608 | 922 | ZH | 突然下雨了所以打了出租车 | 突然(tūrán, 갑자기) |
+| 4609 | 922 | JA | 急に雨が降ったのでタクシーに乗りました | 急に(きゅうに, 갑자기) |
+| 4610 | 922 | KO | 갑자기 비가 와서 택시를 탔습니다 | "갑자기" = suddenly |
+| 4611 | 923 | EN | I was hungry so I ate some bread | Simple cause-effect |
+| 4612 | 923 | ES | Tenía hambre así que comí pan | "tenía hambre" = I was hungry |
+| 4613 | 923 | ZH | 饿了所以吃了面包 | 饿(è, 배고픈), 面包(miànbāo, 빵) |
+| 4614 | 923 | JA | お腹が空いたのでパンを食べました | お腹が空いた(おなかがすいた, 배가 고팠다) |
+| 4615 | 923 | KO | 배가 고파서 빵을 먹었습니다 | "고파서" = because I was hungry |
+| 4616 | 924 | EN | I had a fever so I did not go to school | Health reason |
+| 4617 | 924 | ES | Tenía fiebre así que no fui a la escuela | "fiebre" = fever |
+| 4618 | 924 | ZH | 发烧了所以没去学校 | 发烧(fāshāo, 열이 나다), 学校(xuéxiào, 학교) |
+| 4619 | 924 | JA | 熱が出たので学校に行きませんでした | 熱が出た(ねつがでた, 열이 났다) |
+| 4620 | 924 | KO | 열이 나서 학교에 가지 않았습니다 | "열이 나서" = because I had a fever |
+| 4621 | 925 | EN | I could not eat breakfast so I ate a lot for lunch | Compensation pattern |
+| 4622 | 925 | ES | No pude desayunar así que almorcé mucho | "no pude" = I could not |
+| 4623 | 925 | ZH | 没吃早饭所以午饭吃了很多 | 早饭(zǎofàn, 아침), 午饭(wǔfàn, 점심) |
+| 4624 | 925 | JA | 朝ご飯を食べられなかったので昼ご飯をたくさん食べました | 食べられなかった(たべられなかった, 먹을 수 없었다) |
+| 4625 | 925 | KO | 아침을 못 먹어서 점심을 많이 먹었습니다 | "못 먹어서" = because I could not eat |
+| 4626 | 926 | EN | Traffic was jammed so I was late for the meeting | Practical cause |
+| 4627 | 926 | ES | El tráfico estaba congestionado así que llegué tarde a la reunión | "congestionado" = jammed |
+| 4628 | 926 | ZH | 堵车了所以开会迟到了 | 堵车(dǔchē, 교통 체증), 迟到(chídào, 늦다) |
+| 4629 | 926 | JA | 渋滞していたので会議に遅れました | 渋滞(じゅうたい, 교통 체증) |
+| 4630 | 926 | KO | 교통이 막혀서 회의에 늦었습니다 | "교통이 막히다" = traffic is jammed |
+| 4631 | 927 | EN | I study hard because there is an exam next week | Future reason |
+| 4632 | 927 | ES | Estudio mucho porque hay un examen la próxima semana | "próxima semana" = next week |
+| 4633 | 927 | ZH | 因为下周有考试所以努力学习 | 下周(xià zhōu, 다음 주) |
+| 4634 | 927 | JA | 来週試験があるので一生懸命勉強します | 来週(らいしゅう, 다음 주) |
+| 4635 | 927 | KO | 다음 주에 시험이 있기 때문에 열심히 공부합니다 | "~기 때문에" = because |
+| 4636 | 928 | EN | My car broke down so I took the bus | Vehicle problem |
+| 4637 | 928 | ES | Mi carro se descompuso así que tomé el autobús | "se descompuso" = broke down |
+| 4638 | 928 | ZH | 车坏了所以坐公交车去了 | 车坏了(chē huài le, 차가 고장 났다) |
+| 4639 | 928 | JA | 車が故障したのでバスで行きました | 故障(こしょう, 고장) |
+| 4640 | 928 | KO | 차가 고장 나서 버스를 타고 갔습니다 | "고장 나서" = because it broke down |
+
+### Skill ID 107: when/while 시간 연결
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4641 | 929 | EN | Please buy milk when you come home | "when" + action = time clause |
+| 4642 | 929 | ES | Por favor compre leche cuando venga a casa | "cuando" = when |
+| 4643 | 929 | ZH | 回家的时候请买牛奶 | 回家(huíjiā, 집에 오다), 的时候(de shíhou, ~할 때) |
+| 4644 | 929 | JA | 家に帰る時に牛乳を買ってきてください | 帰る時に(かえるときに, 돌아올 때) |
+| 4645 | 929 | KO | 집에 올 때 우유를 사 주세요 | "~ㄹ 때" = when |
+| 4646 | 930 | EN | When it rains, I usually read books at home | Habitual action with condition |
+| 4647 | 930 | ES | Cuando llueve, normalmente leo libros en casa | "normalmente" = usually |
+| 4648 | 930 | ZH | 下雨的时候通常在家看书 | 通常(tōngcháng, 보통), 看书(kànshū, 책을 읽다) |
+| 4649 | 930 | JA | 雨が降る時はいつも家で本を読みます | いつも(항상/보통) |
+| 4650 | 930 | KO | 비가 올 때 보통 집에서 책을 읽습니다 | "보통" = usually |
+| 4651 | 931 | EN | Please be quiet while I am studying | "while" = during the time |
+| 4652 | 931 | ES | Por favor guarde silencio mientras estudio | "mientras" = while |
+| 4653 | 931 | ZH | 我学习的时候请安静 | 学习(xuéxí, 공부하다), 安静(ānjìng, 조용한) |
+| 4654 | 931 | JA | 勉強している間静かにしてください | 間(あいだ, 동안) |
+| 4655 | 931 | KO | 공부하는 동안 조용히 해 주세요 | "~는 동안" = while/during |
+| 4656 | 932 | EN | When I was young, I often went to my grandmother's house | Past habitual with time clause |
+| 4657 | 932 | ES | Cuando era niño, iba seguido a la casa de mi abuela | "era niño" = I was a child |
+| 4658 | 932 | ZH | 小时候经常去奶奶家 | 小时候(xiǎoshíhou, 어렸을 때), 经常(jīngcháng, 자주) |
+| 4659 | 932 | JA | 子どもの頃よくおばあちゃんの家に行きました | 子どもの頃(こどものころ, 어렸을 때) |
+| 4660 | 932 | KO | 어렸을 때 할머니 댁에 자주 갔습니다 | "어렸을 때" = when I was young |
+| 4661 | 933 | EN | I listen to music while cooking | Simultaneous activities |
+| 4662 | 933 | ES | Escucho música mientras cocino | "mientras" = while |
+| 4663 | 933 | ZH | 做饭的时候听音乐 | 做饭(zuòfàn, 요리하다), 音乐(yīnyuè, 음악) |
+| 4664 | 933 | JA | 料理をしながら音楽を聴きます | しながら(하면서, while doing) |
+| 4665 | 933 | KO | 요리하는 동안 음악을 듣습니다 | "듣습니다" = listen |
+| 4666 | 934 | EN | I will call you right away when I arrive at the airport | Promise with time condition |
+| 4667 | 934 | ES | Le llamaré enseguida cuando llegue al aeropuerto | "enseguida" = right away |
+| 4668 | 934 | ZH | 到了机场马上给你打电话 | 机场(jīchǎng, 공항), 马上(mǎshàng, 바로) |
+| 4669 | 934 | JA | 空港に着いたらすぐ電話します | 空港(くうこう, 공항), すぐ(바로) |
+| 4670 | 934 | KO | 공항에 도착하면 바로 전화하겠습니다 | "~하면" = when/if |
+| 4671 | 935 | EN | A call came while I was sleeping so I could not answer | Missed event |
+| 4672 | 935 | ES | Llamaron mientras dormía así que no pude contestar | "dormía" = I was sleeping |
+| 4673 | 935 | ZH | 睡觉的时候来了电话所以没接到 | 睡觉(shuìjiào, 자다), 接到(jiēdào, 받다) |
+| 4674 | 935 | JA | 寝ている間に電話が来て出られませんでした | 出られませんでした(でられませんでした, 나갈 수 없었습니다/받을 수 없었습니다) |
+| 4675 | 935 | KO | 자는 동안 전화가 와서 못 받았습니다 | "자는 동안" = while sleeping |
+| 4676 | 936 | EN | While waiting, I drank coffee and read a book | Filling time |
+| 4677 | 936 | ES | Mientras esperaba, tomé café y leí un libro | "esperaba" = I was waiting |
+| 4678 | 936 | ZH | 等待的时候一边喝咖啡一边看书 | 等待(děngdài, 기다리다), 一边…一边(~하면서) |
+| 4679 | 936 | JA | 待っている間コーヒーを飲みながら本を読みました | 待っている間(まっているあいだ, 기다리는 동안) |
+| 4680 | 936 | KO | 기다리는 동안 커피를 마시면서 책을 읽었습니다 | "~면서" = while (simultaneous) |
+
+### Skill ID 108: before/after 순서 연결
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4681 | 937 | EN | I leave after eating breakfast | "after" + -ing = time sequence |
+| 4682 | 937 | ES | Salgo después de desayunar | "después de" = after |
+| 4683 | 937 | ZH | 吃完早饭后出发 | 吃完(chī wán, 다 먹다), 出发(chūfā, 출발하다) |
+| 4684 | 937 | JA | 朝ご飯を食べた後で出発します | 食べた後で(たべたあとで, 먹은 후에) |
+| 4685 | 937 | KO | 아침을 먹은 후에 출발합니다 | "~은 후에" = after |
+| 4686 | 938 | EN | I check the weather before going out | "before" + -ing = prior action |
+| 4687 | 938 | ES | Reviso el clima antes de salir | "antes de" = before |
+| 4688 | 938 | ZH | 出门之前看天气 | 出门(chūmén, 외출하다), 之前(zhīqián, ~전에) |
+| 4689 | 938 | JA | 外出する前に天気を確認します | 外出する前に(がいしゅつするまえに, 외출하기 전에) |
+| 4690 | 938 | KO | 외출하기 전에 날씨를 확인합니다 | "~기 전에" = before doing |
+| 4691 | 939 | EN | After dinner, I take a walk with my family | Post-meal routine |
+| 4692 | 939 | ES | Después de cenar, camino con mi familia | "cenar" = to have dinner |
+| 4693 | 939 | ZH | 晚饭后和家人一起散步 | 晚饭(wǎnfàn, 저녁 식사), 家人(jiārén, 가족) |
+| 4694 | 939 | JA | 夕食後に家族と一緒に散歩します | 夕食後(ゆうしょくご, 저녁 식사 후) |
+| 4695 | 939 | KO | 저녁 식사 후에 가족과 함께 산책합니다 | "가족과 함께" = with family |
+| 4696 | 940 | EN | Before going to bed, I brush my teeth and read a book | Bedtime routine |
+| 4697 | 940 | ES | Antes de acostarme, me cepillo los dientes y leo un libro | "cepillo los dientes" = brush teeth |
+| 4698 | 940 | ZH | 睡觉之前刷牙看书 | 睡觉(shuìjiào, 자다), 刷牙(shuāyá, 양치질하다) |
+| 4699 | 940 | JA | 寝る前に歯を磨いて本を読みます | 歯を磨いて(はをみがいて, 이를 닦고) |
+| 4700 | 940 | KO | 자기 전에 양치질을 하고 책을 읽습니다 | "자기 전에" = before sleeping |
+| 4701 | 941 | EN | Before class, I read the textbook and review | Study preparation |
+| 4702 | 941 | ES | Antes de la clase, leo el libro de texto y repaso | "repaso" = review |
+| 4703 | 941 | ZH | 上课之前看课本复习 | 课本(kèběn, 교과서), 复习(fùxí, 복습하다) |
+| 4704 | 941 | JA | 授業前に教科書を読んで復習します | 教科書(きょうかしょ, 교과서), 復習(ふくしゅう, 복습) |
+| 4705 | 941 | KO | 수업 전에 교과서를 읽고 복습합니다 | "복습하다" = to review |
+| 4706 | 942 | EN | After work, I meet a friend and have dinner | After-work plans |
+| 4707 | 942 | ES | Después del trabajo, me encuentro con un amigo y cenamos | "cenamos" = we have dinner |
+| 4708 | 942 | ZH | 工作结束后见朋友吃晚饭 | 工作结束(gōngzuò jiéshù, 일이 끝나다) |
+| 4709 | 942 | JA | 仕事が終わった後で友達に会って夕食を食べます | 仕事が終わった後で(しごとがおわったあとで, 일이 끝난 후에) |
+| 4710 | 942 | KO | 일이 끝난 후에 친구를 만나서 저녁을 먹습니다 | "일이 끝난 후에" = after work ends |
+| 4711 | 943 | EN | I wash my hands before eating lunch | Hygiene before meals |
+| 4712 | 943 | ES | Me lavo las manos antes de almorzar | "lavo las manos" = wash my hands |
+| 4713 | 943 | ZH | 吃午饭前洗手 | 午饭(wǔfàn, 점심), 洗手(xǐshǒu, 손 씻다) |
+| 4714 | 943 | JA | 昼ご飯を食べる前に手を洗います | 食べる前に(たべるまえに, 먹기 전에) |
+| 4715 | 943 | KO | 점심을 먹기 전에 손을 씻습니다 | "먹기 전에" = before eating |
+| 4716 | 944 | EN | After exercising, I take a shower and drink a lot of water | Post-exercise routine |
+| 4717 | 944 | ES | Después de hacer ejercicio, me ducho y bebo mucha agua | "me ducho" = I take a shower |
+| 4718 | 944 | ZH | 运动后洗澡喝很多水 | 运动(yùndòng, 운동), 洗澡(xǐzǎo, 샤워) |
+| 4719 | 944 | JA | 運動した後シャワーを浴びて水をたくさん飲みます | シャワーを浴びて(샤워를 하고) |
+| 4720 | 944 | KO | 운동한 후에 샤워하고 물을 많이 마십니다 | "~한 후에" = after doing |
+
+---
+
+## Level 28: 능력과 허가 (can/may)
+
+### Skill ID 109: can/can't 능력 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4721 | 945 | EN | I can play the guitar | "can" + base verb = ability |
+| 4722 | 945 | ES | Puedo tocar la guitarra | "puedo" = I can, "tocar" = to play (instrument) |
+| 4723 | 945 | ZH | 我会弹吉他 | 会(huì, ~할 수 있다), 弹(tán, 치다), 吉他(jítā, 기타) |
+| 4724 | 945 | JA | ギターが弾けます | 弾けます(ひけます, 칠 수 있습니다) |
+| 4725 | 945 | KO | 기타를 칠 수 있습니다 | "~ㄹ 수 있습니다" = can (ability) |
+| 4726 | 946 | EN | I can ride a bicycle | Physical ability |
+| 4727 | 946 | ES | Puedo andar en bicicleta | "andar en bicicleta" = ride a bicycle |
+| 4728 | 946 | ZH | 我会骑自行车 | 骑(qí, 타다), 自行车(zìxíngchē, 자전거) |
+| 4729 | 946 | JA | 自転車に乗れます | 乗れます(のれます, 탈 수 있습니다) |
+| 4730 | 946 | KO | 자전거를 탈 수 있습니다 | "탈 수 있습니다" = can ride |
+| 4731 | 947 | EN | I can speak English and also speak a little Japanese | Multiple abilities |
+| 4732 | 947 | ES | Puedo hablar inglés y también un poco de japonés | "un poco" = a little |
+| 4733 | 947 | ZH | 我会说英语，日语也会一点 | 英语(Yīngyǔ, 영어), 日语(Rìyǔ, 일본어), 一点(yìdiǎn, 조금) |
+| 4734 | 947 | JA | 英語が話せて日本語も少しできます | 話せて(はなせて, 말할 수 있고), 少し(すこし, 조금) |
+| 4735 | 947 | KO | 영어를 말할 수 있고 일본어도 조금 합니다 | "조금 합니다" = can do a little |
+| 4736 | 948 | EN | I can read Korean but writing is difficult | Partial ability |
+| 4737 | 948 | ES | Puedo leer coreano pero escribir es difícil | "leer" = read, "escribir" = write |
+| 4738 | 948 | ZH | 我能读韩语但写很难 | 读(dú, 읽다), 写(xiě, 쓰다), 难(nán, 어려운) |
+| 4739 | 948 | JA | 韓国語は読めますが書くのは難しいです | 読めます(よめます, 읽을 수 있습니다) |
+| 4740 | 948 | KO | 한국어를 읽을 수 있지만 쓰기는 어렵습니다 | "읽을 수 있지만" = can read but |
+| 4741 | 949 | EN | I can swim but I cannot go to deep areas | Ability with limitation |
+| 4742 | 949 | ES | Puedo nadar pero no puedo ir a zonas profundas | "profundas" = deep |
+| 4743 | 949 | ZH | 我会游泳但不能去深水区 | 游泳(yóuyǒng, 수영), 深水区(shēnshuǐqū, 깊은 곳) |
+| 4744 | 949 | JA | 泳げますが深いところには行けません | 泳げます(およげます, 수영할 수 있습니다), 深い(ふかい, 깊은) |
+| 4745 | 949 | KO | 수영할 수 있지만 깊은 곳은 못 갑니다 | "못 갑니다" = cannot go |
+| 4746 | 950 | EN | I cannot drive because I have not practiced | Inability with reason |
+| 4747 | 950 | ES | No puedo conducir porque no he practicado | "conducir" = to drive |
+| 4748 | 950 | ZH | 没练习所以不会开车 | 练习(liànxí, 연습), 开车(kāichē, 운전하다) |
+| 4749 | 950 | JA | 練習していないので運転できません | 運転(うんてん, 운전), できません(할 수 없습니다) |
+| 4750 | 950 | KO | 연습을 안 해서 운전을 못합니다 | "못합니다" = cannot do |
+| 4751 | 951 | EN | I cannot eat spicy food because my stomach is weak | Physical limitation |
+| 4752 | 951 | ES | No puedo comer comida picante porque mi estómago es débil | "picante" = spicy |
+| 4753 | 951 | ZH | 因为胃不好所以不能吃辣的 | 胃(wèi, 위), 辣(là, 매운) |
+| 4754 | 951 | JA | 胃が弱いので辛い物が食べられません | 胃(い, 위), 辛い(からい, 매운) |
+| 4755 | 951 | KO | 위가 약하기 때문에 매운 음식을 못 먹습니다 | "위가 약하다" = stomach is weak |
+| 4756 | 952 | EN | That box is too heavy so I cannot lift it | Physical impossibility |
+| 4757 | 952 | ES | Esa caja es demasiado pesada así que no puedo levantarla | "demasiado" = too much |
+| 4758 | 952 | ZH | 那个箱子太重了搬不动 | 箱子(xiāngzi, 상자), 搬不动(bān bú dòng, 들 수 없다) |
+| 4759 | 952 | JA | その箱は重すぎて持ち上げられません | 重すぎて(おもすぎて, 너무 무거워서) |
+| 4760 | 952 | KO | 그 상자가 너무 무거워서 들 수 없습니다 | "들 수 없습니다" = cannot lift |
+
+### Skill ID 110: may/might 가능성
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4761 | 953 | EN | He might be late | "might" = possibility |
+| 4762 | 953 | ES | Puede que él llegue tarde | "puede que" = it is possible that |
+| 4763 | 953 | ZH | 他可能会迟到 | 可能(kěnéng, ~일지도 모르다), 迟到(chídào, 늦다) |
+| 4764 | 953 | JA | 彼は遅れるかもしれません | かもしれません(~일지도 모릅니다) |
+| 4765 | 953 | KO | 그가 늦을지도 모릅니다 | "~ㄹ지도 모릅니다" = might |
+| 4766 | 954 | EN | She may have already left | Past possibility |
+| 4767 | 954 | ES | Puede que ella ya se haya ido | "ya" = already |
+| 4768 | 954 | ZH | 她可能已经走了 | 已经(yǐjīng, 이미), 走了(zǒu le, 떠났다) |
+| 4769 | 954 | JA | 彼女はもう出発したかもしれません | もう(이미), 出発した(しゅっぱつした, 출발했다) |
+| 4770 | 954 | KO | 그녀가 이미 떠났을 수도 있습니다 | "~을 수도 있습니다" = may have |
+| 4771 | 955 | EN | There are many clouds so it might rain | Weather prediction |
+| 4772 | 955 | ES | Hay muchas nubes así que podría llover | "nubes" = clouds |
+| 4773 | 955 | ZH | 云很多可能会下雨 | 云(yún, 구름), 下雨(xià yǔ, 비가 오다) |
+| 4774 | 955 | JA | 雲が多いので雨が降るかもしれません | 雲(くも, 구름) |
+| 4775 | 955 | KO | 구름이 많아서 비가 올지도 모릅니다 | "구름이 많아서" = because there are many clouds |
+| 4776 | 956 | EN | If there is an empty seat, may I sit here? | Permission request |
+| 4777 | 956 | ES | Si hay un asiento vacío, ¿puedo sentarme aquí? | "asiento vacío" = empty seat |
+| 4778 | 956 | ZH | 如果有空位的话我可以坐这里吗？ | 空位(kòngwèi, 빈자리) |
+| 4779 | 956 | JA | 空席があればここに座ってもいいですか？ | 空席(くうせき, 빈자리), ~てもいいですか(~해도 됩니까) |
+| 4780 | 956 | KO | 빈자리가 있으면 여기 앉아도 됩니까? | "앉아도 됩니까?" = may I sit? |
+| 4781 | 957 | EN | May I enter when the meeting is over? | Conditional permission |
+| 4782 | 957 | ES | ¿Puedo entrar cuando termine la reunión? | "termine" = when it ends |
+| 4783 | 957 | ZH | 会议结束后可以进去吗？ | 会议(huìyì, 회의), 结束(jiéshù, 끝나다) |
+| 4784 | 957 | JA | 会議が終わったら入ってもいいですか？ | 会議(かいぎ, 회의), 終わったら(おわったら, 끝나면) |
+| 4785 | 957 | KO | 회의가 끝나면 들어가도 됩니까? | "들어가도 됩니까?" = may I enter? |
+| 4786 | 958 | EN | The temperature is dropping so it might snow tomorrow | Weather possibility |
+| 4787 | 958 | ES | La temperatura está bajando así que podría nevar mañana | "nevar" = to snow |
+| 4788 | 958 | ZH | 气温下降了明天可能会下雪 | 气温(qìwēn, 기온), 下雪(xià xuě, 눈이 오다) |
+| 4789 | 958 | JA | 気温が下がっているので明日雪が降るかもしれません | 気温(きおん, 기온), 雪(ゆき, 눈) |
+| 4790 | 958 | KO | 기온이 떨어져서 내일 눈이 올 수도 있습니다 | "기온이 떨어지다" = temperature drops |
+| 4791 | 959 | EN | Plans may change depending on the situation | Flexibility statement |
+| 4792 | 959 | ES | Los planes podrían cambiar según la situación | "según" = depending on |
+| 4793 | 959 | ZH | 根据情况计划可能会变 | 根据(gēnjù, ~에 따라), 计划(jìhuà, 계획) |
+| 4794 | 959 | JA | 状況によって計画が変わるかもしれません | 状況(じょうきょう, 상황), 計画(けいかく, 계획) |
+| 4795 | 959 | KO | 상황에 따라 계획이 바뀔 수도 있습니다 | "상황에 따라" = depending on the situation |
+| 4796 | 960 | EN | If we are ready, it could end early today | Optimistic possibility |
+| 4797 | 960 | ES | Si estamos listos, podría terminar temprano hoy | "listos" = ready |
+| 4798 | 960 | ZH | 准备好的话今天可能早结束 | 准备好(zhǔnbèi hǎo, 준비되다) |
+| 4799 | 960 | JA | 準備ができれば今日早く終わるかもしれません | 準備(じゅんび, 준비) |
+| 4800 | 960 | KO | 준비가 되면 오늘 일찍 끝날 수도 있습니다 | "끝날 수도 있습니다" = could end |
+
+### Skill ID 111: 능력 질문
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4801 | 961 | EN | Can you play the piano? | Ability question |
+| 4802 | 961 | ES | ¿Puede tocar el piano? | "tocar el piano" = play the piano |
+| 4803 | 961 | ZH | 你会弹钢琴吗？ | 弹钢琴(tán gāngqín, 피아노를 치다) |
+| 4804 | 961 | JA | ピアノが弾けますか？ | 弾けますか(ひけますか, 칠 수 있습니까) |
+| 4805 | 961 | KO | 피아노를 칠 수 있나요? | "칠 수 있나요?" = can you play? |
+| 4806 | 962 | EN | Can you cook? | Skill question |
+| 4807 | 962 | ES | ¿Sabe cocinar? | "sabe" = do you know how to |
+| 4808 | 962 | ZH | 你会做饭吗？ | 做饭(zuòfàn, 요리하다) |
+| 4809 | 962 | JA | 料理ができますか？ | 料理(りょうり, 요리) |
+| 4810 | 962 | KO | 요리를 할 수 있나요? | "할 수 있나요?" = can you do? |
+| 4811 | 963 | EN | Can you move this? | Practical ability |
+| 4812 | 963 | ES | ¿Puede mover esto? | "mover" = to move |
+| 4813 | 963 | ZH | 你能搬这个吗？ | 搬(bān, 옮기다) |
+| 4814 | 963 | JA | これを動かせますか？ | 動かせますか(うごかせますか, 옮길 수 있습니까) |
+| 4815 | 963 | KO | 이것을 옮길 수 있나요? | "옮기다" = to move/carry |
+| 4816 | 964 | EN | Can you speak English? | Language ability |
+| 4817 | 964 | ES | ¿Puede hablar inglés? | "hablar inglés" = speak English |
+| 4818 | 964 | ZH | 你会说英语吗？ | 说英语(shuō Yīngyǔ, 영어를 말하다) |
+| 4819 | 964 | JA | 英語が話せますか？ | 話せますか(はなせますか, 말할 수 있습니까) |
+| 4820 | 964 | KO | 영어를 할 수 있나요? | "할 수 있나요?" = can you? |
+| 4821 | 965 | EN | Can you swim? | Physical ability question |
+| 4822 | 965 | ES | ¿Sabe nadar? | "nadar" = to swim |
+| 4823 | 965 | ZH | 你会游泳吗？ | 游泳(yóuyǒng, 수영하다) |
+| 4824 | 965 | JA | 泳げますか？ | 泳げますか(およげますか, 수영할 수 있습니까) |
+| 4825 | 965 | KO | 수영할 수 있나요? | "수영하다" = to swim |
+| 4826 | 966 | EN | If you have a license, can you drive? | Conditional ability |
+| 4827 | 966 | ES | Si tiene licencia, ¿puede conducir? | "licencia" = license |
+| 4828 | 966 | ZH | 有驾照的话能开车吗？ | 驾照(jiàzhào, 면허), 开车(kāichē, 운전하다) |
+| 4829 | 966 | JA | 免許があれば運転できますか？ | 免許(めんきょ, 면허) |
+| 4830 | 966 | KO | 면허가 있으면 운전할 수 있나요? | "면허" = license |
+| 4831 | 967 | EN | If you have tools, can you fix this? | Conditional repair question |
+| 4832 | 967 | ES | Si tiene herramientas, ¿puede arreglar esto? | "arreglar" = to fix |
+| 4833 | 967 | ZH | 有工具的话能修好这个吗？ | 工具(gōngjù, 도구), 修好(xiūhǎo, 고치다) |
+| 4834 | 967 | JA | 道具があればこれを直せますか？ | 道具(どうぐ, 도구), 直せますか(なおせますか, 고칠 수 있습니까) |
+| 4835 | 967 | KO | 도구가 있으면 이것을 고칠 수 있나요? | "고치다" = to fix/repair |
+| 4836 | 968 | EN | If you finish work, can you come tomorrow? | Schedule-based ability |
+| 4837 | 968 | ES | Si termina el trabajo, ¿puede venir mañana? | "venir" = to come |
+| 4838 | 968 | ZH | 工作结束的话明天能来吗？ | 工作结束(gōngzuò jiéshù, 일이 끝나다) |
+| 4839 | 968 | JA | 仕事が終われば明日来られますか？ | 来られますか(こられますか, 올 수 있습니까) |
+| 4840 | 968 | KO | 일이 끝나면 내일 올 수 있나요? | "올 수 있나요?" = can you come? |
+
+### Skill ID 112: 허가 요청
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4841 | 969 | EN | May I use the restroom? | Formal permission request |
+| 4842 | 969 | ES | ¿Puedo usar el baño? | "baño" = restroom |
+| 4843 | 969 | ZH | 我可以用一下洗手间吗？ | 洗手间(xǐshǒujiān, 화장실) |
+| 4844 | 969 | JA | お手洗いを使ってもいいですか？ | お手洗い(おてあらい, 화장실, polite) |
+| 4845 | 969 | KO | 화장실을 이용해도 됩니까? | "이용해도 됩니까?" = may I use? |
+| 4846 | 970 | EN | May I sit in this chair? | Seat permission |
+| 4847 | 970 | ES | ¿Puedo sentarme en esta silla? | "sentarme" = sit down |
+| 4848 | 970 | ZH | 我可以坐这把椅子吗？ | 坐(zuò, 앉다), 椅子(yǐzi, 의자) |
+| 4849 | 970 | JA | この椅子に座ってもいいですか？ | 椅子(いす, 의자) |
+| 4850 | 970 | KO | 이 의자에 앉아도 됩니까? | "앉아도 됩니까?" = may I sit? |
+| 4851 | 971 | EN | It is hot, may I open the window? | Reason + permission |
+| 4852 | 971 | ES | Hace calor, ¿puedo abrir la ventana? | "abrir" = to open |
+| 4853 | 971 | ZH | 很热，可以开窗户吗？ | 开(kāi, 열다), 窗户(chuānghù, 창문) |
+| 4854 | 971 | JA | 暑いのですが、窓を開けてもいいでしょうか？ | ~てもいいでしょうか(~해도 될까요, softer) |
+| 4855 | 971 | KO | 더운데 창문을 열어도 될까요? | "~도 될까요?" = would it be okay to? |
+| 4856 | 972 | EN | I do not understand, may I ask a question? | Learning context |
+| 4857 | 972 | ES | No entiendo, ¿puedo hacer una pregunta? | "pregunta" = question |
+| 4858 | 972 | ZH | 我不太懂，可以提问吗？ | 懂(dǒng, 이해하다), 提问(tíwèn, 질문하다) |
+| 4859 | 972 | JA | 理解できないのですが、質問してもいいでしょうか？ | 質問(しつもん, 질문) |
+| 4860 | 972 | KO | 이해가 안 되는데 질문해도 될까요? | "질문하다" = to ask a question |
+| 4861 | 973 | EN | If I need it, may I use this? | Conditional permission |
+| 4862 | 973 | ES | Si lo necesito, ¿puedo usarlo? | "necesito" = I need |
+| 4863 | 973 | ZH | 需要的话可以用这个吗？ | 需要(xūyào, 필요하다), 用(yòng, 쓰다) |
+| 4864 | 973 | JA | 必要であればこれを使ってもいいですか？ | 必要であれば(ひつようであれば, 필요하면) |
+| 4865 | 973 | KO | 필요하면 이것을 써도 됩니까? | "써도 됩니까?" = may I use? |
+| 4866 | 974 | EN | I have an appointment, may I leave first? | Early departure request |
+| 4867 | 974 | ES | Tengo una cita, ¿puedo irme primero? | "irme primero" = leave first |
+| 4868 | 974 | ZH | 有约会，可以先走吗？ | 约会(yuēhuì, 약속), 先走(xiān zǒu, 먼저 가다) |
+| 4869 | 974 | JA | 約束があるので先に帰ってもいいでしょうか？ | 先に(さきに, 먼저), 帰って(かえって, 돌아가) |
+| 4870 | 974 | KO | 약속이 있어서 먼저 가도 될까요? | "먼저 가다" = to leave first |
+| 4871 | 975 | EN | May I take a picture as a souvenir? | Photography permission |
+| 4872 | 975 | ES | ¿Puedo tomar una foto de recuerdo? | "recuerdo" = souvenir/memory |
+| 4873 | 975 | ZH | 可以拍个纪念照吗？ | 纪念(jìniàn, 기념), 拍照(pāizhào, 사진 찍다) |
+| 4874 | 975 | JA | 記念に写真を撮ってもいいでしょうか？ | 記念に(きねんに, 기념으로) |
+| 4875 | 975 | KO | 기념으로 사진을 찍어도 될까요? | "기념으로" = as a souvenir |
+| 4876 | 976 | EN | It is an urgent call, may I make a call here? | Urgency + permission |
+| 4877 | 976 | ES | Es una llamada urgente, ¿puedo llamar aquí? | "urgente" = urgent |
+| 4878 | 976 | ZH | 有急事电话，可以在这里打电话吗？ | 急事(jíshì, 급한 일) |
+| 4879 | 976 | JA | 急ぎの電話なのですが、ここで電話してもいいですか？ | 急ぎの(いそぎの, 급한) |
+| 4880 | 976 | KO | 급한 전화인데 여기서 전화해도 됩니까? | "급한" = urgent |
+
+---
+
+## Level 29: 의무와 충고 (must/should)
+
+### Skill ID 113: must/have to 의무
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4881 | 977 | EN | You must follow the rules | "must" = strong obligation |
+| 4882 | 977 | ES | Debe seguir las reglas | "debe" = must |
+| 4883 | 977 | ZH | 必须遵守规则 | 必须(bìxū, 반드시), 遵守(zūnshǒu, 따르다), 规则(guīzé, 규칙) |
+| 4884 | 977 | JA | ルールを守らなければなりません | 守らなければなりません(まもらなければなりません, 지켜야 합니다) |
+| 4885 | 977 | KO | 규칙을 따라야 합니다 | "~아야 합니다" = must |
+| 4886 | 978 | EN | I have to study because there is an exam | Obligation with reason |
+| 4887 | 978 | ES | Tengo que estudiar porque hay un examen | "tengo que" = I have to |
+| 4888 | 978 | ZH | 有考试所以必须学习 | 考试(kǎoshì, 시험) |
+| 4889 | 978 | JA | 試験があるので勉強しなければなりません | ~なければなりません(~해야 합니다) |
+| 4890 | 978 | KO | 시험이 있어서 공부해야 합니다 | "공부해야 합니다" = must study |
+| 4891 | 979 | EN | You must wear a seatbelt because it is the law | Legal obligation |
+| 4892 | 979 | ES | Debe ponerse el cinturón de seguridad porque es la ley | "cinturón de seguridad" = seatbelt |
+| 4893 | 979 | ZH | 法律规定必须系安全带 | 法律(fǎlǜ, 법), 安全带(ānquándài, 안전벨트) |
+| 4894 | 979 | JA | 法律なのでシートベルトを締めなければなりません | シートベルト(안전벨트), 法律(ほうりつ, 법) |
+| 4895 | 979 | KO | 법이니까 안전벨트를 매야 합니다 | "매야 합니다" = must fasten |
+| 4896 | 980 | EN | I have a fever so I have to take medicine | Health obligation |
+| 4897 | 980 | ES | Tengo fiebre así que tengo que tomar medicina | "medicina" = medicine |
+| 4898 | 980 | ZH | 发烧了所以必须吃药 | 发烧(fāshāo, 열이 나다), 吃药(chīyào, 약을 먹다) |
+| 4899 | 980 | JA | 熱があるので薬を飲まなければなりません | 薬(くすり, 약) |
+| 4900 | 980 | KO | 열이 나서 약을 먹어야 합니다 | "먹어야 합니다" = must take/eat |
+| 4901 | 981 | EN | There is a meeting so I have to be at work by 9 | Time obligation |
+| 4902 | 981 | ES | Hay una reunión así que tengo que llegar al trabajo a las 9 | "reunión" = meeting |
+| 4903 | 981 | ZH | 有会议所以必须9点前上班 | 会议(huìyì, 회의), 上班(shàngbān, 출근하다) |
+| 4904 | 981 | JA | 会議があるので9時までに出勤しなければなりません | 出勤(しゅっきん, 출근) |
+| 4905 | 981 | KO | 회의가 있으니까 9시까지 출근해야 합니다 | "~까지" = by (deadline) |
+| 4906 | 982 | EN | You have to get a visa to go abroad | Requirement for travel |
+| 4907 | 982 | ES | Tiene que obtener una visa para ir al extranjero | "visa" = visa, "extranjero" = abroad |
+| 4908 | 982 | ZH | 出国的话必须拿到签证 | 出国(chūguó, 해외에 가다), 签证(qiānzhèng, 비자) |
+| 4909 | 982 | JA | 海外に行くにはビザを取らなければなりません | 海外(かいがい, 해외), ビザ(비자) |
+| 4910 | 982 | KO | 해외에 가려면 비자를 받아야 합니다 | "~려면" = in order to |
+| 4911 | 983 | EN | There is a deadline so I have to finish by tomorrow | Deadline pressure |
+| 4912 | 983 | ES | Hay una fecha límite así que tengo que terminar para mañana | "fecha límite" = deadline |
+| 4913 | 983 | ZH | 有截止日期所以必须明天之前完成 | 截止日期(jiézhǐ rìqī, 마감일) |
+| 4914 | 983 | JA | 締め切りがあるので明日までに終わらせなければなりません | 締め切り(しめきり, 마감) |
+| 4915 | 983 | KO | 마감이 있기 때문에 내일까지 끝내야 합니다 | "마감" = deadline |
+| 4916 | 984 | EN | You have to check your passport before traveling | Pre-travel obligation |
+| 4917 | 984 | ES | Tiene que verificar su pasaporte antes de viajar | "pasaporte" = passport |
+| 4918 | 984 | ZH | 旅行前必须确认护照 | 旅行(lǚxíng, 여행), 护照(hùzhào, 여권) |
+| 4919 | 984 | JA | 旅行に行く前にパスポートを確認しなければなりません | パスポート(여권), 確認(かくにん, 확인) |
+| 4920 | 984 | KO | 여행을 가기 전에 여권을 확인해야 합니다 | "여권" = passport |
+
+### Skill ID 114: should 권고
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4921 | 985 | EN | You should exercise more | "should" = advice/recommendation |
+| 4922 | 985 | ES | Debería hacer más ejercicio | "debería" = should |
+| 4923 | 985 | ZH | 应该多运动 | 应该(yīnggāi, ~해야 한다), 多(duō, 더 많이) |
+| 4924 | 985 | JA | もっと運動した方がいいです | ~した方がいい(~하는 것이 좋다) |
+| 4925 | 985 | KO | 운동을 더 해야 합니다 | "더 해야 합니다" = should do more |
+| 4926 | 986 | EN | You should rest if you are tired | Conditional advice |
+| 4927 | 986 | ES | Si está cansado, debería descansar | "descansar" = to rest |
+| 4928 | 986 | ZH | 累的话应该休息 | 累(lèi, 피곤한), 休息(xiūxi, 쉬다) |
+| 4929 | 986 | JA | 疲れたら休んだ方がいいです | 休んだ方がいい(やすんだほうがいい, 쉬는 것이 좋다) |
+| 4930 | 986 | KO | 피곤하면 쉬어야 합니다 | "쉬어야 합니다" = should rest |
+| 4931 | 987 | EN | You should drink a lot of water after exercising | Health advice |
+| 4932 | 987 | ES | Debería beber mucha agua después de hacer ejercicio | "beber" = to drink |
+| 4933 | 987 | ZH | 运动后应该多喝水 | 运动后(yùndòng hòu, 운동 후) |
+| 4934 | 987 | JA | 運動した後は水をたくさん飲んだ方がいいです | 飲んだ方がいい(のんだほうがいい, 마시는 것이 좋다) |
+| 4935 | 987 | KO | 운동한 후에 물을 많이 마셔야 합니다 | "마셔야 합니다" = should drink |
+| 4936 | 988 | EN | For your health, you should not eat too much | Negative advice |
+| 4937 | 988 | ES | Por su salud, no debería comer demasiado | "demasiado" = too much |
+| 4938 | 988 | ZH | 为了健康不应该吃太多 | 健康(jiànkāng, 건강), 太多(tài duō, 너무 많이) |
+| 4939 | 988 | JA | 健康のために食べ過ぎない方がいいです | 食べ過ぎない(たべすぎない, 너무 많이 먹지 않는) |
+| 4940 | 988 | KO | 건강을 위해 너무 많이 먹지 않는 게 좋습니다 | "~지 않는 게 좋습니다" = it is better not to |
+| 4941 | 989 | EN | It might rain so you should take an umbrella | Precautionary advice |
+| 4942 | 989 | ES | Podría llover así que debería llevar un paraguas | "llevar" = to carry/bring |
+| 4943 | 989 | ZH | 可能会下雨所以应该带伞 | 带(dài, 가져가다), 伞(sǎn, 우산) |
+| 4944 | 989 | JA | 雨が降るかもしれないので傘を持って行った方がいいです | 持って行った方がいい(もっていったほうがいい, 가져가는 것이 좋다) |
+| 4945 | 989 | KO | 비가 올 수 있으니까 우산을 가져가는 게 좋겠습니다 | "~는 게 좋겠습니다" = it would be good to |
+| 4946 | 990 | EN | If the symptoms are serious, you should see a doctor | Medical advice |
+| 4947 | 990 | ES | Si los síntomas son graves, debería ver a un médico | "síntomas" = symptoms, "médico" = doctor |
+| 4948 | 990 | ZH | 症状严重的话应该去看医生 | 症状(zhèngzhuàng, 증상), 医生(yīshēng, 의사) |
+| 4949 | 990 | JA | 症状がひどければ医者に行った方がいいです | 症状(しょうじょう, 증상), 医者(いしゃ, 의사) |
+| 4950 | 990 | KO | 증상이 심하면 의사에게 가 보는 게 좋겠습니다 | "가 보는 게 좋겠습니다" = you should try going |
+| 4951 | 991 | EN | You have to wake up early tomorrow so you should go to bed early | Practical advice |
+| 4952 | 991 | ES | Tiene que levantarse temprano mañana así que debería acostarse temprano | "acostarse" = go to bed |
+| 4953 | 991 | ZH | 明天要早起所以应该早睡 | 早起(zǎoqǐ, 일찍 일어나다), 早睡(zǎo shuì, 일찍 자다) |
+| 4954 | 991 | JA | 明日早く起きなければならないので早く寝た方がいいです | 早く寝た方がいい(はやくねたほうがいい, 일찍 자는 것이 좋다) |
+| 4955 | 991 | KO | 내일 일찍 일어나야 하니까 일찍 자는 게 좋습니다 | "자는 게 좋습니다" = it is better to sleep |
+| 4956 | 992 | EN | Sitting for too long is bad for your health so please exercise | Health warning |
+| 4957 | 992 | ES | Sentarse demasiado tiempo es malo para la salud así que haga ejercicio | "malo para la salud" = bad for health |
+| 4958 | 992 | ZH | 久坐对健康不好所以要运动 | 久坐(jiǔ zuò, 오래 앉다), 对…不好(~에 안 좋다) |
+| 4959 | 992 | JA | 長時間座っていると健康に悪いので運動してください | 長時間(ちょうじかん, 오랜 시간) |
+| 4960 | 992 | KO | 오래 앉아 있으면 건강에 안 좋으니까 운동하세요 | "건강에 안 좋다" = bad for health |
+
+### Skill ID 115: need to 필요
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 4961 | 993 | EN | I need to fix this | "need to" = necessity |
+| 4962 | 993 | ES | Necesito arreglar esto | "necesito" = I need to |
+| 4963 | 993 | ZH | 这个需要修理 | 需要(xūyào, 필요하다), 修理(xiūlǐ, 수리하다) |
+| 4964 | 993 | JA | これを修理する必要があります | 修理(しゅうり, 수리), 必要があります(ひつようがあります, 필요가 있습니다) |
+| 4965 | 993 | KO | 이것을 수리해야 합니다 | "수리하다" = to fix/repair |
+| 4966 | 994 | EN | I need to submit the documents before the deadline | Work necessity |
+| 4967 | 994 | ES | Necesito entregar los documentos antes de la fecha límite | "entregar" = to submit |
+| 4968 | 994 | ZH | 截止日期前需要提交文件 | 提交(tíjiāo, 제출하다), 文件(wénjiàn, 서류) |
+| 4969 | 994 | JA | 締め切り前に書類を提出する必要があります | 書類(しょるい, 서류), 提出(ていしゅつ, 제출) |
+| 4970 | 994 | KO | 마감일 전에 서류를 제출해야 합니다 | "제출하다" = to submit |
+| 4971 | 995 | EN | The fridge is empty so I need to buy milk | Shopping necessity |
+| 4972 | 995 | ES | La nevera está vacía así que necesito comprar leche | "nevera" = fridge, "vacía" = empty |
+| 4973 | 995 | ZH | 冰箱空了所以需要买牛奶 | 冰箱(bīngxiāng, 냉장고), 空了(kōng le, 비었다) |
+| 4974 | 995 | JA | 冷蔵庫が空なので牛乳を買う必要があります | 冷蔵庫(れいぞうこ, 냉장고) |
+| 4975 | 995 | KO | 냉장고가 비어서 우유를 사야 합니다 | "비어서" = because it is empty |
+| 4976 | 996 | EN | For security, I need to change my password | Security necessity |
+| 4977 | 996 | ES | Por seguridad, necesito cambiar mi contraseña | "contraseña" = password |
+| 4978 | 996 | ZH | 为了安全需要更改密码 | 安全(ānquán, 보안), 密码(mìmǎ, 비밀번호) |
+| 4979 | 996 | JA | セキュリティのためにパスワードを変える必要があります | パスワード(비밀번호) |
+| 4980 | 996 | KO | 보안을 위해 비밀번호를 바꿔야 합니다 | "비밀번호" = password |
+| 4981 | 997 | EN | There are no seats so I need to make a reservation | Practical necessity |
+| 4982 | 997 | ES | No hay asientos así que necesito hacer una reservación | "reservación" = reservation |
+| 4983 | 997 | ZH | 没有座位所以需要预约 | 座位(zuòwèi, 자리), 预约(yùyuē, 예약) |
+| 4984 | 997 | JA | 席がないので予約する必要があります | 予約(よやく, 예약) |
+| 4985 | 997 | KO | 자리가 없으니까 예약을 해야 합니다 | "예약하다" = to make a reservation |
+| 4986 | 998 | EN | The road is slippery so you need to be careful | Safety warning |
+| 4987 | 998 | ES | El camino está resbaladizo así que hay que tener cuidado | "resbaladizo" = slippery |
+| 4988 | 998 | ZH | 路很滑需要小心 | 路(lù, 길), 滑(huá, 미끄러운), 小心(xiǎoxīn, 조심) |
+| 4989 | 998 | JA | 道が滑りやすいので気をつける必要があります | 滑りやすい(すべりやすい, 미끄러운) |
+| 4990 | 998 | KO | 길이 미끄러우니까 조심할 필요가 있습니다 | "조심할 필요가 있다" = need to be careful |
+| 4991 | 999 | EN | You need to practice more to improve your skills | Improvement necessity |
+| 4992 | 999 | ES | Necesita practicar más para mejorar sus habilidades | "mejorar" = to improve |
+| 4993 | 999 | ZH | 为了提高水平需要更多练习 | 提高(tígāo, 올리다), 水平(shuǐpíng, 실력) |
+| 4994 | 999 | JA | 実力を上げるにはもっと練習する必要があります | 実力(じつりょく, 실력) |
+| 4995 | 999 | KO | 실력을 올리려면 더 많이 연습해야 합니다 | "실력을 올리다" = to improve skills |
+| 4996 | 1000 | EN | My old shoes are worn out so I need to buy new ones | Replacement necessity |
+| 4997 | 1000 | ES | Mis zapatos viejos están desgastados así que necesito comprar nuevos | "desgastados" = worn out |
+| 4998 | 1000 | ZH | 旧鞋子磨损了所以需要买新的 | 旧(jiù, 오래된), 磨损(mósǔn, 닳다) |
+| 4999 | 1000 | JA | 古い靴がすり減ったので新しい靴を買う必要があります | すり減った(すりへった, 닳아졌다) |
+| 5000 | 1000 | KO | 오래된 신발이 닳아서 새 신발을 사야 합니다 | "닳다" = to wear out |
+
+### Skill ID 116: 의무 부정 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 5001 | 1001 | EN | You do not have to wear a tie | "do not have to" = no obligation |
+| 5002 | 1001 | ES | No tiene que usar corbata | "corbata" = tie |
+| 5003 | 1001 | ZH | 不需要打领带 | 不需要(bù xūyào, 필요 없다), 领带(lǐngdài, 넥타이) |
+| 5004 | 1001 | JA | ネクタイをしなくてもいいです | ~なくてもいい(~하지 않아도 된다) |
+| 5005 | 1001 | KO | 넥타이를 매지 않아도 됩니다 | "~지 않아도 됩니다" = do not have to |
+| 5006 | 1002 | EN | There is plenty of time so you do not need to hurry | Reassurance |
+| 5007 | 1002 | ES | Hay tiempo suficiente así que no necesita apurarse | "apurarse" = to hurry |
+| 5008 | 1002 | ZH | 时间充足所以不需要着急 | 充足(chōngzú, 충분한), 着急(zháojí, 서두르다) |
+| 5009 | 1002 | JA | 時間は十分あるので急ぐ必要はありません | 急ぐ必要はありません(いそぐひつようはありません, 서두를 필요 없습니다) |
+| 5010 | 1002 | KO | 시간이 충분하니까 서두를 필요 없습니다 | "서두를 필요 없다" = no need to hurry |
+| 5011 | 1003 | EN | It is a holiday so you do not have to go to work today | Day off |
+| 5012 | 1003 | ES | Es feriado así que no tiene que ir a trabajar hoy | "feriado" = holiday |
+| 5013 | 1003 | ZH | 今天是假日所以不需要上班 | 假日(jiàrì, 휴일), 上班(shàngbān, 출근) |
+| 5014 | 1003 | JA | 休日なので今日は出勤しなくてもいいです | 休日(きゅうじつ, 휴일) |
+| 5015 | 1003 | KO | 휴일이라서 오늘 출근하지 않아도 됩니다 | "휴일" = holiday |
+| 5016 | 1004 | EN | Everything will be fine so you do not need to worry | Comfort |
+| 5017 | 1004 | ES | Todo saldrá bien así que no necesita preocuparse | "todo saldrá bien" = everything will be fine |
+| 5018 | 1004 | ZH | 一切都会好的所以不需要担心 | 一切(yíqiè, 모두), 担心(dānxīn, 걱정) |
+| 5019 | 1004 | JA | 全部うまくいくので心配する必要はありません | うまくいく(잘 되다) |
+| 5020 | 1004 | KO | 다 잘 될 테니까 걱정할 필요 없습니다 | "~ㄹ 테니까" = because it will |
+| 5021 | 1005 | EN | Everything is ready so you do not need to wait | No waiting needed |
+| 5022 | 1005 | ES | Todo está listo así que no necesita esperar | "listo" = ready |
+| 5023 | 1005 | ZH | 准备好了所以不需要等 | 准备好了(zhǔnbèi hǎo le, 준비됐다), 等(děng, 기다리다) |
+| 5024 | 1005 | JA | 準備ができたので待つ必要はありません | 待つ必要はありません(まつひつようはありません, 기다릴 필요 없습니다) |
+| 5025 | 1005 | KO | 준비가 되었으니까 기다릴 필요 없습니다 | "기다릴 필요 없다" = no need to wait |
+| 5026 | 1006 | EN | You made a promise so you must not be late | Prohibition |
+| 5027 | 1006 | ES | Hizo una promesa así que no debe llegar tarde | "promesa" = promise |
+| 5028 | 1006 | ZH | 既然约好了就不能迟到 | 约好了(yuē hǎo le, 약속했다), 不能(bù néng, ~하면 안 된다) |
+| 5029 | 1006 | JA | 約束したので遅れてはいけません | 遅れてはいけません(おくれてはいけません, 늦으면 안 됩니다) |
+| 5030 | 1006 | KO | 약속을 했으니까 늦으면 안 됩니다 | "~면 안 됩니다" = must not |
+| 5031 | 1007 | EN | It is harmful to health so you must not smoke here | Health prohibition |
+| 5032 | 1007 | ES | Es dañino para la salud así que no debe fumar aquí | "fumar" = to smoke |
+| 5033 | 1007 | ZH | 有害健康所以这里不能吸烟 | 有害(yǒuhài, 해롭다), 吸烟(xīyān, 흡연하다) |
+| 5034 | 1007 | JA | 健康に害があるのでここで喫煙してはいけません | 喫煙(きつえん, 흡연), 害(がい, 해) |
+| 5035 | 1007 | KO | 건강에 해로우니까 여기서 흡연하면 안 됩니다 | "흡연하면 안 됩니다" = must not smoke |
+| 5036 | 1008 | EN | It is dangerous so you must not run here | Safety prohibition |
+| 5037 | 1008 | ES | Es peligroso así que no debe correr aquí | "peligroso" = dangerous |
+| 5038 | 1008 | ZH | 很危险所以这里不能跑 | 危险(wēixiǎn, 위험한), 跑(pǎo, 뛰다) |
+| 5039 | 1008 | JA | 危険なのでここで走ってはいけません | 危険(きけん, 위험) |
+| 5040 | 1008 | KO | 위험하기 때문에 여기서 뛰면 안 됩니다 | "뛰면 안 됩니다" = must not run |
+
+---
+
+## Level 30: 일상 루틴 묘사
+
+### Skill ID 117: 아침 루틴 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 5041 | 1009 | EN | I wash my face and get dressed | Daily morning actions |
+| 5042 | 1009 | ES | Me lavo la cara y me visto | "me lavo" = I wash, "me visto" = I get dressed |
+| 5043 | 1009 | ZH | 洗脸然后穿衣服 | 洗脸(xǐliǎn, 세수하다), 穿衣服(chuān yīfu, 옷을 입다) |
+| 5044 | 1009 | JA | 顔を洗って服を着ます | 顔を洗って(かおをあらって, 세수하고), 服を着ます(ふくをきます, 옷을 입습니다) |
+| 5045 | 1009 | KO | 세수하고 옷을 입습니다 | "세수하다" = to wash one's face |
+| 5046 | 1010 | EN | I brush my hair and pack my bag | Getting ready |
+| 5047 | 1010 | ES | Me peino y preparo mi bolso | "me peino" = I brush my hair |
+| 5048 | 1010 | ZH | 梳头发然后整理书包 | 梳头发(shū tóufa, 머리 빗다), 整理(zhěnglǐ, 챙기다) |
+| 5049 | 1010 | JA | 髪をとかしてかばんの準備をします | 髪をとかして(かみをとかして, 머리를 빗고) |
+| 5050 | 1010 | KO | 머리를 빗고 가방을 챙깁니다 | "챙기다" = to pack/prepare |
+| 5051 | 1011 | EN | When I wake up, I wash my face and brush my teeth first | Morning sequence |
+| 5052 | 1011 | ES | Cuando me despierto, primero me lavo la cara y me cepillo los dientes | "primero" = first |
+| 5053 | 1011 | ZH | 起床后先洗脸刷牙 | 起床(qǐchuáng, 일어나다), 先(xiān, 먼저), 刷牙(shuāyá, 양치) |
+| 5054 | 1011 | JA | 起きたらまず顔を洗って歯を磨きます | まず(먼저), 歯を磨きます(はをみがきます, 양치질합니다) |
+| 5055 | 1011 | KO | 일어나면 먼저 세수하고 양치질을 합니다 | "먼저" = first |
+| 5056 | 1012 | EN | After showering, I get dressed and eat breakfast | Sequential routine |
+| 5057 | 1012 | ES | Después de ducharme, me visto y desayuno | "desayuno" = I eat breakfast |
+| 5058 | 1012 | ZH | 洗完澡后穿衣服吃早饭 | 洗完澡(xǐ wán zǎo, 샤워 후), 早饭(zǎofàn, 아침식사) |
+| 5059 | 1012 | JA | シャワーの後で服を着て朝ご飯を食べます | シャワーの後で(샤워 후에) |
+| 5060 | 1012 | KO | 샤워한 후에 옷을 입고 아침을 먹습니다 | "샤워한 후에" = after showering |
+| 5061 | 1013 | EN | When the alarm rings at 7, I get up right away | Alarm routine |
+| 5062 | 1013 | ES | Cuando suena la alarma a las 7, me levanto enseguida | "enseguida" = right away |
+| 5063 | 1013 | ZH | 7点闹钟响了就马上起床 | 闹钟(nàozhōng, 알람), 马上(mǎshàng, 바로) |
+| 5064 | 1013 | JA | 7時にアラームが鳴ったらすぐ起きます | アラーム(알람), すぐ(바로) |
+| 5065 | 1013 | KO | 7시에 알람이 울리면 바로 일어납니다 | "바로" = right away |
+| 5066 | 1014 | EN | Every morning I watch the news while drinking coffee | Daily habit |
+| 5067 | 1014 | ES | Cada mañana veo las noticias mientras tomo café | "noticias" = news |
+| 5068 | 1014 | ZH | 每天早上一边喝咖啡一边看新闻 | 每天早上(měitiān zǎoshang, 아침마다), 新闻(xīnwén, 뉴스) |
+| 5069 | 1014 | JA | 毎朝コーヒーを飲みながらニュースを見ます | 毎朝(まいあさ, 매일 아침) |
+| 5070 | 1014 | KO | 아침마다 커피를 마시면서 뉴스를 봅니다 | "아침마다" = every morning |
+| 5071 | 1015 | EN | Before leaving, I check the weather and choose my clothes | Preparation |
+| 5072 | 1015 | ES | Antes de salir, reviso el clima y elijo mi ropa | "elijo" = I choose |
+| 5073 | 1015 | ZH | 出门前看天气选衣服 | 出门前(chūmén qián, 출발 전에), 选(xuǎn, 고르다) |
+| 5074 | 1015 | JA | 出発する前に天気を確認して服を選びます | 選びます(えらびます, 고릅니다) |
+| 5075 | 1015 | KO | 출발하기 전에 날씨를 확인하고 옷을 고릅니다 | "고르다" = to choose |
+| 5076 | 1016 | EN | After finishing preparations, I leave the house at 8 | Departure time |
+| 5077 | 1016 | ES | Después de terminar los preparativos, salgo de casa a las 8 | "preparativos" = preparations |
+| 5078 | 1016 | ZH | 准备好之后8点出门 | 准备好(zhǔnbèi hǎo, 준비를 마치다), 出门(chūmén, 나서다) |
+| 5079 | 1016 | JA | 準備が終わった後8時に家を出ます | 家を出ます(いえをでます, 집을 나섭니다) |
+| 5080 | 1016 | KO | 준비를 마친 후에 8시에 집을 나섭니다 | "나서다" = to leave/head out |
+
+### Skill ID 118: 직장/학교 루틴
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 5081 | 1017 | EN | I drink coffee during break time | Break habit |
+| 5082 | 1017 | ES | Tomo café durante el descanso | "descanso" = break |
+| 5083 | 1017 | ZH | 休息时间喝咖啡 | 休息时间(xiūxi shíjiān, 쉬는 시간) |
+| 5084 | 1017 | JA | 休憩時間にコーヒーを飲みます | 休憩時間(きゅうけいじかん, 쉬는 시간) |
+| 5085 | 1017 | KO | 쉬는 시간에 커피를 마십니다 | "쉬는 시간" = break time |
+| 5086 | 1018 | EN | I eat lunch at 12 with my colleagues | Lunch routine |
+| 5087 | 1018 | ES | Almuerzo a las 12 con mis colegas | "colegas" = colleagues |
+| 5088 | 1018 | ZH | 12点和同事一起吃午饭 | 同事(tóngshì, 동료), 一起(yìqǐ, 함께) |
+| 5089 | 1018 | JA | 昼食は12時に同僚と一緒に食べます | 同僚(どうりょう, 동료) |
+| 5090 | 1018 | KO | 점심은 12시에 동료들과 함께 먹습니다 | "동료" = colleague |
+| 5091 | 1019 | EN | I check emails in the morning and have meetings in the afternoon | Work schedule |
+| 5092 | 1019 | ES | Reviso correos por la mañana y tengo reuniones por la tarde | "correos" = emails |
+| 5093 | 1019 | ZH | 上午查邮件下午开会 | 查邮件(chá yóujiàn, 이메일 확인), 开会(kāihuì, 회의하다) |
+| 5094 | 1019 | JA | 午前にメールを確認して午後に会議をします | 午前(ごぜん, 오전), 午後(ごご, 오후) |
+| 5095 | 1019 | KO | 오전에 이메일을 확인하고 오후에 회의를 합니다 | "이메일" = email |
+| 5096 | 1020 | EN | Classes end at 3 and after that I do club activities | After-school routine |
+| 5097 | 1020 | ES | Las clases terminan a las 3 y después hago actividades de club | "actividades de club" = club activities |
+| 5098 | 1020 | ZH | 3点下课之后参加社团活动 | 下课(xiàkè, 수업 끝나다), 社团(shètuán, 동아리) |
+| 5099 | 1020 | JA | 授業は3時に終わりその後部活動をします | 部活動(ぶかつどう, 동아리 활동) |
+| 5100 | 1020 | KO | 수업은 3시에 끝나고 그 후에 동아리 활동을 합니다 | "동아리 활동" = club activities |
+| 5101 | 1021 | EN | I usually arrive at work at 9 and check emails first | Work start |
+| 5102 | 1021 | ES | Normalmente llego al trabajo a las 9 y reviso los correos primero | "normalmente" = usually |
+| 5103 | 1021 | ZH | 通常9点上班先查邮件 | 通常(tōngcháng, 보통), 先(xiān, 먼저) |
+| 5104 | 1021 | JA | 普通9時に出勤してまずメールを確認します | 普通(ふつう, 보통) |
+| 5105 | 1021 | KO | 보통 9시에 출근해서 먼저 이메일을 확인합니다 | "보통" = usually |
+| 5106 | 1022 | EN | There is a meeting in the afternoon so I prepare materials in advance | Proactive preparation |
+| 5107 | 1022 | ES | Hay una reunión por la tarde así que preparo materiales con anticipación | "con anticipación" = in advance |
+| 5108 | 1022 | ZH | 下午有会议所以提前准备资料 | 提前(tíqián, 미리), 资料(zīliào, 자료) |
+| 5109 | 1022 | JA | 午後に会議があるので資料を事前に準備します | 事前に(じぜんに, 미리), 資料(しりょう, 자료) |
+| 5110 | 1022 | KO | 오후에 회의가 있어서 자료를 미리 준비합니다 | "미리" = in advance |
+| 5111 | 1023 | EN | Every day after classes end, I do my homework | Daily student routine |
+| 5112 | 1023 | ES | Todos los días después de clases, hago la tarea | "todos los días" = every day |
+| 5113 | 1023 | ZH | 每天放学后做作业 | 放学(fàngxué, 수업이 끝나다), 作业(zuòyè, 숙제) |
+| 5114 | 1023 | JA | 毎日授業が終わった後に宿題をします | 毎日(まいにち, 매일) |
+| 5115 | 1023 | KO | 매일 수업이 끝난 후에 숙제를 합니다 | "매일" = every day |
+| 5116 | 1024 | EN | I usually leave work at 6 but go later when busy | Flexible schedule |
+| 5117 | 1024 | ES | Normalmente salgo del trabajo a las 6 pero cuando estoy ocupado salgo más tarde | "ocupado" = busy |
+| 5118 | 1024 | ZH | 通常6点下班但忙的话更晚走 | 下班(xiàbān, 퇴근), 忙(máng, 바쁜) |
+| 5119 | 1024 | JA | 普通6時に退勤しますが忙しいともっと遅くなります | 退勤(たいきん, 퇴근), 忙しい(いそがしい, 바쁜) |
+| 5120 | 1024 | KO | 보통 6시에 퇴근하지만 바쁘면 더 늦게 갑니다 | "퇴근하다" = to leave work |
+
+### Skill ID 119: 저녁 루틴 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 5121 | 1025 | EN | At night I share stories about the day with my family | Evening bonding |
+| 5122 | 1025 | ES | Por la noche comparto historias del día con mi familia | "comparto" = I share |
+| 5123 | 1025 | ZH | 晚上和家人聊一天的事 | 晚上(wǎnshang, 밤에), 聊(liáo, 이야기하다) |
+| 5124 | 1025 | JA | 夜に家族と一日の話をします | 一日の話(いちにちのはなし, 하루 이야기) |
+| 5125 | 1025 | KO | 밤에 가족과 하루 이야기를 나눕니다 | "이야기를 나누다" = to share stories |
+| 5126 | 1026 | EN | Before going to bed, I read for 30 minutes | Bedtime reading |
+| 5127 | 1026 | ES | Antes de acostarme, leo durante 30 minutos | "durante" = for (duration) |
+| 5128 | 1026 | ZH | 睡前看30分钟的书 | 睡前(shuì qián, 자기 전), 分钟(fēnzhōng, 분) |
+| 5129 | 1026 | JA | 寝る前に30分間本を読みます | 30分間(さんじゅっぷんかん, 30분 동안) |
+| 5130 | 1026 | KO | 자기 전에 30분 동안 책을 읽습니다 | "30분 동안" = for 30 minutes |
+| 5131 | 1027 | EN | I eat dinner and do the dishes | After-dinner cleanup |
+| 5132 | 1027 | ES | Ceno y lavo los platos | "lavo los platos" = I do the dishes |
+| 5133 | 1027 | ZH | 吃完晚饭后洗碗 | 晚饭(wǎnfàn, 저녁), 洗碗(xǐwǎn, 설거지하다) |
+| 5134 | 1027 | JA | 夕食を食べて食器を洗います | 食器を洗います(しょっきをあらいます, 설거지합니다) |
+| 5135 | 1027 | KO | 저녁을 먹고 설거지를 합니다 | "설거지" = dishwashing |
+| 5136 | 1028 | EN | After work, I go to the gym and exercise | After-work fitness |
+| 5137 | 1028 | ES | Después del trabajo, voy al gimnasio y hago ejercicio | "gimnasio" = gym |
+| 5138 | 1028 | ZH | 下班后去健身房运动 | 下班后(xiàbān hòu, 퇴근 후), 健身房(jiànshēnfáng, 헬스장) |
+| 5139 | 1028 | JA | 退勤後にジムに行って運動します | ジム(헬스장) |
+| 5140 | 1028 | KO | 퇴근 후에 헬스장에 가서 운동을 합니다 | "헬스장" = gym |
+| 5141 | 1029 | EN | After dinner, I watch TV with my family | Family evening |
+| 5142 | 1029 | ES | Después de cenar, veo la televisión con mi familia | "televisión" = TV |
+| 5143 | 1029 | ZH | 晚饭后和家人一起看电视 | 电视(diànshì, TV), 一起(yìqǐ, 함께) |
+| 5144 | 1029 | JA | 夕食後に家族とテレビを見ます | テレビ(TV) |
+| 5145 | 1029 | KO | 저녁 식사를 한 후에 가족과 TV를 봅니다 | "가족과" = with family |
+| 5146 | 1030 | EN | If I am tired I go to bed early but usually I sleep at 11 | Flexible bedtime |
+| 5147 | 1030 | ES | Si estoy cansado me acuesto temprano pero normalmente duermo a las 11 | "me acuesto" = I go to bed |
+| 5148 | 1030 | ZH | 累的话早睡但通常11点睡 | 累(lèi, 피곤한), 通常(tōngcháng, 보통) |
+| 5149 | 1030 | JA | 疲れたら早く寝ますが普通は11時に寝ます | 普通は(ふつうは, 보통은) |
+| 5150 | 1030 | KO | 피곤하면 일찍 자지만 보통 11시에 잡니다 | "보통 11시에" = usually at 11 |
+| 5151 | 1031 | EN | Before going to bed, I take a shower and brush my teeth | Bedtime hygiene |
+| 5152 | 1031 | ES | Antes de acostarme, me ducho y me cepillo los dientes | "me ducho" = I shower |
+| 5153 | 1031 | ZH | 睡觉之前洗澡刷牙 | 洗澡(xǐzǎo, 샤워), 刷牙(shuāyá, 양치질) |
+| 5154 | 1031 | JA | 寝る前にシャワーを浴びて歯を磨きます | シャワーを浴びて(샤워를 하고) |
+| 5155 | 1031 | KO | 잠자리에 들기 전에 샤워하고 양치질합니다 | "잠자리에 들다" = to go to bed |
+| 5156 | 1032 | EN | In the evening I relax by listening to music and drinking tea | Relaxation routine |
+| 5157 | 1032 | ES | Por la noche me relajo escuchando música y tomando té | "me relajo" = I relax |
+| 5158 | 1032 | ZH | 晚上一边听音乐一边喝茶休息 | 音乐(yīnyuè, 음악), 喝茶(hēchá, 차를 마시다) |
+| 5159 | 1032 | JA | 夜は音楽を聴きながらお茶を飲んで休みます | 休みます(やすみます, 쉽니다) |
+| 5160 | 1032 | KO | 저녁에 음악을 들으면서 차를 마시며 쉽니다 | "~면서...~며" = while doing multiple things |
+
+### Skill ID 120: 주말 활동 표현
+
+| 표현ID | 문장ID | 언어 | 표현 | 힌트 |
+|--------|--------|------|------|------|
+| 5161 | 1033 | EN | I do grocery shopping on weekends | Weekly routine |
+| 5162 | 1033 | ES | Hago las compras los fines de semana | "fines de semana" = weekends |
+| 5163 | 1033 | ZH | 周末去买菜 | 周末(zhōumò, 주말), 买菜(mǎi cài, 장을 보다) |
+| 5164 | 1033 | JA | 週末に買い物をします | 買い物(かいもの, 장보기) |
+| 5165 | 1033 | KO | 주말에 장을 봅니다 | "장을 보다" = to do grocery shopping |
+| 5166 | 1034 | EN | On Sunday morning I clean and do laundry | Weekend chores |
+| 5167 | 1034 | ES | El domingo por la mañana limpio y lavo la ropa | "limpio" = I clean, "lavo la ropa" = I do laundry |
+| 5168 | 1034 | ZH | 周日早上打扫卫生洗衣服 | 周日(zhōurì, 일요일), 打扫(dǎsǎo, 청소) |
+| 5169 | 1034 | JA | 日曜日の朝に掃除して洗濯をします | 掃除(そうじ, 청소), 洗濯(せんたく, 빨래) |
+| 5170 | 1034 | KO | 일요일 아침에 청소하고 빨래를 합니다 | "청소하고 빨래" = cleaning and laundry |
+| 5171 | 1035 | EN | On Saturdays I sleep in and eat breakfast slowly | Relaxed morning |
+| 5172 | 1035 | ES | Los sábados duermo hasta tarde y desayuno despacio | "duermo hasta tarde" = I sleep in |
+| 5173 | 1035 | ZH | 周六睡懒觉然后慢慢吃早饭 | 睡懒觉(shuì lǎnjiào, 늦잠 자다), 慢慢(mànmàn, 천천히) |
+| 5174 | 1035 | JA | 土曜日は遅くまで寝てゆっくり朝ご飯を食べます | 遅くまで寝て(おそくまでねて, 늦잠 자고), ゆっくり(천천히) |
+| 5175 | 1035 | KO | 토요일에는 늦잠을 자고 천천히 아침을 먹습니다 | "늦잠을 자다" = to sleep in |
+| 5176 | 1036 | EN | On weekends I meet friends and go to a cafe | Social weekend |
+| 5177 | 1036 | ES | Los fines de semana me encuentro con amigos y vamos a un café | "nos encontramos" = we meet |
+| 5178 | 1036 | ZH | 周末见朋友去咖啡厅 | 见(jiàn, 만나다), 咖啡厅(kāfēitīng, 카페) |
+| 5179 | 1036 | JA | 週末に友達に会ってカフェに行きます | カフェ(카페) |
+| 5180 | 1036 | KO | 주말에 친구들을 만나서 카페에 갑니다 | "카페" = cafe |
+| 5181 | 1037 | EN | On Saturday afternoon I watch a movie and eat dinner | Entertainment + meal |
+| 5182 | 1037 | ES | El sábado por la tarde veo una película y ceno | "ceno" = I eat dinner |
+| 5183 | 1037 | ZH | 周六下午看电影然后吃晚饭 | 下午(xiàwǔ, 오후), 电影(diànyǐng, 영화) |
+| 5184 | 1037 | JA | 土曜日の午後に映画を見て夕食を食べます | 午後(ごご, 오후) |
+| 5185 | 1037 | KO | 토요일 오후에 영화를 보고 저녁을 먹습니다 | "영화를 보고" = watch a movie and |
+| 5186 | 1038 | EN | If the weather is nice, I take a walk in the park on Sunday | Conditional weekend plan |
+| 5187 | 1038 | ES | Si hace buen tiempo, camino en el parque el domingo | "buen tiempo" = nice weather |
+| 5188 | 1038 | ZH | 天气好的话周日在公园散步 | 天气好(tiānqì hǎo, 날씨가 좋다) |
+| 5189 | 1038 | JA | 天気が良ければ日曜日に公園で散歩します | 良ければ(よければ, 좋으면) |
+| 5190 | 1038 | KO | 날씨가 좋으면 일요일에 공원에서 산책합니다 | "~으면" = if |
+| 5191 | 1039 | EN | On weekends I visit my parents and eat together | Family weekend |
+| 5192 | 1039 | ES | Los fines de semana visito a mis padres y comemos juntos | "visito" = I visit |
+| 5193 | 1039 | ZH | 周末去看父母一起吃饭 | 父母(fùmǔ, 부모님), 一起吃饭(yìqǐ chīfàn, 같이 식사하다) |
+| 5194 | 1039 | JA | 週末は両親を訪ねて一緒に食事します | 両親(りょうしん, 부모님), 訪ねて(たずねて, 방문해서) |
+| 5195 | 1039 | KO | 주말에는 부모님을 방문해서 같이 식사합니다 | "방문하다" = to visit |
+| 5196 | 1040 | EN | If it rains I rest at home but if it is sunny I go out | Weather-dependent plan |
+| 5197 | 1040 | ES | Si llueve descanso en casa pero si hace sol salgo | "si hace sol" = if it is sunny |
+| 5198 | 1040 | ZH | 下雨的话在家休息但天晴的话出门 | 天晴(tiān qíng, 날이 맑다), 出门(chūmén, 나가다) |
+| 5199 | 1040 | JA | 雨なら家で休みますが晴れたら外に出かけます | 晴れたら(はれたら, 맑으면), 出かけます(でかけます, 외출합니다) |
+| 5200 | 1040 | KO | 비가 오면 집에서 쉬지만 맑으면 밖에 나갑니다 | "맑으면" = if it is clear/sunny |

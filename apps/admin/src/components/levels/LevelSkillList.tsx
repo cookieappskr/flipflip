@@ -36,9 +36,9 @@ export default function LevelSkillList({ levelId }: LevelSkillListProps) {
     setModal({
       isOpen: true,
       skill,
-      name: skill.name,
-      summary: skill.summary ?? '',
-      sortOrder: skill.sort_order,
+      name: skill.skill_name,
+      summary: skill.skill_summary ?? '',
+      sortOrder: skill.display_order,
     });
   };
 
@@ -57,9 +57,9 @@ export default function LevelSkillList({ levelId }: LevelSkillListProps) {
     setModalSaving(true);
     try {
       await updateSkill(modal.skill.id, {
-        name: modal.name,
-        summary: modal.summary || null,
-        sort_order: modal.sortOrder,
+        skill_name: modal.name,
+        skill_summary: modal.summary || null,
+        display_order: modal.sortOrder,
       });
       closeModal();
     } finally {
@@ -123,14 +123,14 @@ export default function LevelSkillList({ levelId }: LevelSkillListProps) {
               className="w-full text-left px-3 py-2 rounded-lg border border-border hover:bg-surface-secondary/50 transition-colors flex items-center gap-3"
             >
               <span className="text-xs text-text-secondary w-6 shrink-0 text-right">
-                {skill.sort_order}
+                {skill.display_order}
               </span>
               <span className="text-sm text-text-primary truncate">
-                {skill.name}
+                {skill.skill_name}
               </span>
-              {skill.summary && (
+              {skill.skill_summary && (
                 <span className="text-xs text-text-secondary truncate ml-auto">
-                  {skill.summary}
+                  {skill.skill_summary}
                 </span>
               )}
             </button>

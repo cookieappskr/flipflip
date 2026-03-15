@@ -57,3 +57,16 @@ Thumbs.db
 # Supabase local
 supabase/.branches
 supabase/.temp
+
+# Claude Code
+.claude/
+
+# Vercel
+.vercel/
+
+# Package lock (per-app, root only if exists)
+# Keep lock files for reproducible builds
+
+# Misc
+*.log
+.cache/

@@ -24,9 +24,7 @@ interface ContentFormModalProps {
 
 interface TypeOptions {
   tense: { value: string; label: string }[];
-  purpose: { value: string; label: string }[];
-  tone: { value: string; label: string }[];
-  place: { value: string; label: string }[];
+  pattern: { value: string; label: string }[];
 }
 
 const LANGUAGE_OPTIONS = [
@@ -57,14 +55,13 @@ export default function ContentFormModal({
   const [name, setName] = useState('');
   const [summary, setSummary] = useState('');
   const [sortOrder, setSortOrder] = useState(0);
-  const [tenseTypeId, setTenseTypeId] = useState('');
-  const [purposeTypeId, setPurposeTypeId] = useState('');
-  const [toneTypeId, setToneTypeId] = useState('');
-  const [placeTypeId, setPlaceTypeId] = useState('');
+  const [tenseTypeCode, setTenseTypeCode] = useState('');
+  const [patternTypeCode, setPatternTypeCode] = useState('');
 
   // Sentence form state
-  const [sentenceSummary, setSentenceSummary] = useState('');
-  const [summaryEn, setSummaryEn] = useState('');
+  const [sentenceMeaning, setSentenceMeaning] = useState('');
+  const [sentenceType, setSentenceType] = useState('기본');
+  const [baseSentenceId, setBaseSentenceId] = useState('');
 
   // Expression form state
   const [languageCode, setLanguageCode] = useState('en');
@@ -74,9 +71,7 @@ export default function ContentFormModal({
   // Type options for skill mode
   const [typeOptions, setTypeOptions] = useState<TypeOptions>({
     tense: [],
-    purpose: [],
-    tone: [],
-    place: [],
+    pattern: [],
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -99,7 +94,7 @@ export default function ContentFormModal({
 
     const fetchTypeOptions = async () => {
       const supabase = createClient();
-      const typeCodes = ['TENSE_TYPE', 'PURPOSE_TYPE', 'TONE_TYPE', 'PLACE_TYPE'];
+      const typeCodes = ['TENSE', 'PATTERN'];
 
       // Fetch root types
       const { data: rawRootTypes } = await supabase
@@ -119,7 +114,7 @@ export default function ContentFormModal({
         .select('*')
         .in('parent_id', rootIds)
         .eq('is_active', true)
-        .order('sort_order', { ascending: true });
+        .order('display_order', { ascending: true });
 
       const childTypes = (rawChildTypes ?? []) as Type[];
 
@@ -128,14 +123,12 @@ export default function ContentFormModal({
         if (!parent) return [];
         return childTypes
           .filter((c) => c.parent_id === parent.id)
-          .map((c) => ({ value: c.id, label: c.type_name }));
+          .map((c) => ({ value: c.type_code, label: c.type_name }));
       };
 
       setTypeOptions({
-        tense: mapByParent('TENSE_TYPE'),
-        purpose: mapByParent('PURPOSE_TYPE'),
-        tone: mapByParent('TONE_TYPE'),
-        place: mapByParent('PLACE_TYPE'),
+        tense: mapByParent('TENSE'),
+        pattern: mapByParent('PATTERN'),
       });
     };
 
@@ -148,17 +141,16 @@ export default function ContentFormModal({
 
     if (mode === 'skill' && editData) {
       const skill = editData as Skill;
-      setName(skill.name);
-      setSummary(skill.summary ?? '');
-      setSortOrder(skill.sort_order);
-      setTenseTypeId(skill.tense_type_id ?? '');
-      setPurposeTypeId(skill.purpose_type_id ?? '');
-      setToneTypeId(skill.tone_type_id ?? '');
-      setPlaceTypeId(skill.place_type_id ?? '');
+      setName(skill.skill_name);
+      setSummary(skill.skill_summary ?? '');
+      setSortOrder(skill.display_order);
+      setTenseTypeCode(skill.tense_type_code ?? '');
+      setPatternTypeCode(skill.pattern_type_code ?? '');
     } else if (mode === 'sentence' && editData) {
       const sentence = editData as Sentence;
-      setSentenceSummary(sentence.summary ?? '');
-      setSummaryEn(sentence.summary_en ?? '');
+      setSentenceMeaning(sentence.meaning ?? '');
+      setSentenceType(sentence.sentence_type ?? '기본');
+      setBaseSentenceId(sentence.base_sentence_id ?? '');
     } else if (mode === 'expression' && editData) {
       const expression = editData as Expression;
       setLanguageCode(expression.language_code);
@@ -169,12 +161,11 @@ export default function ContentFormModal({
       setName('');
       setSummary('');
       setSortOrder(0);
-      setTenseTypeId('');
-      setPurposeTypeId('');
-      setToneTypeId('');
-      setPlaceTypeId('');
-      setSentenceSummary('');
-      setSummaryEn('');
+      setTenseTypeCode('');
+      setPatternTypeCode('');
+      setSentenceMeaning('');
+      setSentenceType('기본');
+      setBaseSentenceId('');
       setLanguageCode('en');
       setExpressionText('');
       setHint('');
@@ -196,13 +187,11 @@ export default function ContentFormModal({
         }
         const data = {
           level_id: parentId,
-          name: name.trim(),
-          summary: summary.trim() || null,
-          sort_order: sortOrder,
-          tense_type_id: tenseTypeId || null,
-          purpose_type_id: purposeTypeId || null,
-          tone_type_id: toneTypeId || null,
-          place_type_id: placeTypeId || null,
+          skill_name: name.trim(),
+          skill_summary: summary.trim() || null,
+          display_order: sortOrder,
+          tense_type_code: tenseTypeCode || null,
+          pattern_type_code: patternTypeCode || null,
         };
         if (isEditing) {
           await updateSkill(editData!.id, data);
@@ -212,8 +201,9 @@ export default function ContentFormModal({
       } else if (mode === 'sentence') {
         const data = {
           skill_id: parentId,
-          summary: sentenceSummary.trim() || null,
-          summary_en: summaryEn.trim() || null,
+          meaning: sentenceMeaning.trim() || null,
+          sentence_type: sentenceType || '기본',
+          base_sentence_id: baseSentenceId || null,
         };
         if (isEditing) {
           await updateSentence(editData!.id, data);
@@ -302,29 +292,15 @@ export default function ContentFormModal({
               <Select
                 label="시제 유형"
                 options={typeOptions.tense}
-                value={tenseTypeId}
-                onChange={(e) => setTenseTypeId(e.target.value)}
+                value={tenseTypeCode}
+                onChange={(e) => setTenseTypeCode(e.target.value)}
                 placeholder="선택하세요"
               />
               <Select
-                label="목적 유형"
-                options={typeOptions.purpose}
-                value={purposeTypeId}
-                onChange={(e) => setPurposeTypeId(e.target.value)}
-                placeholder="선택하세요"
-              />
-              <Select
-                label="어조 유형"
-                options={typeOptions.tone}
-                value={toneTypeId}
-                onChange={(e) => setToneTypeId(e.target.value)}
-                placeholder="선택하세요"
-              />
-              <Select
-                label="장소 유형"
-                options={typeOptions.place}
-                value={placeTypeId}
-                onChange={(e) => setPlaceTypeId(e.target.value)}
+                label="패턴 유형"
+                options={typeOptions.pattern}
+                value={patternTypeCode}
+                onChange={(e) => setPatternTypeCode(e.target.value)}
                 placeholder="선택하세요"
               />
             </div>
@@ -334,16 +310,22 @@ export default function ContentFormModal({
         {mode === 'sentence' && (
           <>
             <Input
-              label="문장개요 (국문)"
-              value={sentenceSummary}
-              onChange={(e) => setSentenceSummary(e.target.value)}
-              placeholder="문장개요를 입력하세요"
+              label="문장 의미"
+              value={sentenceMeaning}
+              onChange={(e) => setSentenceMeaning(e.target.value)}
+              placeholder="문장 의미를 입력하세요"
             />
             <Input
-              label="문장개요 (영문)"
-              value={summaryEn}
-              onChange={(e) => setSummaryEn(e.target.value)}
-              placeholder="Enter sentence summary"
+              label="문장 유형"
+              value={sentenceType}
+              onChange={(e) => setSentenceType(e.target.value)}
+              placeholder="기본"
+            />
+            <Input
+              label="기본 문장 ID"
+              value={baseSentenceId}
+              onChange={(e) => setBaseSentenceId(e.target.value)}
+              placeholder="기본 문장 ID (선택사항)"
             />
           </>
         )}
