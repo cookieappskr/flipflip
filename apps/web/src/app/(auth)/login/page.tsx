@@ -10,12 +10,22 @@ function LoginContent() {
 
   const handleGoogleLogin = async () => {
     const supabase = createClient();
-    await supabase.auth.signInWithOAuth({
+
+    // Debug: check cookies before OAuth
+    console.log('[Login] Cookies before signInWithOAuth:', document.cookie);
+    console.log('[Login] Origin:', window.location.origin);
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${window.location.origin}/api/auth/callback`,
       },
     });
+
+    // Debug: check result
+    console.log('[Login] signInWithOAuth result - data:', JSON.stringify(data));
+    console.log('[Login] signInWithOAuth result - error:', error?.message);
+    console.log('[Login] Cookies after signInWithOAuth:', document.cookie);
   };
 
   return (
