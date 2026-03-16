@@ -26,11 +26,14 @@ export default function LearnPage() {
     level,
     levelSummary,
     loading,
+    loadingProgress,
     submitting,
     skillUpPopup,
     levelUpPopup,
     sessionComplete,
     todayCheckCount,
+    debug,
+    lastScoreResult,
     reveal,
     submitCheck,
     loadSession,
@@ -59,14 +62,12 @@ export default function LearnPage() {
     (e: KeyboardEvent) => {
       if (skillUpPopup.show || levelUpPopup.show || showGuide) return;
 
-      // Up / Enter / Space = toggle card flip
       if (e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         reveal();
         return;
       }
 
-      // Check actions only when revealed
       if (!revealed) return;
 
       const keyMap: Record<string, CheckType> = {
@@ -91,8 +92,18 @@ export default function LearnPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin h-8 w-8 border-2 border-primary-600 border-t-transparent rounded-full" />
+      <div className="min-h-screen flex items-center justify-center px-8">
+        <div className="w-full max-w-xs">
+          <div className="w-full h-2 bg-neutral-200 rounded-full overflow-hidden mb-3">
+            <div
+              className="h-full bg-primary-600 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${loadingProgress.percent}%` }}
+            />
+          </div>
+          <p className="text-xs text-text-secondary text-center">
+            {loadingProgress.message || '로딩 중...'}
+          </p>
+        </div>
       </div>
     );
   }
@@ -107,7 +118,6 @@ export default function LearnPage() {
         </div>
         <div className="flex items-center gap-2">
           <SessionCounter current={currentIndex + 1} total={cards.length} />
-          {/* Help button to re-show guide */}
           <button
             onClick={() => setShowGuide(true)}
             className="p-2 rounded-lg hover:bg-neutral-100 transition-colors"
@@ -136,7 +146,7 @@ export default function LearnPage() {
       </div>
 
       {/* Week streak */}
-      <div className="flex justify-center mb-4">
+      <div className="my-4">
         <WeekStreak completedDays={[]} />
       </div>
 
@@ -181,22 +191,28 @@ export default function LearnPage() {
         </div>
       )}
 
-      {/* Desktop check buttons (hidden on touch devices) */}
+      {/* Check buttons */}
       {revealed && currentCard && !sessionComplete && (
-        <div className="mt-4 hidden sm:block">
+        <div className="mt-4">
           <CheckButtons onCheck={submitCheck} disabled={submitting} />
         </div>
       )}
 
-      {/* Mobile check buttons (always visible on small screens when revealed) */}
-      {revealed && currentCard && !sessionComplete && (
-        <div className="mt-4 sm:hidden">
-          <CheckButtons onCheck={submitCheck} disabled={submitting} />
+      {/* Debug info panel */}
+      {debug && (
+        <div className="mt-4 p-3 rounded-lg bg-neutral-100 border border-border text-xs text-text-secondary space-y-1 font-mono">
+          <p>일학습시간 {debug.daily_goal_minutes}분 ({debug.daily_goal_type_name || '타입 미확인'}) : 설정된 일목표학습시간</p>
+          <p>최소체크문장수 {debug.min_check_count}건 : 일학습시간 extra_attr_1 값 x 1</p>
+          <p>로컬학습 데이터 문장수 {debug.local_sentence_count}건</p>
+          <p>지금학습할 문장수 {debug.session_sentence_count}건</p>
+          {lastScoreResult && (
+            <p>누적익힘점수 {lastScoreResult.accumulated_score}점 : 해당 문장학습의 익힘점수</p>
+          )}
         </div>
       )}
 
       {/* Level test button */}
-      <div className="mt-8 text-center">
+      <div className="mt-6 text-center">
         <button
           onClick={() => router.push('/level-test')}
           className="text-sm text-text-secondary hover:text-primary-600 underline transition-colors"
