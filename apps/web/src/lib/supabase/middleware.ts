@@ -2,6 +2,15 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function updateSession(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Debug: log cookies BEFORE any processing
+  if (pathname.startsWith('/api/auth/callback')) {
+    const rawCookies = request.cookies.getAll();
+    console.log('[Middleware] /api/auth/callback - raw cookie count:', rawCookies.length);
+    console.log('[Middleware] /api/auth/callback - raw cookie names:', rawCookies.map(c => c.name).join(', '));
+  }
+
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
