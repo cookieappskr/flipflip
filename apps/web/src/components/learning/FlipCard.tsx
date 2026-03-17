@@ -18,14 +18,17 @@ const SWIPE_THRESHOLD = 60;
 
 // Color mapping by mastery code (colors are UI-only, not in DB)
 const MASTERY_COLORS: Record<string, string> = {
+  FIRST: 'bg-neutral-100 text-neutral-500 border-neutral-200',
   FIRST_MEMORIZE: 'bg-neutral-100 text-neutral-500 border-neutral-200',
   WEAK: 'bg-orange-50 text-orange-500 border-orange-200',
   FAMILIAR: 'bg-blue-50 text-blue-500 border-blue-200',
   VERY_FAMILIAR: 'bg-emerald-50 text-emerald-500 border-emerald-200',
   PERFECT_MASTERY: 'bg-purple-50 text-purple-500 border-purple-200',
+  MASTERED: 'bg-purple-50 text-purple-500 border-purple-200',
 };
 
-const DEFAULT_MASTERY = { label: '신규', color: 'bg-sky-50 text-sky-500 border-sky-200' };
+// Fallback for cards with no mastery yet — uses "처음" (FIRST) as the lowest level
+const DEFAULT_MASTERY_COLOR = 'bg-neutral-100 text-neutral-500 border-neutral-200';
 
 function shouldShowTapGuide(): boolean {
   const key = `tap_guide_${new Date().toISOString().split('T')[0]}`;
@@ -89,8 +92,8 @@ export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tense
     }
     setHintToast(false);
     setShowTapGuide(false);
-    if (!revealed) onReveal();
-  }, [onReveal, revealed]);
+    onReveal();
+  }, [onReveal]);
 
   const showHintToast = useCallback(() => {
     hintClickedRef.current = true;
@@ -99,13 +102,11 @@ export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tense
     hintTimerRef.current = setTimeout(() => setHintToast(false), 3000);
   }, []);
 
-  // Mastery badge: use DB type_name if available, fallback to code-based label
-  const masteryLabel = card.mastery_level_name
-    || (card.mastery_level_code ? undefined : null);
+  // Mastery badge: use DB type_name, fallback to "처음" for new cards
+  const masteryDisplay = card.mastery_level_name || '처음';
   const masteryColor = card.mastery_level_code
-    ? MASTERY_COLORS[card.mastery_level_code] || DEFAULT_MASTERY.color
-    : DEFAULT_MASTERY.color;
-  const masteryDisplay = masteryLabel ?? DEFAULT_MASTERY.label;
+    ? MASTERY_COLORS[card.mastery_level_code] || DEFAULT_MASTERY_COLOR
+    : DEFAULT_MASTERY_COLOR;
 
   return (
     <div className="w-full" style={{ perspective: '1000px' }}>
