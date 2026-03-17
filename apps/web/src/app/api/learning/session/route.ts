@@ -29,7 +29,7 @@ export async function GET() {
   // Get user profile
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('current_level, mother_tongue, learning_language')
+    .select('current_level, mother_tongue, learning_language, daily_goal_type_id')
     .eq('user_id', user.id)
     .single();
 
@@ -37,8 +37,24 @@ export async function GET() {
     return NextResponse.json({ error: 'Profile not found' }, { status: 404 });
   }
 
-  const motherTongue = (profile.mother_tongue || 'ko').toUpperCase();
   const learningLanguage = (profile.learning_language || 'en').toUpperCase();
+
+  // Get daily goal info (minimum check count)
+  let minCheckCount = 10; // default
+  let dailyGoalMinutes = 5; // default
+  let dailyGoalTypeName = '기본값 (미설정)';
+  if (profile.daily_goal_type_id) {
+    const { data: goalType } = await supabase
+      .from('types')
+      .select('type_name, value, extra_attr_1')
+      .eq('id', profile.daily_goal_type_id)
+      .single();
+    if (goalType) {
+      dailyGoalMinutes = parseInt(goalType.value || '5', 10);
+      minCheckCount = parseInt(goalType.extra_attr_1 || '10', 10);
+      dailyGoalTypeName = goalType.type_name || `${dailyGoalMinutes}분`;
+    }
+  }
 
   // Get current level
   const { data: level } = await supabase
@@ -85,14 +101,33 @@ export async function GET() {
 
   const progressMap = new Map((progressList || []).map((p) => [p.skill_id, p]));
   const currentSkill = skills.find((s) => !progressMap.get(s.id)?.is_cleared) || skills[0];
+  const currentSkillIndex = skills.findIndex((s) => s.id === currentSkill.id);
 
-  // NEW SENTENCES: from current skill, not yet scored
+  // Get sentences from current skill
   const { data: allSentences } = await supabase
     .from('sentences')
     .select('id, meaning, skill_id')
     .eq('skill_id', currentSkill.id);
 
-  const sentenceIds = (allSentences || []).map((s) => s.id);
+  let sentenceIds = (allSentences || []).map((s) => s.id);
+  let allFetchedSentences = [...(allSentences || [])];
+
+  // If current skill sentences < minCheckCount, add next skills' sentences
+  if (sentenceIds.length < minCheckCount && currentSkillIndex < skills.length - 1) {
+    for (let i = currentSkillIndex + 1; i < skills.length; i++) {
+      if (sentenceIds.length >= minCheckCount) break;
+
+      const { data: nextSentences } = await supabase
+        .from('sentences')
+        .select('id, meaning, skill_id')
+        .eq('skill_id', skills[i].id);
+
+      if (nextSentences?.length) {
+        allFetchedSentences = [...allFetchedSentences, ...nextSentences];
+        sentenceIds = allFetchedSentences.map((s) => s.id);
+      }
+    }
+  }
 
   // Get existing scores
   const { data: existingScores } = await supabase
@@ -135,7 +170,6 @@ export async function GET() {
   let allNeededIds = [...new Set([...newSentenceIds, ...reviewSentenceIds])];
 
   // Fallback: if no new or review sentences, include ALL current skill sentences
-  // for continued practice (handles "더 학습하기" scenario)
   if (allNeededIds.length === 0 && sentenceIds.length > 0) {
     allNeededIds = sentenceIds;
   }
@@ -156,7 +190,6 @@ export async function GET() {
 
     const expressionMap = new Map((expressions || []).map((e) => [e.sentence_id, e]));
 
-    // Get skill names for review sentences that may be from different skills
     const skillIds = [...new Set((sentences || []).map((s) => s.skill_id))];
     const { data: sentenceSkills } = await supabase
       .from('skills')
@@ -191,6 +224,7 @@ export async function GET() {
 
   // Skill info
   const progress = progressMap.get(currentSkill.id);
+  const currentSkillSentenceCount = (allSentences || []).length;
 
   return NextResponse.json({
     cards: shuffled,
@@ -198,7 +232,7 @@ export async function GET() {
       id: currentSkill.id,
       skill_name: currentSkill.skill_name,
       achievement_score: progress ? parseFloat(String(progress.achievement_score)) : 0,
-      total_score: sentenceIds.length * 8,
+      total_score: currentSkillSentenceCount * 8,
       is_cleared: progress?.is_cleared || false,
       tense_type_code: currentSkill.tense_type_code || null,
       tense_type_name: currentSkill.tense_type_code ? typeNameMap.get(currentSkill.tense_type_code) || currentSkill.tense_type_code : null,
@@ -207,5 +241,13 @@ export async function GET() {
     },
     level: profile.current_level,
     level_summary: level.level_summary || null,
+    // Debug/verification data
+    debug: {
+      daily_goal_minutes: dailyGoalMinutes,
+      daily_goal_type_name: dailyGoalTypeName,
+      min_check_count: minCheckCount,
+      local_sentence_count: sentenceIds.length,
+      session_sentence_count: shuffled.length,
+    },
   });
 }
