@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from 'framer-motion';
+import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion';
 import type { LearningCard, CheckType } from '@/types/database';
 import SkillTags from './SkillTags';
 
@@ -16,14 +16,16 @@ interface FlipCardProps {
 
 const SWIPE_THRESHOLD = 60;
 
-const MASTERY_LABELS: Record<string, { label: string; color: string }> = {
-  NEW: { label: '신규', color: 'bg-sky-50 text-sky-500 border-sky-200' },
-  FIRST_MEMORIZE: { label: '첫암기', color: 'bg-neutral-100 text-neutral-500 border-neutral-200' },
-  WEAK: { label: '미비', color: 'bg-orange-50 text-orange-500 border-orange-200' },
-  FAMILIAR: { label: '익숙', color: 'bg-blue-50 text-blue-500 border-blue-200' },
-  VERY_FAMILIAR: { label: '매우익숙', color: 'bg-emerald-50 text-emerald-500 border-emerald-200' },
-  PERFECT_MASTERY: { label: '완벽', color: 'bg-purple-50 text-purple-500 border-purple-200' },
+// Color mapping by mastery code (colors are UI-only, not in DB)
+const MASTERY_COLORS: Record<string, string> = {
+  FIRST_MEMORIZE: 'bg-neutral-100 text-neutral-500 border-neutral-200',
+  WEAK: 'bg-orange-50 text-orange-500 border-orange-200',
+  FAMILIAR: 'bg-blue-50 text-blue-500 border-blue-200',
+  VERY_FAMILIAR: 'bg-emerald-50 text-emerald-500 border-emerald-200',
+  PERFECT_MASTERY: 'bg-purple-50 text-purple-500 border-purple-200',
 };
+
+const DEFAULT_MASTERY = { label: '신규', color: 'bg-sky-50 text-sky-500 border-sky-200' };
 
 function shouldShowTapGuide(): boolean {
   const key = `tap_guide_${new Date().toISOString().split('T')[0]}`;
@@ -34,13 +36,20 @@ function shouldShowTapGuide(): boolean {
 }
 
 export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tenseTypeName, patternTypeName }: FlipCardProps) {
-  const [showHint, setShowHint] = useState(false);
   const [showTapGuide, setShowTapGuide] = useState(false);
+  const [hintToast, setHintToast] = useState(false);
   const hintClickedRef = useRef(false);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setShowTapGuide(shouldShowTapGuide());
   }, []);
+
+  // Clear hint toast on card change
+  useEffect(() => {
+    setHintToast(false);
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+  }, [card.sentence_id]);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -74,43 +83,67 @@ export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tense
   );
 
   const handleTap = useCallback(() => {
-    // Skip reveal if hint button was just clicked
     if (hintClickedRef.current) {
       hintClickedRef.current = false;
       return;
     }
-    setShowHint(false);
+    setHintToast(false);
     setShowTapGuide(false);
-    onReveal();
-  }, [onReveal]);
+    if (!revealed) onReveal();
+  }, [onReveal, revealed]);
 
-  const masteryCode = card.mastery_level_code || 'NEW';
-  const mastery = MASTERY_LABELS[masteryCode] || MASTERY_LABELS['NEW'];
+  const showHintToast = useCallback(() => {
+    hintClickedRef.current = true;
+    setHintToast(true);
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    hintTimerRef.current = setTimeout(() => setHintToast(false), 3000);
+  }, []);
+
+  // Mastery badge: use DB type_name if available, fallback to code-based label
+  const masteryLabel = card.mastery_level_name
+    || (card.mastery_level_code ? undefined : null);
+  const masteryColor = card.mastery_level_code
+    ? MASTERY_COLORS[card.mastery_level_code] || DEFAULT_MASTERY.color
+    : DEFAULT_MASTERY.color;
+  const masteryDisplay = masteryLabel ?? DEFAULT_MASTERY.label;
 
   return (
-    <div className="w-full">
-      <AnimatePresence mode="wait">
+    <div className="w-full" style={{ perspective: '1000px' }}>
+      {/* Hint toast */}
+      {hintToast && card.hint && (
         <motion.div
-          key={card.sentence_id + (revealed ? '-back' : '-front')}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.25, ease: 'easeInOut' }}
-          style={revealed ? { x, y, rotateZ, opacity } : undefined}
-          drag={revealed ? true : false}
-          dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-          dragElastic={0.7}
-          onDragEnd={handlePanEnd}
-          onTap={handleTap}
-          whileTap={!revealed ? { scale: 0.98 } : undefined}
-          className={`relative rounded-2xl shadow-lg px-6 py-8 min-h-[260px] flex flex-col items-center justify-center text-center select-none touch-none border ${
-            revealed
-              ? 'bg-primary-50 border-primary-500/30'
-              : 'bg-surface-secondary border-border'
-          }`}
-          role="button"
-          aria-label={revealed ? `의미: ${card.meaning}, 표현: ${card.expression}` : `의미: ${card.meaning}, 탭하여 정답 보기`}
-          tabIndex={0}
+          exit={{ opacity: 0, y: 10 }}
+          className="fixed left-1/2 -translate-x-1/2 bottom-32 z-50 px-4 py-2.5 rounded-xl bg-neutral-800 text-white text-sm shadow-lg max-w-xs text-center"
+        >
+          💡 {card.hint}
+        </motion.div>
+      )}
+
+      {/* 3D Flip Card */}
+      <motion.div
+        animate={{ rotateY: revealed ? 180 : 0 }}
+        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+        style={{
+          transformStyle: 'preserve-3d',
+          ...(revealed ? { x, y, rotateZ, opacity } : {}),
+        }}
+        drag={revealed ? true : false}
+        dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+        dragElastic={0.7}
+        onDragEnd={handlePanEnd}
+        onTap={handleTap}
+        whileTap={!revealed ? { scale: 0.98 } : undefined}
+        className="relative rounded-2xl shadow-lg min-h-[260px] select-none touch-none cursor-pointer"
+        role="button"
+        aria-label={revealed ? `의미: ${card.meaning}, 표현: ${card.expression}` : `의미: ${card.meaning}, 탭하여 정답 보기`}
+        tabIndex={0}
+      >
+        {/* Front face */}
+        <div
+          className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-surface-secondary border-border"
+          style={{ backfaceVisibility: 'hidden' }}
         >
           {/* Top row: type badges (left) + mastery badge (right) */}
           <div className="absolute top-3 left-4 right-4 flex items-start justify-between">
@@ -120,21 +153,19 @@ export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tense
               )}
             </div>
             <div>
-              <span className={`inline-flex items-center text-[10px] px-1.5 py-0.5 rounded border font-medium ${mastery.color}`}>
-                {mastery.label}
+              <span className={`inline-flex items-center text-[10px] px-1.5 py-0.5 rounded border font-medium ${masteryColor}`}>
+                {masteryDisplay}
               </span>
             </div>
           </div>
 
-          {/* Meaning — larger font + bold */}
           <div className="flex flex-col items-center gap-3 mt-4">
             <p className="text-2xl font-bold text-text-primary leading-relaxed">
               {card.meaning}
             </p>
-            {/* Hint icon button below meaning (front side only, when hint exists) */}
-            {!revealed && card.hint && (
+            {card.hint && (
               <button
-                onClick={(e) => { e.stopPropagation(); hintClickedRef.current = true; setShowHint(!showHint); }}
+                onClick={(e) => { e.stopPropagation(); showHintToast(); }}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border text-text-secondary hover:bg-neutral-100 hover:text-info transition-colors text-xs"
                 aria-label="힌트 보기"
               >
@@ -146,34 +177,45 @@ export default function FlipCard({ card, onReveal, revealed, onSwipeCheck, tense
             )}
           </div>
 
-          {/* Hint text (when toggled on front side) */}
-          {!revealed && showHint && card.hint && (
-            <p className="text-sm text-info leading-relaxed mt-2">{card.hint}</p>
+          {showTapGuide && (
+            <p className="mt-5 text-sm text-text-secondary">
+              탭하여 정답 보기
+            </p>
           )}
+        </div>
 
-          {revealed ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="mt-5"
-            >
-              <p className="text-2xl font-bold text-primary-600 leading-relaxed">
-                {card.expression}
-              </p>
-              {card.hint && (
-                <p className="text-sm text-text-secondary mt-3">{card.hint}</p>
+        {/* Back face */}
+        <div
+          className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-primary-50 border-primary-500/30"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          {/* Top row: same badges on back */}
+          <div className="absolute top-3 left-4 right-4 flex items-start justify-between">
+            <div>
+              {(tenseTypeName || patternTypeName) && (
+                <SkillTags tenseTypeName={tenseTypeName} patternTypeName={patternTypeName} />
               )}
-            </motion.div>
-          ) : (
-            showTapGuide && (
-              <p className="mt-5 text-sm text-text-secondary">
-                탭하여 정답 보기
-              </p>
-            )
-          )}
-        </motion.div>
-      </AnimatePresence>
+            </div>
+            <div>
+              <span className={`inline-flex items-center text-[10px] px-1.5 py-0.5 rounded border font-medium ${masteryColor}`}>
+                {masteryDisplay}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 mt-4">
+            <p className="text-lg text-text-secondary leading-relaxed">
+              {card.meaning}
+            </p>
+            <p className="text-2xl font-bold text-primary-600 leading-relaxed">
+              {card.expression}
+            </p>
+            {card.hint && (
+              <p className="text-sm text-text-secondary mt-1">{card.hint}</p>
+            )}
+          </div>
+        </div>
+      </motion.div>
 
       {/* Review badge */}
       {card.is_review && (

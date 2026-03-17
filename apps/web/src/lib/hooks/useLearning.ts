@@ -92,59 +92,45 @@ export function useLearning() {
 
       if (useLocal) {
         // --- LOCAL-FIRST PATH ---
-        setState((prev) => ({
-          ...prev,
-          loadingProgress: { active: true, percent: 20, message: '로컬 데이터를 확인하고 있습니다...' },
-        }));
-
-        // We need the user's profile to know current_level and learning_language.
-        // First fetch minimal info from server if not yet downloaded.
-        const profileRes = await fetch('/api/learning/session');
-        const serverData = await profileRes.json();
-
-        const currentLevel = serverData.level || 1;
-        const userId = serverData.debug?.user_id || '';
-        userIdRef.current = userId;
-
-        // Determine userId from the profile endpoint or from server data
-        // Since session API doesn't return user_id, we get it from download
-        if (!await isLevelDownloaded(currentLevel)) {
-          setState((prev) => ({
-            ...prev,
-            loadingProgress: { active: true, percent: 30, message: '학습 데이터를 다운로드하고 있습니다...' },
-          }));
-
-          await downloadLevelWithPriority(currentLevel, '', (progress) => {
-            setState((prev) => ({
-              ...prev,
-              loadingProgress: {
-                active: true,
-                percent: 30 + Math.round(progress.percent * 0.5),
-                message: progress.message,
-              },
-            }));
-          });
-        }
-
-        setState((prev) => ({
-          ...prev,
-          loadingProgress: { active: true, percent: 80, message: '세션을 구성하고 있습니다...' },
-        }));
-
-        // Get user profile from local DB for building session
         const { db } = await import('@/lib/db/flipflipDb');
+
+        // Check if we already have a user profile locally
         const profiles = await db.userProfiles.toArray();
-        const profile = profiles[0]; // There should be exactly one user profile
+        const profile = profiles[0];
 
         if (profile) {
           userIdRef.current = profile.user_id;
+          const currentLevel = profile.current_level;
+
+          // Check if level data is downloaded
+          if (!await isLevelDownloaded(currentLevel)) {
+            setState((prev) => ({
+              ...prev,
+              loadingProgress: { active: true, percent: 20, message: '학습 데이터를 다운로드하고 있습니다...' },
+            }));
+
+            await downloadLevelWithPriority(currentLevel, profile.user_id, (progress) => {
+              setState((prev) => ({
+                ...prev,
+                loadingProgress: {
+                  active: true,
+                  percent: 20 + Math.round(progress.percent * 0.6),
+                  message: progress.message,
+                },
+              }));
+            });
+          }
+
+          setState((prev) => ({
+            ...prev,
+            loadingProgress: { active: true, percent: 85, message: '세션을 구성하고 있습니다...' },
+          }));
+
           const sessionData = await buildLocalSession(
             profile.user_id,
-            profile.current_level,
+            currentLevel,
             profile.learning_language || 'en'
           );
-
-          await new Promise((r) => setTimeout(r, 300));
 
           setState((prev) => ({
             ...prev,
@@ -169,7 +155,68 @@ export function useLearning() {
           return;
         }
 
-        // If no profile in local DB, fall through to online mode
+        // No local profile yet — download from server (first time only)
+        setState((prev) => ({
+          ...prev,
+          loadingProgress: { active: true, percent: 20, message: '서버에서 학습 데이터를 다운로드하고 있습니다...' },
+        }));
+
+        // Use download API to get profile + level data in one call
+        // We need current_level from the session API since we have no local profile
+        const sessionRes = await fetch('/api/learning/session');
+        const serverData = await sessionRes.json();
+        const currentLevel = serverData.level || 1;
+
+        await downloadLevelWithPriority(currentLevel, '', (progress) => {
+          setState((prev) => ({
+            ...prev,
+            loadingProgress: {
+              active: true,
+              percent: 20 + Math.round(progress.percent * 0.6),
+              message: progress.message,
+            },
+          }));
+        });
+
+        // Now profile should be in local DB
+        const newProfile = (await db.userProfiles.toArray())[0];
+        if (newProfile) {
+          userIdRef.current = newProfile.user_id;
+
+          setState((prev) => ({
+            ...prev,
+            loadingProgress: { active: true, percent: 85, message: '세션을 구성하고 있습니다...' },
+          }));
+
+          const sessionData = await buildLocalSession(
+            newProfile.user_id,
+            newProfile.current_level,
+            newProfile.learning_language || 'en'
+          );
+
+          setState((prev) => ({
+            ...prev,
+            cards: sessionData.cards || [],
+            currentIndex: 0,
+            revealed: false,
+            skill: sessionData.skill,
+            level: sessionData.level || prev.level,
+            levelSummary: sessionData.level_summary || prev.levelSummary,
+            loading: false,
+            loadingProgress: { active: false, percent: 100, message: '' },
+            sessionComplete: (sessionData.cards || []).length === 0,
+            debug: sessionData.debug || null,
+          }));
+
+          startSyncTimer();
+          if (!unregisterVisibilityRef.current) {
+            unregisterVisibilityRef.current = registerVisibilitySync();
+          }
+
+          return;
+        }
+
+        // If still no profile, fall through to online mode
       }
 
       // --- ONLINE FALLBACK PATH ---

@@ -184,6 +184,7 @@ export interface LearningCard {
   is_review: boolean;
   current_score: number;
   mastery_level_code: string | null;
+  mastery_level_name: string | null;
 }
 
 // Score result from API

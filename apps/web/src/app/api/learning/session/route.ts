@@ -148,10 +148,11 @@ export async function GET() {
 
   const { data: masteryTypes } = await supabase
     .from('types')
-    .select('id, type_code')
+    .select('id, type_code, type_name')
     .eq('parent_id', masteryParent!.id);
 
   const masteryCodeMap = new Map((masteryTypes || []).map((t) => [t.id, t.type_code]));
+  const masteryNameMap = new Map((masteryTypes || []).map((t) => [t.id, t.type_name]));
 
   const newSentenceIds = sentenceIds.filter((id) => !scoreMap.has(id));
 
@@ -214,6 +215,9 @@ export async function GET() {
         current_score: score ? parseFloat(String(score.accumulated_score)) : 0,
         mastery_level_code: score?.mastery_level_type_id
           ? masteryCodeMap.get(score.mastery_level_type_id) || null
+          : null,
+        mastery_level_name: score?.mastery_level_type_id
+          ? masteryNameMap.get(score.mastery_level_type_id) || null
           : null,
       };
     });
