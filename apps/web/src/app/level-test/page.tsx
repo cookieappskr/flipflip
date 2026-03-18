@@ -1,18 +1,21 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { initLevelTest, processAnswer, type LevelTestState, type LevelTestQuestion } from '@/lib/utils/levelTest';
-import Button from '@/components/core/Button';
+import QuizFlipCard, { type QuizFlipCardRef } from '@/components/learning/QuizFlipCard';
+import CheckButtons from '@/components/learning/CheckButtons';
+import type { CheckType } from '@/types/database';
 
 export default function LevelTestPage() {
   const router = useRouter();
   const supabase = createClient();
   const [state, setState] = useState<LevelTestState>(initLevelTest(5));
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [loading, setLoading] = useState(true);
   const [finishing, setFinishing] = useState(false);
+  const flipCardRef = useRef<QuizFlipCardRef>(null);
 
   const loadQuestions = useCallback(async (levelNumber: number) => {
     setLoading(true);
@@ -62,13 +65,14 @@ export default function LevelTestPage() {
       return [];
     }
 
-    // Get expressions for these sentences
+    // Get expressions for these sentences (uppercase to match DB convention)
+    const learningLanguage = (profile?.learning_language || 'en').toUpperCase();
     const sentenceIds = sentences.map((s) => s.id);
     const { data: expressions } = await supabase
       .from('expressions')
       .select('sentence_id, expression_text, hint')
       .in('sentence_id', sentenceIds)
-      .eq('language_code', profile?.learning_language || 'en');
+      .eq('language_code', learningLanguage);
 
     const expressionMap = new Map(
       expressions?.map((e) => [e.sentence_id, e]) || []
@@ -102,7 +106,6 @@ export default function LevelTestPage() {
         if (questions.length > 0) {
           setState((prev) => ({ ...prev, questions }));
         } else {
-          // No content at this level — finish
           setState((prev) => ({ ...prev, finished: true }));
         }
       });
@@ -127,11 +130,12 @@ export default function LevelTestPage() {
     }
   }, [state.finished, finishing]);
 
-  const handleCheck = (correct: boolean) => {
+  const handleCheck = useCallback((type: CheckType) => {
+    const correct = type === 'PERFECT' || type === 'MOSTLY';
     const newState = processAnswer(state, correct);
-    setShowAnswer(false);
+    setRevealed(false);
     setState(newState);
-  };
+  }, [state]);
 
   const currentQuestion = state.questions[state.currentQuestionIndex];
 
@@ -148,6 +152,28 @@ export default function LevelTestPage() {
     );
   }
 
+  const frontContent = (
+    <div className="flex flex-col items-center gap-3">
+      <p className="text-2xl font-bold text-text-primary leading-relaxed">
+        {currentQuestion.meaning}
+      </p>
+      <p className="mt-3 text-sm text-text-secondary">
+        탭하여 정답 보기
+      </p>
+    </div>
+  );
+
+  const backContent = (
+    <div className="flex flex-col items-center gap-3">
+      <p className="text-lg text-text-secondary leading-relaxed">
+        {currentQuestion.meaning}
+      </p>
+      <p className="text-2xl font-bold text-primary-600 leading-relaxed">
+        {currentQuestion.expression}
+      </p>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col items-center px-4 py-8">
       <div className="w-full max-w-sm">
@@ -161,51 +187,19 @@ export default function LevelTestPage() {
           </p>
         </div>
 
-        {/* Card */}
-        <div className="bg-surface rounded-2xl shadow-lg p-8 text-center min-h-[200px] flex flex-col items-center justify-center mb-6">
-          <p className="text-lg font-medium text-text-primary mb-4">
-            {currentQuestion.meaning}
-          </p>
+        {/* Shared QuizFlipCard */}
+        <QuizFlipCard
+          ref={flipCardRef}
+          cardKey={currentQuestion.sentence_id}
+          frontContent={frontContent}
+          backContent={backContent}
+          onRevealChange={setRevealed}
+          onCheck={handleCheck}
+          className="w-full mb-6"
+        />
 
-          {showAnswer ? (
-            <div>
-              <p className="text-xl font-bold text-primary-600">
-                {currentQuestion.expression}
-              </p>
-              {currentQuestion.hint && (
-                <p className="text-sm text-text-secondary mt-2">{currentQuestion.hint}</p>
-              )}
-            </div>
-          ) : (
-            <Button variant="ghost" size="sm" onClick={() => setShowAnswer(true)}>
-              정답 보기
-            </Button>
-          )}
-        </div>
-
-        {/* Check buttons */}
-        {showAnswer && (
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              onClick={() => handleCheck(true)}
-              className="py-3 rounded-xl bg-success text-white font-medium text-sm hover:opacity-90 transition-opacity"
-            >
-              완벽히맞춤
-            </button>
-            <button
-              onClick={() => handleCheck(true)}
-              className="py-3 rounded-xl bg-warning text-white font-medium text-sm hover:opacity-90 transition-opacity"
-            >
-              대부분맞춤
-            </button>
-            <button
-              onClick={() => handleCheck(false)}
-              className="py-3 rounded-xl bg-error text-white font-medium text-sm hover:opacity-90 transition-opacity"
-            >
-              못맞춤
-            </button>
-          </div>
-        )}
+        {/* Check buttons — same component as regular learning */}
+        {revealed && <CheckButtons onCheck={(type) => flipCardRef.current?.triggerCheck(type)} />}
 
         {/* Skip button */}
         <div className="mt-6 text-center">

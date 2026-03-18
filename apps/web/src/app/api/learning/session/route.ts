@@ -1,6 +1,7 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { checkSubscriptionStatus, getTodayCheckCount } from '@/lib/utils/subscriptionCheck';
 
 function createSupabase() {
   const cookieStore = cookies();
@@ -224,7 +225,17 @@ export async function GET() {
   }
 
   // Shuffle and limit to 50
-  const shuffled = combinedSentences.sort(() => Math.random() - 0.5).slice(0, 50);
+  let shuffled = combinedSentences.sort(() => Math.random() - 0.5).slice(0, 50);
+
+  // Check subscription status for free trial limit
+  const subStatus = await checkSubscriptionStatus(supabase, user.id);
+  let todayCheckCount = 0;
+
+  if (subStatus.isLimited && subStatus.dailySentenceLimit != null) {
+    todayCheckCount = await getTodayCheckCount(supabase, user.id);
+    const remaining = Math.max(0, subStatus.dailySentenceLimit - todayCheckCount);
+    shuffled = shuffled.slice(0, remaining);
+  }
 
   // Skill info
   const progress = progressMap.get(currentSkill.id);
@@ -232,6 +243,13 @@ export async function GET() {
 
   return NextResponse.json({
     cards: shuffled,
+    subscription: {
+      status: subStatus.status,
+      isLimited: subStatus.isLimited,
+      dailySentenceLimit: subStatus.dailySentenceLimit,
+      trialDaysRemaining: subStatus.trialDaysRemaining,
+      todayCheckCount,
+    },
     skill: {
       id: currentSkill.id,
       skill_name: currentSkill.skill_name,

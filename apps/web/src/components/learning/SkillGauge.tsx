@@ -14,7 +14,7 @@ export default function SkillGauge({ skillName, achievementScore, totalScore }: 
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-xs font-medium text-text-primary">{skillName}</span>
+        <span className="text-xs font-medium text-text-primary">{skillName} 스킬</span>
         <span className="text-xs text-text-secondary">
           {Math.round(percentage)}%
           <span className="ml-1 text-text-secondary/70">({achievementInt}/{totalInt})</span>

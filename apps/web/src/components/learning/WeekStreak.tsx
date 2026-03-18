@@ -28,7 +28,7 @@ export default function WeekStreak({ completedDays }: WeekStreakProps) {
   const completedSet = new Set(completedDays);
 
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="w-full grid grid-cols-7 gap-1 px-6 py-2">
       {weekDates.map((date, i) => {
         const key = formatDateKey(date);
         const isToday = key === today;
@@ -37,12 +37,12 @@ export default function WeekStreak({ completedDays }: WeekStreakProps) {
 
         return (
           <div key={key} className="flex flex-col items-center">
-            <span className="text-[10px] text-text-secondary mb-1">
+            <span className="text-[11px] text-text-secondary mb-1">
               {DAY_LABELS[i]}
             </span>
             <div
               className={[
-                'w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-colors',
+                'w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors',
                 isCompleted
                   ? 'bg-success text-white'
                   : isToday

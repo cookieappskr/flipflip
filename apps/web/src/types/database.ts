@@ -102,6 +102,9 @@ export interface Subscription {
   cancelled_at: string | null;
   created_at: string;
   updated_at: string;
+  billing_key?: string | null;
+  next_billing_date?: string | null;
+  last_payment_id?: string | null;
 }
 
 export interface UserLearningProgress {
@@ -186,6 +189,28 @@ export interface LearningCard {
   mastery_level_code: string | null;
   mastery_level_name: string | null;
 }
+
+export interface PaymentHistory {
+  id: string;
+  user_id: string;
+  subscription_id: string | null;
+  payment_key: string | null;
+  order_id: string;
+  amount: number;
+  status: 'pending' | 'paid' | 'failed' | 'refunded' | 'partial_refund';
+  payment_provider: string;
+  billing_key: string | null;
+  receipt_url: string | null;
+  failure_reason: string | null;
+  refunded_amount: number;
+  refunded_at: string | null;
+  paid_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export type PlanType = 'monthly' | 'yearly';
+export type SubscriptionStatus = 'trial' | 'active' | 'cancelled' | 'expired' | 'past_due';
 
 // Score result from API
 export interface ScoreResult {
