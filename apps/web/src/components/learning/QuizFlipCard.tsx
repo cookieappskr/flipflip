@@ -34,12 +34,14 @@ const QuizFlipCard = forwardRef<QuizFlipCardRef, QuizFlipCardProps>(
     // Tap reveal: +1 (forward), tap toggle back: -1 (backward)
     // Check: fires onCheck immediately, next card enters fresh
     const [flipCount, setFlipCount] = useState(0);
+    const [prevCardKey, setPrevCardKey] = useState(cardKey);
     const revealed = flipCount % 2 === 1;
 
-    // Reset state when card changes
-    useEffect(() => {
+    // Reset state SYNCHRONOUSLY when card changes (avoid stale rotation in AnimatePresence)
+    if (cardKey !== prevCardKey) {
+      setPrevCardKey(cardKey);
       setFlipCount(0);
-    }, [cardKey]);
+    }
 
     // Notify parent of reveal changes
     useEffect(() => {
