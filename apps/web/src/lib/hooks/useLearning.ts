@@ -296,8 +296,16 @@ export function useLearning() {
         const nextIndex = prev.currentIndex + 1;
         const sessionComplete = nextIndex >= prev.cards.length;
 
+        // Update the checked card's score in the cards array
+        const updatedCards = prev.cards.map((c, i) =>
+          i === prev.currentIndex
+            ? { ...c, current_score: result.accumulated_score, mastery_level_code: result.mastery_level_code }
+            : c
+        );
+
         return {
           ...prev,
+          cards: updatedCards,
           skill: updatedSkill,
           lastScoreResult: result,
           skillUpPopup: result.skill_up
@@ -315,7 +323,21 @@ export function useLearning() {
       });
     };
 
-    const handleError = () => {
+    const scoreOnline = () => {
+      return fetch('/api/score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sentence_id: card.sentence_id,
+          check_type_code: checkType,
+        }),
+      })
+        .then((res) => res.json())
+        .then(handleResult);
+    };
+
+    const handleError = (err: unknown) => {
+      console.error('[useLearning] score error:', err);
       setState((prev) => {
         const newCheckCount = prev.todayCheckCount + 1;
         const nextIndex = prev.currentIndex + 1;
@@ -333,23 +355,16 @@ export function useLearning() {
     };
 
     if (localDbRef.current && userIdRef.current) {
-      // --- LOCAL-FIRST SCORING ---
+      // --- LOCAL-FIRST SCORING (fallback to online on error) ---
       processCheckLocally(userIdRef.current, card.sentence_id, checkType)
         .then(handleResult)
-        .catch(handleError);
+        .catch((localErr) => {
+          console.error('[useLearning] local scoring failed, falling back to online:', localErr);
+          scoreOnline().catch(handleError);
+        });
     } else {
-      // --- ONLINE FALLBACK SCORING ---
-      fetch('/api/score', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sentence_id: card.sentence_id,
-          check_type_code: checkType,
-        }),
-      })
-        .then((res) => res.json())
-        .then(handleResult)
-        .catch(handleError);
+      // --- ONLINE SCORING ---
+      scoreOnline().catch(handleError);
     }
   }, [state.cards, state.currentIndex, state.submitting]);
 

@@ -24,12 +24,19 @@ export async function processCheckLocally(
 ): Promise<ScoreResult> {
   // 1. Get check type score
   const checkTypeValue = await getCheckTypeScore(checkTypeCode);
-  if (!checkTypeValue) throw new Error(`Invalid check type: ${checkTypeCode}`);
+  if (!checkTypeValue) {
+    console.error('[scoreProcessor] CHECK_TYPE not found in local DB for:', checkTypeCode);
+    throw new Error(`Invalid check type: ${checkTypeCode}`);
+  }
   const checkScore = checkTypeValue.score;
+  console.log('[scoreProcessor] checkType:', checkTypeCode, 'score:', checkScore);
 
   // 2. Get mastery levels
   const masteryLevels = await getMasteryLevels();
-  if (masteryLevels.length === 0) throw new Error('No mastery levels found in local DB');
+  if (masteryLevels.length === 0) {
+    console.error('[scoreProcessor] No MASTERY_LEVEL types found in local DB');
+    throw new Error('No mastery levels found in local DB');
+  }
 
   // 3. Get or create user_sentence_score
   const existingScore = await db.userSentenceScores
@@ -39,6 +46,7 @@ export async function processCheckLocally(
 
   const oldScore = existingScore ? parseFloat(String(existingScore.accumulated_score)) : 0;
   const newAccumulatedScore = calculateAccumulatedScore(oldScore, checkScore);
+  console.log('[scoreProcessor] sentence:', sentenceId, 'oldScore:', oldScore, '→ newScore:', newAccumulatedScore);
   const newMastery = determineMasteryLevel(newAccumulatedScore, masteryLevels);
   const nextReviewAt = calculateNextReviewAt(newMastery.interval_minutes);
   const now = new Date().toISOString();
