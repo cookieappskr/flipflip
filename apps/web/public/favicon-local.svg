@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    .bg { fill: #16A34A; }
+    .card { fill: #FFFFFF; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #22C55E; }
+      .card { fill: #1E1A3E; }
+    }
+  </style>
+  <!-- Rounded background -->
+  <rect class="bg" width="32" height="32" rx="7"/>
+  <!-- Front card -->
+  <rect class="card" x="6" y="5" width="14" height="19" rx="2.5"/>
+  <!-- Back card (offset) -->
+  <rect class="card" x="12" y="8" width="14" height="19" rx="2.5" opacity="0.7"/>
+  <!-- Flip arrow -->
+  <path d="M20 14.5 L23 17 L20 19.5" stroke-width="1.5" stroke="#16A34A" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

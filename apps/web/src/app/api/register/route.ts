@@ -89,10 +89,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: '프로필 생성 중 오류가 발생했습니다.' }, { status: 500 });
   }
 
-  // Create trial subscription (30 days)
+  // Create trial subscription (policy-driven days)
+  const { data: trialPolicy } = await supabase
+    .from('policy_settings')
+    .select('value')
+    .eq('key', 'trial_days')
+    .single();
+  const trialDays = trialPolicy ? parseInt(trialPolicy.value, 10) : 30;
+
   const now = new Date();
   const trialEnd = new Date(now);
-  trialEnd.setDate(trialEnd.getDate() + 30);
+  trialEnd.setDate(trialEnd.getDate() + trialDays);
 
   await supabase.from('subscriptions').insert({
     user_id: user.id,
@@ -102,6 +109,24 @@ export async function POST(request: Request) {
     trial_end_at: trialEnd.toISOString(),
     auto_renew: false,
   });
+
+  // Award welcome bonus points
+  const { data: welcomePolicy } = await supabase
+    .from('policy_settings')
+    .select('value')
+    .eq('key', 'welcome_points')
+    .single();
+  const welcomeAmount = welcomePolicy ? parseInt(welcomePolicy.value, 10) : 1000;
+
+  if (welcomeAmount > 0) {
+    await supabase.from('mileage_transactions').insert({
+      user_id: user.id,
+      amount: welcomeAmount,
+      balance_after: welcomeAmount,
+      transaction_type: 'welcome_bonus',
+      description: '가입 축하 포인트',
+    });
+  }
 
   // Process referral coupons if a valid referrer was set
   if (referrer_id) {

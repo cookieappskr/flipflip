@@ -5,12 +5,14 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const faviconUrl = process.env.NODE_ENV === 'development' ? '/favicon-local.svg' : '/favicon.svg';
+
 export const metadata: Metadata = {
   title: 'FlipFlip 세상에서 가장쉬운 언어연습앱',
   description: 'FlipFlip 세상에서 가장쉬운 언어연습앱',
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: faviconUrl, type: 'image/svg+xml' },
     ],
   },
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',

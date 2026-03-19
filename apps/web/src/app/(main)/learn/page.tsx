@@ -13,21 +13,28 @@ import SkillUpPopup from '@/components/learning/SkillUpPopup';
 import LevelUpPopup from '@/components/learning/LevelUpPopup';
 import SwipeGuide from '@/components/learning/SwipeGuide';
 import MileageDisplay from '@/components/learning/MileageDisplay';
-import TrialLimitBanner from '@/components/learning/TrialLimitBanner';
+import TrialLimitModal from '@/components/learning/TrialLimitBanner';
 import Button from '@/components/core/Button';
 import type { CheckType } from '@/types/database';
 import type { QuizFlipCardRef } from '@/components/learning/QuizFlipCard';
+
+const LANGUAGE_FLAGS: Record<string, string> = {
+  en: '🇺🇸', ja: '🇯🇵', zh: '🇨🇳', es: '🇪🇸', ko: '🇰🇷',
+  fr: '🇫🇷', de: '🇩🇪', vi: '🇻🇳', th: '🇹🇭', id: '🇮🇩',
+};
 
 interface DailyStatus {
   completedDays: string[];
   mileageBalance: number;
   streak: number;
   isDailyComplete: boolean;
+  learningLanguage: string;
   subscription: {
     status: string;
     isLimited: boolean;
     dailySentenceLimit: number | null;
     trialDaysRemaining: number | null;
+    trialTotalDays: number | null;
   } | null;
 }
 
@@ -73,6 +80,7 @@ export default function LearnPage() {
           mileageBalance: data.mileageBalance || 0,
           streak: data.streak || 0,
           isDailyComplete: data.isDailyComplete || false,
+          learningLanguage: data.learningLanguage || 'en',
           subscription: data.subscription || null,
         });
       })
@@ -103,6 +111,31 @@ export default function LearnPage() {
         .catch(() => {});
     }
   }, [todayCheckCount, debug, dailyStatus]);
+
+  // Trial modal
+  const subStatus = dailyStatus?.subscription;
+  const [showTrialModal, setShowTrialModal] = useState(false);
+
+  useEffect(() => {
+    if (!subStatus) return;
+    if (subStatus.status === 'active') return;
+    if (subStatus.status === 'trial') {
+      const key = `trial_modal_${new Date().toISOString().split('T')[0]}`;
+      if (!localStorage.getItem(key)) {
+        setShowTrialModal(true);
+      }
+    } else if (subStatus.status === 'expired' || subStatus.status === 'no_subscription') {
+      setShowTrialModal(true);
+    }
+  }, [subStatus]);
+
+  const closeTrialModal = () => {
+    if (subStatus?.status === 'trial') {
+      const key = `trial_modal_${new Date().toISOString().split('T')[0]}`;
+      localStorage.setItem(key, 'true');
+    }
+    setShowTrialModal(false);
+  };
 
   // Swipe guide — show on first visit
   const [showGuide, setShowGuide] = useState(false);
@@ -169,8 +202,6 @@ export default function LearnPage() {
     );
   }
 
-  const subStatus = dailyStatus?.subscription;
-
   return (
     <div className="max-w-lg mx-auto px-4 py-4">
       {/* Header */}
@@ -180,32 +211,15 @@ export default function LearnPage() {
           {levelSummary && <p className="text-xs text-text-secondary mt-0.5">{levelSummary}</p>}
         </div>
         <div className="flex items-center gap-2">
+          <span className="text-xl" role="img" aria-label="학습 언어">
+            {LANGUAGE_FLAGS[dailyStatus?.learningLanguage || 'en'] || '🌐'}
+          </span>
           <MileageDisplay
             balance={dailyStatus?.mileageBalance || 0}
             onClick={() => router.push('/mypage')}
           />
-          <SessionCounter current={currentIndex + 1} total={cards.length} />
-          <button
-            onClick={() => setShowGuide(true)}
-            className="p-2 rounded-lg hover:bg-neutral-100 transition-colors"
-            aria-label="제스처 도움말"
-          >
-            <svg className="w-5 h-5 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-            </svg>
-          </button>
         </div>
       </div>
-
-      {/* Trial/subscription limit banner */}
-      {subStatus && (subStatus.status === 'trial' || subStatus.status === 'expired' || subStatus.status === 'no_subscription') && (
-        <TrialLimitBanner
-          todayCount={todayCheckCount + (subStatus.isLimited ? 0 : 0)}
-          dailyLimit={subStatus.dailySentenceLimit || 10}
-          trialDaysRemaining={subStatus.trialDaysRemaining}
-          status={subStatus.status as 'trial' | 'expired' | 'no_subscription'}
-        />
-      )}
 
       {/* Week streak */}
       <div className="my-4">
@@ -220,6 +234,22 @@ export default function LearnPage() {
             achievementScore={skill.achievement_score}
             totalScore={skill.total_score}
           />
+        </div>
+      )}
+
+      {/* Session counter + Help (above card) */}
+      {!sessionComplete && currentCard && (
+        <div className="flex items-center justify-end gap-1.5 mb-2">
+          <SessionCounter current={currentIndex + 1} total={cards.length} />
+          <button
+            onClick={() => setShowGuide(true)}
+            className="p-1.5 rounded-lg hover:bg-neutral-100 transition-colors"
+            aria-label="제스처 도움말"
+          >
+            <svg className="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+            </svg>
+          </button>
         </div>
       )}
 
@@ -311,6 +341,17 @@ export default function LearnPage() {
         onClose={closeLevelUpPopup}
       />
       <SwipeGuide isOpen={showGuide} onClose={closeGuide} />
+      {subStatus && (subStatus.status === 'trial' || subStatus.status === 'expired' || subStatus.status === 'no_subscription') && (
+        <TrialLimitModal
+          isOpen={showTrialModal}
+          onClose={closeTrialModal}
+          status={subStatus.status as 'trial' | 'expired' | 'no_subscription'}
+          trialDaysRemaining={subStatus.trialDaysRemaining}
+          trialTotalDays={subStatus.trialTotalDays}
+          todayRemaining={Math.max(0, (subStatus.dailySentenceLimit || 10) - todayCheckCount)}
+          dailyLimit={subStatus.dailySentenceLimit || 10}
+        />
+      )}
     </div>
   );
 }

@@ -7,6 +7,7 @@ export interface SubscriptionCheckResult {
   isLimited: boolean;
   dailySentenceLimit: number | null; // null = unlimited
   trialDaysRemaining: number | null;
+  trialTotalDays: number | null;
 }
 
 const DAILY_SENTENCE_LIMIT_FREE = 10;
@@ -24,14 +25,14 @@ export async function checkSubscriptionStatus(
     .single();
 
   if (!sub) {
-    return { status: 'no_subscription', isLimited: true, dailySentenceLimit: DAILY_SENTENCE_LIMIT_FREE, trialDaysRemaining: null };
+    return { status: 'no_subscription', isLimited: true, dailySentenceLimit: DAILY_SENTENCE_LIMIT_FREE, trialDaysRemaining: null, trialTotalDays: null };
   }
 
   const now = new Date();
 
   // Active paid subscription
   if (sub.status === 'active' && sub.current_period_end && new Date(sub.current_period_end) > now) {
-    return { status: 'active', isLimited: false, dailySentenceLimit: null, trialDaysRemaining: null };
+    return { status: 'active', isLimited: false, dailySentenceLimit: null, trialDaysRemaining: null, trialTotalDays: null };
   }
 
   // Trial period
@@ -39,12 +40,14 @@ export async function checkSubscriptionStatus(
     const trialEnd = new Date(sub.trial_end_at);
     if (trialEnd > now) {
       const daysRemaining = Math.ceil((trialEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-      return { status: 'trial', isLimited: false, dailySentenceLimit: null, trialDaysRemaining: daysRemaining };
+      const trialStart = sub.trial_start_at ? new Date(sub.trial_start_at) : now;
+      const trialTotalDays = Math.round((trialEnd.getTime() - trialStart.getTime()) / (1000 * 60 * 60 * 24));
+      return { status: 'trial', isLimited: false, dailySentenceLimit: null, trialDaysRemaining: daysRemaining, trialTotalDays };
     }
   }
 
   // Expired
-  return { status: 'expired', isLimited: true, dailySentenceLimit: DAILY_SENTENCE_LIMIT_FREE, trialDaysRemaining: null };
+  return { status: 'expired', isLimited: true, dailySentenceLimit: DAILY_SENTENCE_LIMIT_FREE, trialDaysRemaining: null, trialTotalDays: null };
 }
 
 /**

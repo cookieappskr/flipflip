@@ -284,9 +284,6 @@ export function useLearning() {
     setState((prev) => ({ ...prev, submitting: true }));
 
     const handleResult = (result: ScoreResult) => {
-      const nextReview = new Date(result.next_review_at);
-      const formatted = `${nextReview.getFullYear()}-${String(nextReview.getMonth() + 1).padStart(2, '0')}-${String(nextReview.getDate()).padStart(2, '0')} ${String(nextReview.getHours()).padStart(2, '0')}:${String(nextReview.getMinutes()).padStart(2, '0')}`;
-
       setState((prev) => {
         const updatedSkill = prev.skill
           ? {
@@ -295,6 +292,9 @@ export function useLearning() {
               total_score: result.skill_total_score,
             }
           : null;
+        const newCheckCount = prev.todayCheckCount + 1;
+        const nextIndex = prev.currentIndex + 1;
+        const sessionComplete = nextIndex >= prev.cards.length;
 
         return {
           ...prev,
@@ -306,18 +306,6 @@ export function useLearning() {
           levelUpPopup: result.level_up
             ? { show: true, newLevel: result.new_level || prev.level + 1 }
             : prev.levelUpPopup,
-        };
-      });
-
-      alert(`다음학습 시간 : ${formatted}`);
-
-      setState((prev) => {
-        const newCheckCount = prev.todayCheckCount + 1;
-        const nextIndex = prev.currentIndex + 1;
-        const sessionComplete = nextIndex >= prev.cards.length;
-
-        return {
-          ...prev,
           submitting: false,
           todayCheckCount: newCheckCount,
           currentIndex: sessionComplete ? prev.currentIndex : nextIndex,

@@ -16,7 +16,7 @@ export async function GET() {
   // Get daily goal info
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('daily_goal_type_id')
+    .select('daily_goal_type_id, learning_language')
     .eq('user_id', user.id)
     .single();
 
@@ -98,5 +98,6 @@ export async function GET() {
     completedDays,
     streak,
     mileageBalance: lastMileage?.balance_after || 0,
+    learningLanguage: profile?.learning_language || 'en',
   });
 }

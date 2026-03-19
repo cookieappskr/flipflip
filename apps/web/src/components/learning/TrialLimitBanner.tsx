@@ -1,51 +1,64 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Modal from '@/components/core/Modal';
 import Button from '@/components/core/Button';
 
-interface TrialLimitBannerProps {
-  todayCount: number;
-  dailyLimit: number;
-  trialDaysRemaining?: number | null;
+interface TrialLimitModalProps {
+  isOpen: boolean;
+  onClose: () => void;
   status: 'trial' | 'expired' | 'no_subscription';
+  trialDaysRemaining?: number | null;
+  trialTotalDays?: number | null;
+  todayRemaining?: number;
+  dailyLimit?: number;
 }
 
-export default function TrialLimitBanner({ todayCount, dailyLimit, trialDaysRemaining, status }: TrialLimitBannerProps) {
+export default function TrialLimitModal({
+  isOpen,
+  onClose,
+  status,
+  trialDaysRemaining,
+  trialTotalDays,
+  todayRemaining = 0,
+  dailyLimit = 10,
+}: TrialLimitModalProps) {
   const router = useRouter();
-  const remaining = Math.max(0, dailyLimit - todayCount);
 
   if (status === 'trial' && trialDaysRemaining != null) {
+    const totalDays = trialTotalDays || 30;
+    const daysPassed = totalDays - trialDaysRemaining;
     return (
-      <div className="bg-info/10 border border-info/30 rounded-xl p-3 mb-4">
-        <p className="text-sm text-info font-medium">
-          무료체험 중 · {trialDaysRemaining}일 남음
-        </p>
-        <p className="text-xs text-text-secondary mt-0.5">
-          체험 기간 종료 후 하루 {dailyLimit}문장으로 제한됩니다.
-        </p>
-      </div>
-    );
-  }
-
-  if (status === 'expired' || status === 'no_subscription') {
-    return (
-      <div className="bg-warning/10 border border-warning/30 rounded-xl p-3 mb-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-warning font-medium">
-              오늘 남은 학습: {remaining}/{dailyLimit}문장
-            </p>
-            <p className="text-xs text-text-secondary mt-0.5">
-              구독하면 무제한으로 학습할 수 있어요.
-            </p>
-          </div>
-          <Button size="sm" onClick={() => router.push('/pricing')}>
-            구독하기
+      <Modal isOpen={isOpen} onClose={onClose} size="sm">
+        <div className="text-center py-2">
+          <p className="text-lg font-bold text-text-primary mb-2">
+            가입 후 {daysPassed}일차/{totalDays}일
+          </p>
+          <p className="text-sm text-text-secondary mb-4">
+            무료이용기간 기간동안 마음껏 공부하세요.
+          </p>
+          <Button onClick={onClose} variant="secondary" className="w-full">
+            닫기
           </Button>
         </div>
-      </div>
+      </Modal>
     );
   }
 
-  return null;
+  // expired or no_subscription
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size="sm">
+      <div className="text-center py-2">
+        <p className="text-lg font-bold text-text-primary mb-2">
+          오늘남은 학습 {todayRemaining}/{dailyLimit}문장
+        </p>
+        <p className="text-sm text-text-secondary mb-4">
+          구독하면 무제한으로 학습할 수 있어요.
+        </p>
+        <Button onClick={() => router.push('/pricing')} className="w-full">
+          구독하기
+        </Button>
+      </div>
+    </Modal>
+  );
 }

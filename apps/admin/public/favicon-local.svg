@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <style>
-    .border { fill: none; stroke: #6C5CE7; stroke-width: 4; }
-    .card { fill: #6C5CE7; }
+    .border { fill: none; stroke: #16A34A; stroke-width: 4; }
+    .card { fill: #16A34A; }
     @media (prefers-color-scheme: dark) {
-      .border { stroke: #A594FF; }
-      .card { fill: #A594FF; }
+      .border { stroke: #22C55E; }
+      .card { fill: #22C55E; }
     }
   </style>
   <!-- Rounded border (no fill) -->
@@ -14,5 +14,5 @@
   <!-- Back card (offset) -->
   <rect class="card" x="12" y="8" width="14" height="19" rx="2.5" opacity="0.5"/>
   <!-- Flip arrow -->
-  <path d="M20 14.5 L23 17 L20 19.5" stroke-width="1.5" stroke="#6C5CE7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 14.5 L23 17 L20 19.5" stroke-width="1.5" stroke="#16A34A" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
