@@ -43,9 +43,10 @@ const FlipCard = forwardRef<QuizFlipCardRef, FlipCardProps>(
   const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const flipCardRef = useRef<QuizFlipCardRef>(null);
 
-  // Forward ref so parent can call triggerCheck
+  // Forward ref so parent can call triggerCheck and flip
   useImperativeHandle(ref, () => ({
     triggerCheck: (type: CheckType) => flipCardRef.current?.triggerCheck(type),
+    flip: () => flipCardRef.current?.flip(),
   }), []);
 
   useEffect(() => {
@@ -90,9 +91,12 @@ const FlipCard = forwardRef<QuizFlipCardRef, FlipCardProps>(
           <SkillTags tenseTypeName={tenseTypeName} patternTypeName={patternTypeName} />
         )}
       </div>
-      <div>
+      <div className="flex items-center gap-1">
         <span className={`inline-flex items-center text-[10px] px-1.5 py-0.5 rounded border font-medium ${masteryColor}`}>
           {masteryDisplay}
+        </span>
+        <span className="text-[10px] text-text-secondary font-mono">
+          {card.current_score ?? 0}
         </span>
       </div>
     </div>
@@ -107,6 +111,7 @@ const FlipCard = forwardRef<QuizFlipCardRef, FlipCardProps>(
         </p>
         {card.hint && (
           <button
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => { e.stopPropagation(); showHintToast(); }}
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border text-text-secondary hover:bg-neutral-100 hover:text-info transition-colors text-xs"
             aria-label="힌트 보기"

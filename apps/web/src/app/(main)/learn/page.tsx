@@ -70,6 +70,7 @@ export default function LearnPage() {
   // Daily status (mileage, streak, subscription)
   const [dailyStatus, setDailyStatus] = useState<DailyStatus | null>(null);
   const dailyCompleteCalledRef = useRef(false);
+  const dailyCompleteNewlyEarnedRef = useRef(false);
 
   useEffect(() => {
     fetch('/api/learning/daily-status')
@@ -99,6 +100,7 @@ export default function LearnPage() {
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
+            dailyCompleteNewlyEarnedRef.current = true;
             setDailyStatus((prev) => prev ? {
               ...prev,
               isDailyComplete: true,
@@ -158,7 +160,7 @@ export default function LearnPage() {
 
       if (e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        reveal();
+        flipCardRef.current?.flip();
         return;
       }
 
@@ -176,7 +178,7 @@ export default function LearnPage() {
         flipCardRef.current?.triggerCheck(checkType);
       }
     },
-    [revealed, reveal, submitCheck, skillUpPopup.show, levelUpPopup.show, showGuide]
+    [revealed, skillUpPopup.show, levelUpPopup.show, showGuide]
   );
 
   useEffect(() => {
@@ -206,20 +208,20 @@ export default function LearnPage() {
     <div className="max-w-lg mx-auto px-4 py-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 className="text-lg font-bold text-text-primary">Level {level}</h1>
-          {levelSummary && <p className="text-xs text-text-secondary mt-0.5">{levelSummary}</p>}
-        </div>
         <div className="flex items-center gap-2">
+          <h1 className="text-lg font-bold text-text-primary">Level {level}</h1>
           <span className="text-xl" role="img" aria-label="학습 언어">
             {LANGUAGE_FLAGS[dailyStatus?.learningLanguage || 'en'] || '🌐'}
           </span>
+        </div>
+        <div className="flex items-center gap-2">
           <MileageDisplay
             balance={dailyStatus?.mileageBalance || 0}
             onClick={() => router.push('/mypage')}
           />
         </div>
       </div>
+      {levelSummary && <p className="text-xs text-text-secondary -mt-3 mb-4">{levelSummary}</p>}
 
       {/* Week streak */}
       <div className="my-4">
@@ -265,7 +267,7 @@ export default function LearnPage() {
           <p className="text-text-secondary text-sm mb-6">
             오늘 {todayCheckCount}문장을 학습했습니다.
           </p>
-          {dailyStatus?.isDailyComplete && (
+          {dailyCompleteNewlyEarnedRef.current && (
             <p className="text-sm text-success font-medium mb-4">
               일학습 완료! +{10}pt 적립
             </p>

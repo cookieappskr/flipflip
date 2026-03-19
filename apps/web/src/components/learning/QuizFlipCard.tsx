@@ -9,6 +9,8 @@ const SWIPE_THRESHOLD = 60;
 export interface QuizFlipCardRef {
   /** Trigger a check — fires onCheck immediately, next card flips in */
   triggerCheck: (type: CheckType) => void;
+  /** Toggle flip (reveal/unreveal) programmatically */
+  flip: () => void;
 }
 
 interface QuizFlipCardProps {
@@ -61,11 +63,6 @@ const QuizFlipCard = forwardRef<QuizFlipCardRef, QuizFlipCardProps>(
       onCheck?.(type);
     }, [onCheck]);
 
-    // Expose triggerCheck to parent via ref
-    useImperativeHandle(ref, () => ({
-      triggerCheck: doCheck,
-    }), [doCheck]);
-
     const handleTap = useCallback(() => {
       if (revealed) {
         // Toggle back: opposite direction (decrement)
@@ -75,6 +72,12 @@ const QuizFlipCard = forwardRef<QuizFlipCardRef, QuizFlipCardProps>(
         setFlipCount((c) => c + 1);
       }
     }, [revealed]);
+
+    // Expose triggerCheck and flip to parent via ref
+    useImperativeHandle(ref, () => ({
+      triggerCheck: doCheck,
+      flip: handleTap,
+    }), [doCheck, handleTap]);
 
     const handlePanEnd = useCallback(
       (_: any, info: PanInfo) => {
