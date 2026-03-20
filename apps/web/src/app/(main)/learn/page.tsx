@@ -308,18 +308,6 @@ export default function LearnPage() {
         </div>
       )}
 
-      {/* Debug info panel */}
-      {debug && (
-        <div className="mt-4 p-3 rounded-lg bg-neutral-100 border border-border text-xs text-text-secondary space-y-1 font-mono">
-          <p>일학습시간 {debug.daily_goal_minutes}분 ({debug.daily_goal_type_name || '타입 미확인'}) : 설정된 일목표학습시간</p>
-          <p>최소체크문장수 {debug.min_check_count}건 : 일학습시간 extra_attr_1 값 x 1</p>
-          <p>로컬학습 데이터 문장수 {debug.local_sentence_count}건</p>
-          <p>지금학습할 문장수 {debug.session_sentence_count}건</p>
-          {lastScoreResult && (
-            <p>누적익힘점수 {lastScoreResult.accumulated_score}점 : 해당 문장학습의 익힘점수</p>
-          )}
-        </div>
-      )}
 
       {/* Level test button */}
       <div className="mt-6 text-center">

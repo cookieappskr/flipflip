@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react';
-import { motion, useMotionValue, useTransform, AnimatePresence, type PanInfo } from 'framer-motion';
+import { useCallback, useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { motion, useMotionValue, useTransform, type PanInfo } from 'framer-motion';
 import type { CheckType } from '@/types/database';
 
 const SWIPE_THRESHOLD = 60;
@@ -37,7 +37,7 @@ const QuizFlipCard = forwardRef<QuizFlipCardRef, QuizFlipCardProps>(
     const [prevCardKey, setPrevCardKey] = useState(cardKey);
     const revealed = flipCount % 2 === 1;
 
-    // Reset state SYNCHRONOUSLY when card changes (avoid stale rotation in AnimatePresence)
+    // Reset state SYNCHRONOUSLY when card changes
     if (cardKey !== prevCardKey) {
       setPrevCardKey(cardKey);
       setFlipCount(0);
@@ -105,44 +105,41 @@ const QuizFlipCard = forwardRef<QuizFlipCardRef, QuizFlipCardProps>(
 
     return (
       <div className={className} style={{ perspective: '1000px' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={cardKey}
-            initial={{ rotateY: rotation - 90, opacity: 0 }}
-            animate={{ rotateY: rotation, opacity: 1 }}
-            exit={{ rotateY: rotation + 90, opacity: 0 }}
-            transition={{ duration: revealed ? 0.5 : 0.25, ease: [0.23, 1, 0.32, 1] }}
-            style={{
-              transformStyle: 'preserve-3d',
-              ...(revealed ? { x, y, rotateZ, opacity: motionOpacity } : {}),
-            }}
-            drag={revealed}
-            dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-            dragElastic={0.7}
-            onDragEnd={handlePanEnd}
-            onTap={handleTap}
-            whileTap={!revealed ? { scale: 0.98 } : undefined}
-            className="relative rounded-2xl shadow-lg min-h-[260px] select-none touch-none cursor-pointer"
-            role="button"
-            tabIndex={0}
+        <motion.div
+          key={cardKey}
+          initial={false}
+          animate={{ rotateY: rotation }}
+          transition={{ duration: revealed ? 0.3 : 0.15, ease: [0.23, 1, 0.32, 1] }}
+          style={{
+            transformStyle: 'preserve-3d',
+            ...(revealed ? { x, y, rotateZ, opacity: motionOpacity } : {}),
+          }}
+          drag={revealed}
+          dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+          dragElastic={0.7}
+          onDragEnd={handlePanEnd}
+          onTap={handleTap}
+          whileTap={!revealed ? { scale: 0.98 } : undefined}
+          className="relative rounded-2xl shadow-lg min-h-[260px] select-none touch-none cursor-pointer"
+          role="button"
+          tabIndex={0}
+        >
+          {/* Front face */}
+          <div
+            className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-surface-secondary border-border"
+            style={{ backfaceVisibility: 'hidden' }}
           >
-            {/* Front face */}
-            <div
-              className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-surface-secondary border-border"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              {frontContent}
-            </div>
+            {frontContent}
+          </div>
 
-            {/* Back face */}
-            <div
-              className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-primary-50 border-primary-500/30"
-              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-            >
-              {backContent}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+          {/* Back face */}
+          <div
+            className="absolute inset-0 rounded-2xl px-6 py-8 flex flex-col items-center justify-center text-center border bg-primary-50 border-primary-500/30"
+            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          >
+            {backContent}
+          </div>
+        </motion.div>
       </div>
     );
   }
