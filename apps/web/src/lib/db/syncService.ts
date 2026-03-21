@@ -16,9 +16,10 @@ export async function processSyncQueue(): Promise<{
   isSyncing = true;
 
   try {
+    // Include failed items for retry
     const pendingItems = await db.syncQueue
       .where('status')
-      .equals('pending')
+      .anyOf(['pending', 'failed'])
       .toArray();
 
     if (pendingItems.length === 0) {

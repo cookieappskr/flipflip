@@ -6,7 +6,7 @@ import { isLocalDbAvailable } from '@/lib/db/dbAvailability';
 import { isLevelDownloaded, downloadLevelWithPriority } from '@/lib/db/downloadManager';
 import { buildLocalSession } from '@/lib/db/sessionBuilder';
 import { processCheckLocally } from '@/lib/db/scoreProcessor';
-import { processSyncQueue, registerVisibilitySync, startSyncTimer, stopSyncTimer } from '@/lib/db/syncService';
+import { processSyncQueue, registerVisibilitySync } from '@/lib/db/syncService';
 
 interface SkillInfo {
   id: string;
@@ -94,6 +94,14 @@ export function useLearning() {
         // --- LOCAL-FIRST PATH ---
         const { db } = await import('@/lib/db/flipflipDb');
 
+        // Flush pending sync queue to server before building session
+        // This ensures server has the latest data (mileage, records, etc.)
+        try {
+          await processSyncQueue();
+        } catch {
+          // Non-critical: continue with local data even if sync fails
+        }
+
         // Check if we already have a user profile locally
         const profiles = await db.userProfiles.toArray();
         const profile = profiles[0];
@@ -146,8 +154,7 @@ export function useLearning() {
             debug: sessionData.debug || null,
           }));
 
-          // Start sync services
-          startSyncTimer();
+          // Register visibility sync (sync when tab is hidden/closed)
           if (!unregisterVisibilityRef.current) {
             unregisterVisibilityRef.current = registerVisibilitySync();
           }
@@ -208,7 +215,6 @@ export function useLearning() {
             debug: sessionData.debug || null,
           }));
 
-          startSyncTimer();
           if (!unregisterVisibilityRef.current) {
             unregisterVisibilityRef.current = registerVisibilitySync();
           }
@@ -268,7 +274,10 @@ export function useLearning() {
   useEffect(() => {
     loadSession();
     return () => {
-      stopSyncTimer();
+      // Sync remaining data when component unmounts
+      if (localDbRef.current) {
+        processSyncQueue().catch(() => {});
+      }
       unregisterVisibilityRef.current?.();
     };
   }, [loadSession]);
@@ -355,15 +364,12 @@ export function useLearning() {
     };
 
     if (localDbRef.current && userIdRef.current) {
-      // --- LOCAL-FIRST SCORING (fallback to online on error) ---
+      // --- LOCAL-ONLY SCORING (no API calls during learning) ---
       processCheckLocally(userIdRef.current, card.sentence_id, checkType)
         .then(handleResult)
-        .catch((localErr) => {
-          console.error('[useLearning] local scoring failed, falling back to online:', localErr);
-          scoreOnline().catch(handleError);
-        });
+        .catch(handleError);
     } else {
-      // --- ONLINE SCORING ---
+      // --- ONLINE SCORING (only when local DB is unavailable) ---
       scoreOnline().catch(handleError);
     }
   }, [state.cards, state.currentIndex, state.submitting]);
@@ -373,7 +379,9 @@ export function useLearning() {
       ...prev,
       skillUpPopup: { show: false, skillName: '' },
     }));
-  }, []);
+    // Reload session to advance to the next skill
+    loadSession();
+  }, [loadSession]);
 
   const closeLevelUpPopup = useCallback(() => {
     setState((prev) => ({

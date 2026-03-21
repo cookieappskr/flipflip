@@ -29,6 +29,7 @@ interface DailyStatus {
   streak: number;
   isDailyComplete: boolean;
   learningLanguage: string;
+  serverTodayCheckCount: number;
   subscription: {
     status: string;
     isLimited: boolean;
@@ -82,6 +83,7 @@ export default function LearnPage() {
           streak: data.streak || 0,
           isDailyComplete: data.isDailyComplete || false,
           learningLanguage: data.learningLanguage || 'en',
+          serverTodayCheckCount: data.todayCheckCount || 0,
           subscription: data.subscription || null,
         });
       })
@@ -93,7 +95,7 @@ export default function LearnPage() {
     if (dailyCompleteCalledRef.current) return;
     if (!debug || !dailyStatus) return;
 
-    const totalChecked = (dailyStatus.subscription?.isLimited ? 0 : 0) + todayCheckCount;
+    const totalChecked = (dailyStatus.serverTodayCheckCount || 0) + todayCheckCount;
     if (totalChecked >= debug.min_check_count && !dailyStatus.isDailyComplete) {
       dailyCompleteCalledRef.current = true;
       fetch('/api/learning/complete', { method: 'POST' })

@@ -40,6 +40,9 @@ class FlipFlipDB extends Dexie {
       syncQueue: '++id, table_name, status, created_at',
       downloadStatus: '&[level_number+skill_id], level_number, status',
     });
+
+    // v2: 기존 사용자 브라우저의 누락된 object store 생성을 위한 업그레이드 트리거
+    this.version(2).stores({});
   }
 }
 

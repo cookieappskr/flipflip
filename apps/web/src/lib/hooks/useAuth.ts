@@ -59,6 +59,16 @@ export function useAuth() {
   }, []);
 
   const signOut = useCallback(async () => {
+    // Sync pending local data to server before signing out
+    try {
+      const { isLocalDbAvailable } = await import('@/lib/db/dbAvailability');
+      if (await isLocalDbAvailable()) {
+        const { processSyncQueue } = await import('@/lib/db/syncService');
+        await processSyncQueue();
+      }
+    } catch {
+      // Non-critical: proceed with sign out even if sync fails
+    }
     await supabase.auth.signOut();
     window.location.href = '/login';
   }, []);

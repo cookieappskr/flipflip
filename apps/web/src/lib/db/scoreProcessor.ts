@@ -55,6 +55,9 @@ export async function processCheckLocally(
   const sentence = await db.sentences.get(sentenceId);
   if (!sentence) throw new Error(`Sentence not found: ${sentenceId}`);
 
+  // 4.5. Pre-fetch skill_up_ratio BEFORE transaction (policySettings is not in transaction scope)
+  const skillUpRatio = await getSkillUpRatio();
+
   // Execute all writes in a transaction
   let achievementScore = 0;
   let totalScore = 0;
@@ -156,8 +159,7 @@ export async function processCheckLocally(
       );
       totalScore = calculateSkillTotalScore(sentenceIds.length);
 
-      // 6. Check skill-up
-      const skillUpRatio = await getSkillUpRatio();
+      // 6. Check skill-up (skillUpRatio pre-fetched before transaction)
       skillUp = checkSkillUp(achievementScore, totalScore, skillUpRatio);
 
       // 7. Update user_learning_progress
