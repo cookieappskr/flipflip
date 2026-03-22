@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 const EXCHANGE_POINTS = 5000;
 const EXCHANGE_DAYS = 7;
@@ -29,8 +30,9 @@ export async function POST(request: NextRequest) {
 
   const newBalance = currentBalance - EXCHANGE_POINTS;
 
-  // Create mileage deduction transaction
-  const { error: txError } = await supabase
+  // Create mileage deduction transaction (admin client bypasses RLS)
+  const adminClient = createAdminClient();
+  const { error: txError } = await adminClient
     .from('mileage_transactions')
     .insert({
       user_id: user.id,
@@ -60,7 +62,7 @@ export async function POST(request: NextRequest) {
 
   if (couponError) {
     // Rollback mileage
-    await supabase.from('mileage_transactions').insert({
+    await adminClient.from('mileage_transactions').insert({
       user_id: user.id,
       amount: EXCHANGE_POINTS,
       balance_after: currentBalance,

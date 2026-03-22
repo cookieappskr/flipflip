@@ -35,6 +35,12 @@ interface LoadingProgress {
   message: string;
 }
 
+interface CheckTypeLabels {
+  MISSED: string;
+  MOSTLY: string;
+  PERFECT: string;
+}
+
 interface LearningState {
   cards: LearningCard[];
   currentIndex: number;
@@ -51,6 +57,7 @@ interface LearningState {
   todayCheckCount: number;
   debug: DebugInfo | null;
   lastScoreResult: ScoreResult | null;
+  checkTypeLabels: CheckTypeLabels;
 }
 
 export function useLearning() {
@@ -70,11 +77,32 @@ export function useLearning() {
     todayCheckCount: 0,
     debug: null,
     lastScoreResult: null,
+    checkTypeLabels: { MISSED: '못맞춤', MOSTLY: '대부분맞춤', PERFECT: '완벽히맞춤' },
   });
 
   const localDbRef = useRef<boolean | null>(null);
   const userIdRef = useRef<string | null>(null);
   const unregisterVisibilityRef = useRef<(() => void) | null>(null);
+
+  // Load check type labels from local Dexie DB
+  const loadCheckTypeLabels = useCallback(async (): Promise<CheckTypeLabels> => {
+    const defaults: CheckTypeLabels = { MISSED: '못맞춤', MOSTLY: '대부분맞춤', PERFECT: '완벽히맞춤' };
+    try {
+      const { db } = await import('@/lib/db/flipflipDb');
+      const parent = await db.types.where('type_code').equals('CHECK_TYPE').first();
+      if (!parent) return defaults;
+      const children = await db.types.where('parent_id').equals(parent.id).toArray();
+      const labels = { ...defaults };
+      for (const c of children) {
+        if (c.type_code === 'MISSED') labels.MISSED = c.type_name;
+        if (c.type_code === 'MOSTLY') labels.MOSTLY = c.type_name;
+        if (c.type_code === 'PERFECT') labels.PERFECT = c.type_name;
+      }
+      return labels;
+    } catch {
+      return defaults;
+    }
+  }, []);
 
   const loadSession = useCallback(async () => {
     setState((prev) => ({
@@ -96,11 +124,28 @@ export function useLearning() {
         const { db } = await import('@/lib/db/flipflipDb');
 
         // Flush pending sync queue to server before building session
-        // This ensures server has the latest data (mileage, records, etc.)
         try {
           await processSyncQueue();
         } catch {
           // Non-critical: continue with local data even if sync fails
+        }
+
+        // Check for types updates (CHECK_TYPE, MASTERY_LEVEL labels, etc.)
+        try {
+          const localTypes = await db.types.toArray();
+          const maxUpdatedAt = localTypes.reduce((max, t) => {
+            const u = t.updated_at || '';
+            return u > max ? u : max;
+          }, '');
+          const res = await fetch(`/api/types/check-update?since=${encodeURIComponent(maxUpdatedAt)}`);
+          if (res.ok) {
+            const { updated, types: freshTypes } = await res.json();
+            if (updated && freshTypes.length > 0) {
+              await db.types.bulkPut(freshTypes);
+            }
+          }
+        } catch {
+          // Non-critical: continue with cached types
         }
 
         // Check if we already have a user profile locally
@@ -140,6 +185,7 @@ export function useLearning() {
             currentLevel,
             profile.learning_language || 'en'
           );
+          const labels = await loadCheckTypeLabels();
 
           setState((prev) => ({
             ...prev,
@@ -153,6 +199,7 @@ export function useLearning() {
             loadingProgress: { active: false, percent: 100, message: '' },
             sessionComplete: (sessionData.cards || []).length === 0,
             debug: sessionData.debug || null,
+            checkTypeLabels: labels,
           }));
 
           // Register visibility sync (sync when tab is hidden/closed)
@@ -201,6 +248,7 @@ export function useLearning() {
             newProfile.current_level,
             newProfile.learning_language || 'en'
           );
+          const labels2 = await loadCheckTypeLabels();
 
           setState((prev) => ({
             ...prev,
@@ -214,6 +262,7 @@ export function useLearning() {
             loadingProgress: { active: false, percent: 100, message: '' },
             sessionComplete: (sessionData.cards || []).length === 0,
             debug: sessionData.debug || null,
+            checkTypeLabels: labels2,
           }));
 
           if (!unregisterVisibilityRef.current) {

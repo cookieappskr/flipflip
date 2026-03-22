@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 /**
  * POST /api/learning/complete
@@ -130,11 +131,13 @@ export async function POST() {
   await checkStreakBonus(10, streak10Mileage, 'streak_10');
   await checkStreakBonus(30, streak30Mileage, 'streak_30');
 
-  // Insert all mileage transactions
+  // Insert all mileage transactions using admin client (bypasses RLS)
+  // Regular user JWT cannot INSERT into mileage_transactions due to RLS policy
+  const adminClient = createAdminClient();
   let runningBalance = (lastTx?.balance_after || 0);
   for (const award of awards) {
     runningBalance += award.amount;
-    await supabase.from('mileage_transactions').insert({
+    await adminClient.from('mileage_transactions').insert({
       user_id: user.id,
       amount: award.amount,
       balance_after: runningBalance,

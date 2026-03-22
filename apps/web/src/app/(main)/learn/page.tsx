@@ -59,6 +59,7 @@ export default function LearnPage() {
     todayCheckCount,
     debug,
     lastScoreResult,
+    checkTypeLabels,
     reveal,
     submitCheck,
     loadSession,
@@ -307,6 +308,7 @@ export default function LearnPage() {
           <CheckButtons
             onCheck={(type) => flipCardRef.current?.triggerCheck(type)}
             disabled={submitting}
+            labels={checkTypeLabels}
           />
         </div>
       )}

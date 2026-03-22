@@ -165,13 +165,6 @@ const FlipCard = forwardRef<QuizFlipCardRef, FlipCardProps>(
       />
 
       {/* Review badge */}
-      {card.is_review && (
-        <div className="flex items-center justify-center mt-2">
-          <span className="text-xs bg-warning/20 text-warning px-2 py-0.5 rounded-full font-medium">
-            복습
-          </span>
-        </div>
-      )}
     </div>
   );
 });

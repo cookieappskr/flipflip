@@ -235,21 +235,19 @@ export default function TypesPage() {
                 </div>
 
                 <div>
-                  <div className="flex items-end gap-3">
-                    <div className="flex-1">
-                      <Input
-                        label="색상"
-                        value={color}
-                        onChange={(e) => setColor(e.target.value)}
-                        placeholder="#FF5733"
-                      />
-                    </div>
-                    {color.trim() && (
-                      <div
-                        className="w-10 h-10 rounded-md border border-border shrink-0"
-                        style={{ backgroundColor: color.trim() }}
-                      />
-                    )}
+                  <label className="block text-sm font-medium text-text-primary mb-1">색상</label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="color"
+                      value={color.trim() || '#000000'}
+                      onChange={(e) => setColor(e.target.value)}
+                      className="w-10 h-10 rounded-md border border-border cursor-pointer shrink-0 p-0.5"
+                    />
+                    <Input
+                      value={color}
+                      onChange={(e) => setColor(e.target.value)}
+                      placeholder="#FF5733"
+                    />
                   </div>
                 </div>
 

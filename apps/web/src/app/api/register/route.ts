@@ -119,7 +119,8 @@ export async function POST(request: Request) {
   const welcomeAmount = welcomePolicy ? parseInt(welcomePolicy.value, 10) : 1000;
 
   if (welcomeAmount > 0) {
-    await supabase.from('mileage_transactions').insert({
+    const adminClient = createAdminClient();
+    await adminClient.from('mileage_transactions').insert({
       user_id: user.id,
       amount: welcomeAmount,
       balance_after: welcomeAmount,
