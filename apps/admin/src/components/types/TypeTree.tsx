@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Plus } from 'lucide-react';
 import { useTypes } from '@/lib/hooks/useTypes';
 import Button from '@/components/core/Button';
@@ -10,18 +10,27 @@ import type { Type } from '@/types/database';
 interface TypeTreeProps {
   selectedTypeId: string | null;
   onSelectType: (type: Type | null) => void;
+  refreshTrigger?: number;
 }
 
 function TypeChildren({
   parentId,
   selectedTypeId,
   onSelectType,
+  refreshTrigger,
 }: {
   parentId: string;
   selectedTypeId: string | null;
   onSelectType: (type: Type | null) => void;
+  refreshTrigger?: number;
 }) {
-  const { types, loading } = useTypes(parentId);
+  const { types, loading, refetch } = useTypes(parentId);
+
+  useEffect(() => {
+    if (refreshTrigger && refreshTrigger > 0) {
+      refetch();
+    }
+  }, [refreshTrigger, refetch]);
 
   if (loading) return <p className="pl-12 py-1 text-sm text-text-secondary">로딩 중...</p>;
 
@@ -59,8 +68,15 @@ function TypeChildren({
   );
 }
 
-export default function TypeTree({ selectedTypeId, onSelectType }: TypeTreeProps) {
-  const { types: rootTypes, loading, error } = useTypes(null);
+export default function TypeTree({ selectedTypeId, onSelectType, refreshTrigger }: TypeTreeProps) {
+  const { types: rootTypes, loading, error, refetch } = useTypes(null);
+
+  // Refetch when parent signals a refresh (e.g., after save)
+  useEffect(() => {
+    if (refreshTrigger && refreshTrigger > 0) {
+      refetch();
+    }
+  }, [refreshTrigger, refetch]);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [showModal, setShowModal] = useState(false);
   const [addChildParentId, setAddChildParentId] = useState<string | null>(null);
@@ -168,6 +184,7 @@ export default function TypeTree({ selectedTypeId, onSelectType }: TypeTreeProps
                       parentId={root.id}
                       selectedTypeId={selectedTypeId}
                       onSelectType={onSelectType}
+                      refreshTrigger={refreshTrigger}
                     />
                   )}
                 </li>

@@ -130,13 +130,15 @@ export default function TypesPage() {
         is_active: isActive,
       };
 
-      await updateType(selectedType.id, data);
+      const updated = await updateType(selectedType.id, data);
       setSaveMessage({ type: 'success', text: '저장되었습니다.' });
-      // Refresh the tree to reflect changes
+      setTimeout(() => setSaveMessage(null), 3000);
+      // Refresh the tree to reflect changes, keep selection
       setTreeRefreshKey((k) => k + 1);
-      setSelectedType(null);
-    } catch {
-      setSaveMessage({ type: 'error', text: '저장에 실패했습니다. 권한을 확인해주세요.' });
+      setSelectedType(updated);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : '저장에 실패했습니다. 권한을 확인해주세요.';
+      setSaveMessage({ type: 'error', text: message });
     } finally {
       setSubmitting(false);
     }
@@ -166,9 +168,9 @@ export default function TypesPage() {
         {/* Left Panel - Tree (1/3) */}
         <div className="w-1/3 border-r border-border overflow-hidden flex flex-col">
           <TypeTree
-            key={treeRefreshKey}
             selectedTypeId={selectedType?.id ?? null}
             onSelectType={handleSelectType}
+            refreshTrigger={treeRefreshKey}
           />
         </div>
 

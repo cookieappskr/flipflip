@@ -79,19 +79,23 @@ export function useTypes(parentId?: string | null) {
     }
   }, [fetchTypes]);
 
-  const updateType = useCallback(async (id: string, data: Partial<TypeInsert>) => {
+  const updateType = useCallback(async (id: string, data: Partial<TypeInsert>): Promise<Type> => {
     setError(null);
     try {
       const supabase = createClient();
-      const { error: updateError } = await supabase
+      const { data: updated, error: updateError } = await supabase
         .from('types')
         .update(data)
-        .eq('id', id);
+        .eq('id', id)
+        .select()
+        .single();
 
       if (updateError) throw updateError;
+      if (!updated) throw new Error('저장에 실패했습니다. 관리자 권한을 확인해주세요.');
       await fetchTypes();
+      return updated as Type;
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to update type';
+      const message = err instanceof Error ? err.message : '저장에 실패했습니다.';
       setError(message);
       throw err;
     }
