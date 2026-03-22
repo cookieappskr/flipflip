@@ -28,7 +28,7 @@ function LoginContent() {
 
         {error === 'unauthorized' && (
           <div className="mb-4 p-3 bg-error/10 border border-error/20 rounded-md text-error text-sm">
-            접근 권한이 없습니다. 등록된 관리자만 로그인할 수 있습니다.
+            승인된 관리자가 아닙니다.
           </div>
         )}
         {error === 'auth_failed' && (
