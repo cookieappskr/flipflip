@@ -237,6 +237,7 @@ export default function LearnPage() {
             skillName={skill.skill_name}
             achievementScore={skill.achievement_score}
             totalScore={skill.total_score}
+            skillUpRatio={skill.skill_up_ratio}
           />
         </div>
       )}
@@ -274,7 +275,7 @@ export default function LearnPage() {
               일학습 완료! +{10}pt 적립
             </p>
           )}
-          <Button onClick={loadSession}>더 학습하기</Button>
+          <Button onClick={() => { dailyCompleteNewlyEarnedRef.current = false; loadSession(); }}>더 학습하기</Button>
         </div>
       ) : currentCard ? (
         <FlipCard

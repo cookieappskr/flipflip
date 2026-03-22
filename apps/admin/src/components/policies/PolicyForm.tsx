@@ -13,10 +13,28 @@ function categorize(key: string): string {
 }
 
 const categoryLabels: Record<string, string> = {
-  skill: 'Skill Settings',
-  mileage: 'Mileage Settings',
-  general: 'General Settings',
+  skill: '스킬 설정',
+  mileage: '마일리지 설정',
+  general: '일반 설정',
 };
+
+// Korean labels for policy keys (fallback if DB description is English)
+const policyKeyLabels: Record<string, string> = {
+  skill_up_ratio: '스킬업 달성 비율 (%)',
+  referral_mileage: '추천인 적립 마일리지',
+  daily_complete_mileage: '일학습 완료 적립 마일리지',
+  streak_3_mileage: '3일 연속 학습 보너스 마일리지',
+  streak_10_mileage: '10일 연속 학습 보너스 마일리지',
+  streak_30_mileage: '30일 연속 학습 보너스 마일리지',
+  mileage_exchange_points: '마일리지 교환 필요 포인트',
+  mileage_exchange_days: '마일리지 교환 시 구독 연장일',
+  welcome_points: '회원가입 축하 포인트',
+  trial_days: '무료 체험 기간 (일)',
+};
+
+function getPolicyLabel(policy: PolicySetting): string {
+  return policyKeyLabels[policy.key] || policy.description || policy.key;
+}
 
 export default function PolicyForm() {
   const { policies, loading, error, updatePolicy } = usePolicies();
@@ -78,7 +96,7 @@ export default function PolicyForm() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64 text-text-secondary text-sm">
-        Loading policy settings...
+        정책 설정을 불러오는 중...
       </div>
     );
   }
@@ -94,7 +112,7 @@ export default function PolicyForm() {
   if (policies.length === 0) {
     return (
       <div className="flex items-center justify-center h-64 text-text-secondary text-sm">
-        No policy settings found.
+        등록된 정책 설정이 없습니다.
       </div>
     );
   }
@@ -116,7 +134,7 @@ export default function PolicyForm() {
               {items.map((policy) => (
                 <Input
                   key={policy.id}
-                  label={policy.description || policy.key}
+                  label={getPolicyLabel(policy)}
                   value={formValues[policy.id] ?? policy.value}
                   onChange={(e) =>
                     handleValueChange(policy.id, e.target.value)
@@ -130,12 +148,12 @@ export default function PolicyForm() {
 
       <div className="flex items-center gap-4 pt-4">
         <Button onClick={handleSave} loading={saving}>
-          Save
+          저장
         </Button>
 
         {showSuccess && (
           <div className="px-4 py-2 rounded-lg bg-green-100 text-green-700 text-sm font-medium">
-            Settings saved successfully.
+            설정이 저장되었습니다.
           </div>
         )}
       </div>

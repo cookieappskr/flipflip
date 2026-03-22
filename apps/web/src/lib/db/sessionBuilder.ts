@@ -1,5 +1,5 @@
 import { db } from './flipflipDb';
-import { getDailyGoalInfo } from './typeCache';
+import { getDailyGoalInfo, getSkillUpRatio } from './typeCache';
 import type { LearningCard } from '@/types/database';
 
 interface SessionResult {
@@ -9,6 +9,7 @@ interface SessionResult {
     skill_name: string;
     achievement_score: number;
     total_score: number;
+    skill_up_ratio: number;
     is_cleared: boolean;
     tense_type_code: string | null;
     tense_type_name: string | null;
@@ -184,6 +185,7 @@ export async function buildLocalSession(
     .where('skill_id')
     .equals(currentSkill.id)
     .count();
+  const skillUpRatio = await getSkillUpRatio();
 
   return {
     cards: shuffled,
@@ -192,6 +194,7 @@ export async function buildLocalSession(
       skill_name: currentSkill.skill_name,
       achievement_score: progress ? parseFloat(String(progress.achievement_score)) : 0,
       total_score: currentSkillSentences * 8,
+      skill_up_ratio: skillUpRatio,
       is_cleared: progress?.is_cleared || false,
       tense_type_code: currentSkill.tense_type_code || null,
       tense_type_name: currentSkill.tense_type_code

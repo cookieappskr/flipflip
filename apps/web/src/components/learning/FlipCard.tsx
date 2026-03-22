@@ -95,9 +95,6 @@ const FlipCard = forwardRef<QuizFlipCardRef, FlipCardProps>(
         <span className={`inline-flex items-center text-[10px] px-1.5 py-0.5 rounded border font-medium ${masteryColor}`}>
           {masteryDisplay}
         </span>
-        <span className="text-[10px] text-text-secondary font-mono">
-          {card.current_score ?? 0}
-        </span>
       </div>
     </div>
   );

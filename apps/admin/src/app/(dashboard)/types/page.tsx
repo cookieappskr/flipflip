@@ -23,6 +23,8 @@ function formatDateTime(dateStr: string | null | undefined): string {
 
 export default function TypesPage() {
   const [selectedType, setSelectedType] = useState<Type | null>(null);
+  // Key to force TypeTree remount/refetch after save
+  const [treeRefreshKey, setTreeRefreshKey] = useState(0);
 
   // Inline edit form state
   const [typeName, setTypeName] = useState('');
@@ -42,6 +44,7 @@ export default function TypesPage() {
   const [duplicateError, setDuplicateError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -66,6 +69,7 @@ export default function TypesPage() {
     }
     setDuplicateError(false);
     setShowDeleteConfirm(false);
+    setSaveMessage(null);
   }, [selectedType]);
 
   // Debounced duplicate check
@@ -107,6 +111,7 @@ export default function TypesPage() {
     if (duplicateError || !typeName.trim() || !typeCode.trim()) return;
 
     setSubmitting(true);
+    setSaveMessage(null);
     try {
       const data: Partial<TypeInsert> = {
         parent_id: selectedType.parent_id,
@@ -126,10 +131,12 @@ export default function TypesPage() {
       };
 
       await updateType(selectedType.id, data);
-      // Clear selection so the tree refetches
+      setSaveMessage({ type: 'success', text: '저장되었습니다.' });
+      // Refresh the tree to reflect changes
+      setTreeRefreshKey((k) => k + 1);
       setSelectedType(null);
     } catch {
-      // Error is handled inside the hook
+      setSaveMessage({ type: 'error', text: '저장에 실패했습니다. 권한을 확인해주세요.' });
     } finally {
       setSubmitting(false);
     }
@@ -140,9 +147,10 @@ export default function TypesPage() {
     setSubmitting(true);
     try {
       await deleteType(selectedType.id);
+      setTreeRefreshKey((k) => k + 1);
       setSelectedType(null);
     } catch {
-      // Error is handled inside the hook
+      setSaveMessage({ type: 'error', text: '삭제에 실패했습니다.' });
     } finally {
       setSubmitting(false);
     }
@@ -158,6 +166,7 @@ export default function TypesPage() {
         {/* Left Panel - Tree (1/3) */}
         <div className="w-1/3 border-r border-border overflow-hidden flex flex-col">
           <TypeTree
+            key={treeRefreshKey}
             selectedTypeId={selectedType?.id ?? null}
             onSelectType={handleSelectType}
           />
@@ -286,6 +295,17 @@ export default function TypesPage() {
                 <DetailRow label="생성일" value={formatDateTime(selectedType.created_at)} />
                 <DetailRow label="수정일" value={formatDateTime(selectedType.updated_at)} />
               </div>
+
+              {/* Save message */}
+              {saveMessage && (
+                <div className={`mt-4 px-4 py-2 rounded-lg text-sm font-medium ${
+                  saveMessage.type === 'success'
+                    ? 'bg-green-100 text-green-700'
+                    : 'bg-red-100 text-red-700'
+                }`}>
+                  {saveMessage.text}
+                </div>
+              )}
 
               {/* Action buttons */}
               <div className="flex items-center justify-between pt-6 mt-6 border-t border-border">

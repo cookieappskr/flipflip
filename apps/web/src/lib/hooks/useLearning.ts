@@ -13,6 +13,7 @@ interface SkillInfo {
   skill_name: string;
   achievement_score: number;
   total_score: number;
+  skill_up_ratio: number;
   is_cleared: boolean;
   tense_type_code: string | null;
   tense_type_name: string | null;

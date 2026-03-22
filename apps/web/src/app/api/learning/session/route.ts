@@ -237,6 +237,14 @@ export async function GET() {
     shuffled = shuffled.slice(0, remaining);
   }
 
+  // Get skill_up_ratio for gauge display
+  const { data: skillUpPolicy } = await supabase
+    .from('policy_settings')
+    .select('value')
+    .eq('key', 'skill_up_ratio')
+    .single();
+  const skillUpRatio = parseFloat(skillUpPolicy?.value || '80');
+
   // Skill info
   const progress = progressMap.get(currentSkill.id);
   const currentSkillSentenceCount = (allSentences || []).length;
@@ -255,6 +263,7 @@ export async function GET() {
       skill_name: currentSkill.skill_name,
       achievement_score: progress ? parseFloat(String(progress.achievement_score)) : 0,
       total_score: currentSkillSentenceCount * 8,
+      skill_up_ratio: skillUpRatio,
       is_cleared: progress?.is_cleared || false,
       tense_type_code: currentSkill.tense_type_code || null,
       tense_type_name: currentSkill.tense_type_code ? typeNameMap.get(currentSkill.tense_type_code) || currentSkill.tense_type_code : null,
